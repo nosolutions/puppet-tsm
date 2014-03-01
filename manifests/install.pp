@@ -35,15 +35,10 @@
 #
 # Copyright 2013 Toni Schmidbauer
 #
-class tsm::packages {
+class tsm::install inherits tsm {
 
-  package { 'TIVsm-API':
-    ensure => 'installed',
+  package { $tsm_packages:
+    ensure => installed,
   }
 
-  package { 'TIVsm-BA':
-    ensure => 'installed',
-  }
-
-  Package['TIVsm-API'] -> Package['TIVsm-BA']
 }

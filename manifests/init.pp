@@ -24,7 +24,6 @@
 # === Examples
 #
 #  class { tsm:
-#    servers => [ 'pool.ntp.org', 'ntp.local.company.com' ]
 #  }
 #
 # === Authors
@@ -36,15 +35,23 @@
 # Copyright 2011 Your name here, unless otherwise noted.
 #
 class tsm(
-  $tsm_host        = $::tsm::params::tsm_host,
-  $tsm_port        = $::tsm::params::tsm_port,
-  $replace_config  = $::tsm::params::replace_config
+  $tsm_host       = $::tsm::params::tsm_host,
+  $tsm_port       = $::tsm::params::tsm_port,
+  $tsm_packages   = $::tsm::params::tsm_packages,
+  $package_ensure = $::tsm::params::package_ensure,
+  $config_replace = $::tsm::params::config_replace
   ) inherits tsm::params {
 
-  anchor {'tsm::begin': }
-  anchor {'tsm::end': }
+  validate_string($tsm_host)
+  validate_string($tsm_port)
+  validate_string($package_ensure)
+  validate_array($tsm_packages)
+  validate_bool($config_replace)
 
-  Anchor['tsm::begin']-> class{'tsm::packages':}
-  class{'tsm::config':} -> Anchor['tsm::end']
+  anchor {'tsm::begin': } ->
+  class { '::tsm::install': } ->
+  class { '::tsm::config': } ->
+  class { '::tsm::service': } ->
+  anchor {'tsm::end': }
 
 }
