@@ -1,0 +1,11 @@
+SErvername  <%= @hostname %>
+  ERRORLOGNAME       /var/log/dsmerror.log
+  ERRORLOGRetention  31 D
+  SCHEDLOGName       /var/log/dsmsched.log
+  schedlogretention  30 d
+  COMMmethod         TCPip
+  TCPPort            <%= @tsm_port %>
+  TCPServeraddress   <%= @tsm_host %>.mainframe.lan.at
+  nodename           <%= @nodename %>
+  INCLEXCL           /opt/tivoli/tsm/client/ba/bin/InclExcl
+  PASSWORDAccess     generate
