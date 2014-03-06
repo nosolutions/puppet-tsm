@@ -19,5 +19,5 @@
 #
 # Copyright 2013 Toni Schmidbauer
 #
-class tsm::service inherits tsm (
+class tsm::service inherits tsm {
 }

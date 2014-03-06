@@ -20,7 +20,7 @@
 #
 # Copyright 2013 Toni Schmidbauer
 #
-class tsm::config inherits tsm (
+class tsm::config inherits tsm {
 
   file { "dsm.sys":
     ensure  => present,

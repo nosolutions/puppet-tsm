@@ -39,23 +39,23 @@ class tsm::params {
   $tsm_host = 'unknown'
   $tsm_port = 'unknown'
 
-  $package_ensure = 'installed',
+  $package_ensure = 'installed'
 
   $config_replace = false
 
   case $::osfamily {
     redhat: {
-      $tsm_packages = ['TIVsm-BA'],
+      $tsm_packages = ['TIVsm-BA']
     }
     aix: {
-      $tsm_package = [],
-      $tsm_package_uri = "",
+      $tsm_package = []
+      $tsm_package_uri = ""
     }
     solaris: {
       case $::kernelrelease {
         5.10: {
-          $tsm_packages = ['TIVsm-BA'],
-          $tsm_package_uri = "",
+          $tsm_packages = ['TIVsm-BA']
+          $tsm_package_uri = ""
         }
         5.11: {
         }

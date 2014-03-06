@@ -34,7 +34,7 @@
 #
 # Copyright 2011 Your name here, unless otherwise noted.
 #
-class tsm(
+class tsm (
   $tsm_host       = $::tsm::params::tsm_host,
   $tsm_port       = $::tsm::params::tsm_port,
   $tsm_packages   = $::tsm::params::tsm_packages,
@@ -48,10 +48,11 @@ class tsm(
   validate_array($tsm_packages)
   validate_bool($config_replace)
 
+  notify { "test": }
+
   anchor {'tsm::begin': } ->
   class { '::tsm::install': } ->
   class { '::tsm::config': } ->
   class { '::tsm::service': } ->
   anchor {'tsm::end': }
-
 }
