@@ -22,22 +22,23 @@
 #
 class tsm::config inherits tsm {
 
-  file { "dsm.sys":
-    ensure  => present,
-    path    => '/opt/tivoli/tsm/client/ba/bin/dsm.sys',
+  file { $::tsm::config:
+    ensure  => file,
+    path    => $::tsm::config,
     replace => $::tsm::config_replace,
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
-    content => template('tsm/dsm.sys.erb')
+    content => template($::tsm::config_template)
   }
 
-  file { 'InclExcl':
-    ensure  => 'present',
-    path    => '/opt/tivoli/tsm/client/ba/bin/InclExcl',
+  file { $::tsm::inclexcl:
+    ensure  => file,
+    path    => $::tsm::inclexcl,
     replace => $::tsm::config_replace,
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
+    source  => $::tsm::inclexcl_file,
   }
 }

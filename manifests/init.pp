@@ -35,20 +35,26 @@
 # Copyright 2011 Your name here, unless otherwise noted.
 #
 class tsm (
-  $tsm_host       = $::tsm::params::tsm_host,
-  $tsm_port       = $::tsm::params::tsm_port,
-  $tsm_packages   = $::tsm::params::tsm_packages,
-  $package_ensure = $::tsm::params::package_ensure,
-  $config_replace = $::tsm::params::config_replace
+  $package_ensure  = $::tsm::params::package_ensure,
+  $config_replace  = $::tsm::params::config_replace,
+  $tsm_host        = $::tsm::params::tsm_host,
+  $tsm_port        = $::tsm::params::tsm_port,
+  $tsm_packages    = $::tsm::params::tsm_packages,
+  $config          = $::tsm::params::config,
+  $config_template = $::tsm::params::config_template,
+  $inclexcl        = $::tsm::params::inclexcl,
+  $inclexcl_file   = $::tsm::params::inclexcl_file,
   ) inherits tsm::params {
 
+  validate_string($package_ensure)
+  validate_bool($config_replace)
   validate_string($tsm_host)
   validate_string($tsm_port)
-  validate_string($package_ensure)
   validate_array($tsm_packages)
-  validate_bool($config_replace)
-
-  notify { "test": }
+  validate_absolute_path($config)
+  validate_string($config_template)
+  validate_absolute_path($inclexcl)
+  validate_string($config_file)
 
   anchor {'tsm::begin': } ->
   class { '::tsm::install': } ->
