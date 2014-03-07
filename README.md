@@ -14,7 +14,7 @@ puppet-tsm
 
 ##Overview
 
-Install and manage TSM (Tivoli Storage Manager) with puppet. It's
+Install and manage TSM (Tivoli Storage Manager) client with puppet. It's
 heavily inspired by the puppetlabs-ntp module.
 
 This is currently work in progress!
@@ -22,7 +22,7 @@ This is currently work in progress!
 ##Module Description
 
 This module handles installing, configuring and running the IBM Tivoli
-Storage Manager (TSM) on the following operating systems:
+Storage Manager (TSM) client on the following operating systems:
 
 * RedHat Linux
 * Solaris (TBD)
