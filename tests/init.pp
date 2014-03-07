@@ -8,7 +8,5 @@
 #
 # Learn more about module testing here: http://docs.puppetlabs.com/guides/tests_smoke.html
 #
-class {'tsm':
-  tsm_host => 'zlxp02bc',
-  replace_dsm_sys => true,
+class { 'tsm':
 }
