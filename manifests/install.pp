@@ -37,6 +37,6 @@
 #
 class tsm::install inherits tsm {
   package { $::tsm::tsm_packages:
-    ensure => installed,
+    ensure => $::tsm::package_ensure,
   }
 }
