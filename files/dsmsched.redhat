@@ -1,0 +1,63 @@
+#!/bin/bash
+#
+# chkconfig: 345 99 99
+# description: starts the tsm scheduler at system boot
+# config:
+# pidfile:
+#
+# ChangeLog:
+# * tm      01.10.2001 bsd teufel austreiben. sysv rules.
+# * pinhead 29.08.2002 anpassung an redhat
+# * markusr 29.11.2011 status option
+#
+# !! WARNING !!
+#
+# this file is managed by cfengine. any changes will be lost
+# on the next cfengine run. please ask you cfengine bofh for
+# help.
+
+prog="/opt/tivoli/tsm/client/ba/bin/dsmc"
+
+[ ! -x "$prog" ] && exit 0
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+case "$1" in
+'start')
+        PID=`pidofproc dsmc`
+        if [ "$PID" != "" ]; then
+                echo 'tsm scheduler already running.'
+                exit 1
+        fi
+        echo -n "Starting dsmc"
+        if [ -x /opt/tivoli/tsm/client/ba/bin/dsmc ]; then
+                /opt/tivoli/tsm/client/ba/bin/dsmc sched \
+                > /var/log/dsmc.out 2>&1 &
+                echo_success Starting dsmc
+                echo
+        else
+                echo_failure
+                exit 1
+        fi
+        ;;
+
+'stop')
+        killproc $prog
+        echo "Stopping dsmc"
+        ;;
+
+'restart')
+        $0 stop
+        $0 start
+        ;;
+
+'status')
+        status $prog
+        ;;
+
+*)
+        echo "Usage: $0 { start | stop }"
+        exit 1
+        ;;
+esac
