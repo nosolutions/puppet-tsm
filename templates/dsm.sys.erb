@@ -5,7 +5,7 @@ SErvername  <%= @hostname %>
   schedlogretention  30 d
   COMMmethod         TCPip
   TCPPort            <%= @tsm_port %>
-  TCPServeraddress   <%= @tsm_host %>.mainframe.lan.at
-  nodename           <%= @nodename %>
+  TCPServeraddress   <%= @tsm_host %>
+  nodename           <%= @hostname %>
   INCLEXCL           /opt/tivoli/tsm/client/ba/bin/InclExcl
   PASSWORDAccess     generate
