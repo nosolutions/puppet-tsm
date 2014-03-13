@@ -26,23 +26,13 @@ class tsm::service inherits tsm {
   }
 
   if $::tsm::service_manage == true {
-    file { $::tsm::service_script:
-      ensure  => file,
-      path    => $::tsm::service_script,
-      owner   => 'root',
-      group   => 'root',
-      mode    => '0755',
-      source  => $::tsm::service_file,
+    case $::osfamily {
+      redhat: {
+        include tsm::service::redhat
+      }
+      solaris: {
+        include tsm::service::solaris
+      }
     }
-
-    service { $::tsm::service_name:
-      ensure     => $::tsm::service_ensure,
-      enable     => $::tsm::service_enable,
-      name       => $::tsm::service_name,
-      hasstatus  => true,
-      hasrestart => true,
-    }
-
-    File[$::tsm::service_script] -> Service[$::tsm::service_name]
   }
 }
