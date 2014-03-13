@@ -39,6 +39,6 @@ class tsm::config inherits tsm {
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
-    source  => $::tsm::inclexcl_file,
+    source  => $::tsm::inclexcl_source,
   }
 }
