@@ -36,7 +36,6 @@ class tsm::params {
   $service_ensure = 'running'
   $service_enable = true
 
-
   $tsm_host = 'unknown'
   $tsm_port = 'unknown'
 

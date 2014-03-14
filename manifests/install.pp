@@ -39,6 +39,17 @@ class tsm::install inherits tsm {
   tsm::installpkg { $::tsm::packages:
     ensure    => $::tsm::package_ensure,
     uri       => $::tsm::package_uri,
-    adminfile => $package_adminfile,
+    adminfile => $::tsm::package_adminfile,
   }
+
+  case $::osfamily {
+    solaris: {
+      Package['gsk8cry32'] ->
+      Package['gsk8ssl32'] ->
+      Package['TIVsmCapi'] ->
+      Package['TIVsmCba']
+    }
+    default: {}
+  }
+
 }

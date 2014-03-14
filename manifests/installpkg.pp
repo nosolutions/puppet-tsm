@@ -71,10 +71,6 @@ define tsm::installpkg (
         install_options => ['-G', ],
       }
 
-      Package['gsk8cry32'] ->
-      Package['gsk8ssl32'] ->
-      Package['TIVsmCapi'] ->
-      Package['TIVsmCba']
     }
     default: {
     }

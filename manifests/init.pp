@@ -51,7 +51,7 @@ class tsm (
   $config_replace          = $::tsm::params::config_replace,
   $config_template         = $::tsm::params::config_template,
   $inclexcl                = $::tsm::params::inclexcl,
-  $inclexcl_file           = $::tsm::params::inclexcl_file,
+  $inclexcl_source         = $::tsm::params::inclexcl_source,
   ) inherits tsm::params {
 
   validate_string($package_ensure)
@@ -68,7 +68,7 @@ class tsm (
   validate_bool($config_replace)
   validate_string($config_template)
   validate_absolute_path($inclexcl)
-  validate_string($inclexcl_file)
+  validate_string($inclexcl_source)
 
   case $::osfamily {
     solaris: {
