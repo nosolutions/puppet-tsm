@@ -2,14 +2,9 @@
 #
 # Configures the tsm client
 #
-# === Parameters
-#
-# === Variables
-#
 # === Examples
 #
 #  class { tsm::config
-#    servers => [ 'pool.ntp.org', 'ntp.local.company.com' ]
 #  }
 #
 # === Authors
@@ -18,7 +13,7 @@
 #
 # === Copyright
 #
-# Copyright 2013 Toni Schmidbauer
+# Copyright 2014 Toni Schmidbauer
 #
 class tsm::config inherits tsm {
 

@@ -1,30 +1,29 @@
 # == Class: tsm::installpkg
 #
-# Install a package on Linux, Solaris, AIX
+# Install a package on Linux and Solaris
 #
 # === Parameters
 #
-# Document parameters here.
+# [*ensure*]
 #
-# [*sample_parameter*]
-#   Explanation of what this parameter affects and what it defaults to.
-#   e.g. "Specify one or more upstream ntp servers as an array."
+#   Default: installed
 #
-# === Variables
+# [*adminfile*]
+#   Path to a solaris package admin file to enable
+#   seemless installation.
 #
-# Here you should define a list of variables that this module would require.
+#   Default: /dev/null
 #
-# [*sample_variable*]
-#   Explanation of how this variable affects the funtion of this class and if it
-#   has a default. e.g. "The parameter enc_ntp_servers must be set by the
-#   External Node Classifier as a comma separated list of hostnames." (Note,
-#   global variables should not be used in preference to class parameters  as of
-#   Puppet 2.6.)
+# [*uri*]
+#   HTTP URI where we can find the package, only required for
+#   solaris.
+#
+#   Default: ''
 #
 # === Examples
 #
-#  class { sysdoc:
-#    servers => [ 'pool.ntp.org', 'ntp.local.company.com' ]
+#  tsm::installpkg { 'TIVsmCba':
+#    adminfile => '/var/sadm/install/admin/puppet',
 #  }
 #
 # === Authors
@@ -35,7 +34,11 @@
 #
 # Copyright 2014 Toni Schmidbauer
 #
+
+# taken from
+# http://fairwaytech.com/2013/05/gonzos-puppet-journey-updating-an-existing-package-on-solaris-10-using-puppet-2-7/
 define tsm::remove_solaris_package($adminfile) {
+
   exec { "uninstall_${name}":
     command   => "pkgrm -n -v -a ${adminfile} ${name}",
     logoutput => on_failure,
@@ -50,6 +53,7 @@ define tsm::installpkg (
   $adminfile = '/dev/null',
   $uri        = '',
   ) {
+
   validate_string($ensure)
   validate_absolute_path($adminfile)
   validate_string($uri)
