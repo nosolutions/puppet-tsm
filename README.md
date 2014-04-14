@@ -1,5 +1,4 @@
-# puppet-tsm [![Build Status] (https://secure.travis-ci.org/nosolutions/puppet-tsm.png)](http://travis-ci.org/nosolutions/puppet-tsm)
-
+# puppet-tsm [![Build Status] (https://secure.travis-ci.org/nosolutions/puppet-tsm.png)](http://travis-ci.org/nosolutions/puppet-tsm) [![Coverage Status](https://coveralls.io/repos/nosolutions/puppet-tsm/badge.png)](https://coveralls.io/r/nosolutions/puppet-tsm)
 
 1. [Overview](#overview)
 2. [Module Description - What the module does and why it is useful](#module-description)
