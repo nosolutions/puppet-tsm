@@ -2,11 +2,6 @@
 #
 # Manage the tsm service on solaris
 #
-# === Examples
-#
-#  class { tsm::service::solaris:
-#  }
-#
 # === Authors
 #
 # Toni Schmidbauer <toni@stderr.at>
