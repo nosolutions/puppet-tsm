@@ -60,7 +60,7 @@ following packages for downloading:
 The gsk package are usually provided as file systems packages (thanks
 IBM!) so you have to translate them with pkgtrans:
 
-  $ pkgtrans . gskssl32.pkg gsk8ssl32/
+   pkgtrans . gskssl32.pkg gsk8ssl32/
 
 and copy them to you HTTP download location. You are going to need two
 download locations one for sparc and one for i386 (see params.pp for
@@ -87,9 +87,9 @@ This module has been built on and tested against Puppet 3.1.0 and higher.
 
 The module has been tested on:
 
-    RedHat Enterprise Linux 5/6
-    Solaris 10 i386/sparc
-    Solaris 11 i386/sparc
+* RedHat Enterprise Linux 5/6
+* Solaris 10 i386/sparc
+* Solaris 11 i386/sparc
 
 ##Development
 
