@@ -1,30 +1,21 @@
 # == Class: tsm::installpkg
 #
-# Install a package on Linux and Solaris
+# Install the tsm package on Linux and Solaris
 #
 # === Parameters
 #
 # [*ensure*]
-#
+#   What should be done with the package
 #   Default: installed
 #
 # [*adminfile*]
-#   Path to a solaris package admin file to enable
-#   seemless installation.
-#
+#   Solaris sysv package adminfile for a seemless installation, only required
+#   on Solaris.
 #   Default: /dev/null
 #
 # [*uri*]
-#   HTTP URI where we can find the package, only required for
-#   solaris.
-#
-#   Default: ''
-#
-# === Examples
-#
-#  tsm::installpkg { 'TIVsmCba':
-#    adminfile => '/var/sadm/install/admin/puppet',
-#  }
+#   Where to get the TSM package from, only required on Solaris
+#   Default: empty string
 #
 # === Authors
 #
@@ -35,25 +26,11 @@
 # Copyright 2014 Toni Schmidbauer
 #
 
-# taken from
-# http://fairwaytech.com/2013/05/gonzos-puppet-journey-updating-an-existing-package-on-solaris-10-using-puppet-2-7/
-define tsm::remove_solaris_package($adminfile) {
-
-  exec { "uninstall_${name}":
-    command   => "pkgrm -n -v -a ${adminfile} ${name}",
-    logoutput => on_failure,
-    onlyif    => "test `pkginfo -x | grep -w ${name} | awk 'END{print NR \"\"}'` -eq 1",
-    path      => "/usr/bin:/usr/sbin:/bin:/sbin:/usr/local/bin:/usr/local/sbin:/opt/csw/bin:/opt/csw/sbin",
-    require   => File["${adminfile}"],
-  }
-}
-
 define tsm::installpkg (
   $ensure    = 'installed',
   $adminfile = '/dev/null',
   $uri        = '',
   ) {
-
   validate_string($ensure)
   validate_absolute_path($adminfile)
   validate_string($uri)
@@ -64,11 +41,6 @@ define tsm::installpkg (
 
   case $::osfamily {
     solaris: {
-      # # first try to remove the package then install it
-      # tsm::remove_solaris_package{ $title:
-      #   adminfile => $adminfile,
-      # }
-
       Package[$title] {
         source    => "$uri/${title}.pkg",
         adminfile => $adminfile,
