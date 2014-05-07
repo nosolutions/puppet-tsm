@@ -8,4 +8,4 @@ description 'Install required TSM packages and deploys a default dsm.sys and dsm
 project_page 'https://github.com/nosolutions/puppet-tsm'
 
 ## Add dependencies, if any:
-# dependency 'username/name', '>= 1.2.0'
+dependency 'puppetlabs/stdlib', '>= 0.1.6'
