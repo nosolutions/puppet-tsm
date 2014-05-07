@@ -4,22 +4,67 @@
 #
 # === Parameters
 #
-# Document parameters here.
+# [*server_name*]
+#   server_name - optional, server id in the config file
 #
-# [*sample_parameter*]
-#   Explanation of what this parameter affects and what it defaults to.
-#   e.g. "Specify one or more upstream ntp servers as an array."
+# [*comm_method*]
+#   comm_method - optional
 #
-# === Variables
+# [*tcp_port*]
+#   tcp_port - optional
 #
-# Here you should define a list of variables that this module would require.
+# [*package_ensure*]
+#   package_ensure - optional
 #
-# [*sample_variable*]
-#   Explanation of how this variable affects the funtion of this class and if it
-#   has a default. e.g. "The parameter enc_ntp_servers must be set by the
-#   External Node Classifier as a comma separated list of hostnames." (Note,
-#   global variables should not be used in preference to class parameters  as of
-#   Puppet 2.6.)
+# [*packages*]
+#   packages - optional
+#
+# [*package_adminfile*]
+#   package_adminfile - optional
+#
+# [*package_uri*]
+#   package_uri - optional
+#
+# [*service_manage*]
+#   service_manage - optional
+#
+# [*service_name*]
+#   service_name - optional
+#
+# [*service_manifest*]
+#   service_manifest - optional
+#
+# [*service_manifest_source*]
+#   service_manifest_source - optional
+#
+# [*service_script*]
+#   service_script - optional
+#
+# [*service_script_source*]
+#   service_script_source - optional
+#
+# [*config*]
+#   config - optional
+#
+# [*config_replace*]
+#   config_replace - optional
+#
+# [*config_template*]
+#   config_template - optional
+#
+# [*inclexcl*]
+#   inclexcl - optional
+#
+# [*inclexcl_source*]
+#   inclexcl_source - optional
+#
+# [*config_hash*]
+#   config_hash - hash with extended parameters
+#     keys => value
+#
+# [*tcp_server_address*]
+#   tcp_server_address - obligatory
+#
 #
 # === Examples
 #
@@ -35,9 +80,10 @@
 # Copyright 2011 Your name here, unless otherwise noted.
 #
 class tsm (
+  $server_name             = $name,
+  $comm_method             = $::tsm::params::comm_method,
+  $tcp_port                = $::tsm::params::tcp_port,
   $package_ensure          = $::tsm::params::package_ensure,
-  $tsm_host                = $::tsm::params::tsm_host,
-  $tsm_port                = $::tsm::params::tsm_port,
   $packages                = $::tsm::params::packages,
   $package_adminfile       = $::tsm::params::package_adminfile,
   $package_uri             = $::tsm::params::package_uri,
@@ -53,11 +99,15 @@ class tsm (
   $inclexcl                = $::tsm::params::inclexcl,
   $inclexcl_replace        = $::tsm::params::inclexcl_replace,
   $inclexcl_source         = $::tsm::params::inclexcl_source,
+  $config_hash             = {},
+  $tcp_server_address,
+
   ) inherits tsm::params {
 
   validate_string($package_ensure)
-  validate_string($tsm_host)
-  validate_string($tsm_port)
+  validate_string($tcp_server_address)
+  validate_string($tcp_port)
+  validate_string($comm_method)
   validate_array($packages)
   validate_string($package_uri)
   validate_bool($service_manage)
@@ -75,6 +125,9 @@ class tsm (
     solaris: {
       validate_absolute_path($package_adminfile)
       validate_absolute_path($service_manifest)
+    }
+    default: {
+      # do nothing
     }
   }
 

@@ -1,13 +1,25 @@
-SErvername  <%= @hostname %>
-  ERRORLOGNAME       /var/log/dsmerror.log
-  ERRORLOGRetention  31 D
-  SCHEDLOGName       /var/log/dsmsched.log
-  schedlogretention  30 d
-  COMMmethod         TCPip
-  TCPPort            <%= @tsm_port %>
-  TCPServeraddress   <%= @tsm_host %>
-  nodename           <%= @hostname %>
-  INCLEXCL           /opt/tivoli/tsm/client/ba/bin/InclExcl
-  PASSWORDAccess     generate
-  domain all-local
-  makesparsefile no
+
+************************************************************************
+*                                                                      *
+* Managed by Puppet                                                    *
+*                                                                      *
+* Tivoli Storage Manager                                               *
+*                                                                      *
+************************************************************************
+
+SErvername  <%= scope.lookupvar("tsm::server_name") %>
+   COMMMethod         <%= scope.lookupvar("tsm::comm_method") %>
+   TCPPort            <%= scope.lookupvar("tsm::tcp_port") %>
+   TCPServeraddress   <%= scope.lookupvar("tsm::tcp_server_address") %>
+
+************************************************************************
+* EXTENDED CONFIG
+<%- if ! @config_hash.nil? -%>
+<%-   config_hash.keys.sort.each do |config_key| -%>
+<%-     config_value = @config_hash[config_key] -%>
+<%-     line = "%-32s %s" % [config_key, config_value] -%>
+<%=     line %>
+<%-   end -%>
+<%- end -%>
+* EXTENDED CONFIG
+************************************************************************
