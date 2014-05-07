@@ -2,18 +2,13 @@
 #
 # Configures the tsm client
 #
-# === Examples
-#
-#  class { tsm::config
-#  }
-#
 # === Authors
 #
 # Toni Schmidbauer <toni@stderr.at>
 #
 # === Copyright
 #
-# Copyright 2014 Toni Schmidbauer
+# Copyright 2013 Toni Schmidbauer
 #
 class tsm::config inherits tsm {
 
@@ -30,7 +25,7 @@ class tsm::config inherits tsm {
   file { $::tsm::inclexcl:
     ensure  => file,
     path    => $::tsm::inclexcl,
-    replace => $::tsm::config_replace,
+    replace => $::tsm::inclexcl_replace,
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
