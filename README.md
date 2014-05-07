@@ -46,22 +46,54 @@ This usually are
 * gskcrypt64-8.0.14.26.linux.x86_64.rpm
 * TIVsm-BA.x86_64.rpm
 
+For Solaris 10 and 11 you need a HTTP server that provides the
+following packages for downloading:
+
+* TIVsmCapi.pkg
+* TIVsmCba.pkg
+* gsk8cry32.pkg
+* gsk8cry64.pkg
+* gsk8ssl32.pkg
+* gsk8ssl64.pkg
+
+The gsk package are usually provides as file systems packages (thanks
+IBM!) so you have to translate them with pkgtrans:
+
+  $ pkgtrans . gskssl32.pkg gsk8ssl32/
+
+and copy them to you HTTP download location. You are going to need 2
+download locations one for sparc and one for i386 (see params.pp for
+an example).
+
 ###Beginning with tsm
 
-TBD
+Include the class TSM on hosts where you would like to install the TSM
+client packages. By default no config files will be overridden. The
+TSM class just makes sure the TSM packages are installed.
 
 ##Usage
 
-TBD
+All available options (see [params.pp](manifests/params.pp)) should be
+changes via the main tsm class.
 
 ##Reference
 
-TBD
+Please see [params.pp](manifests/params.pp) for an explanation of all available options
 
 ##Limitations
 
-TBD
+This module has been built on and tested against Puppet 3.1.0 and higher.
+
+The module has been tested on:
+
+    RedHat Enterprise Linux 5/6
+    Solaris 10 i386/sparc
+    Solaris 11 i386/sparc
 
 ##Development
 
-TBD
+Fork me and create pull requests.
+
+###Contributors
+
+The list of contributors can be found at: [https://github.com/nosolutions/puppet-tsm/graphs/contributors](https://github.com/nosolutions/puppet-tsm/graphs/contributors)
