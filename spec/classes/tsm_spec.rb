@@ -45,7 +45,6 @@ describe 'tsm' do
     end
   end
 
-
   context 'tsm::service on Redhat 6' do
     let :facts do
       {
@@ -64,10 +63,11 @@ describe 'tsm' do
         { :service_manage => true }
       end
       it { should contain_class('tsm::service::redhat')}
+
     end
   end
 
-  describe 'tsm::install on Solaris 10 i386' do
+  context 'tsm::install on Solaris 10 i386' do
     let :facts do
       {
         :osfamily      => 'Solaris',
@@ -97,7 +97,7 @@ describe 'tsm' do
     it { should contain_package('gsk8ssl32').that_requires('Package[gsk8cry32]') }
   end
 
-  describe 'tsm::install on Solaris 10 sparc' do
+  context 'tsm::install on Solaris 10 sparc' do
     let :facts do
       {
         :osfamily      => 'Solaris',
