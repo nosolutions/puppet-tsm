@@ -57,18 +57,18 @@ following packages for downloading:
 * gsk8ssl32.pkg
 * gsk8ssl64.pkg
 
-The gsk package are usually provides as file systems packages (thanks
+The gsk package are usually provided as file systems packages (thanks
 IBM!) so you have to translate them with pkgtrans:
 
   $ pkgtrans . gskssl32.pkg gsk8ssl32/
 
-and copy them to you HTTP download location. You are going to need 2
+and copy them to you HTTP download location. You are going to need two
 download locations one for sparc and one for i386 (see params.pp for
 an example).
 
 ###Beginning with tsm
 
-Include the class TSM on hosts where you would like to install the TSM
+Include class TSM on hosts where you would like to install the TSM
 client packages. By default no config files will be overridden. The
 TSM class just makes sure the TSM packages are installed.
 
