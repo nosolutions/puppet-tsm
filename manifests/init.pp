@@ -51,6 +51,7 @@ class tsm (
   $config_replace          = $::tsm::params::config_replace,
   $config_template         = $::tsm::params::config_template,
   $inclexcl                = $::tsm::params::inclexcl,
+  $inclexcl_replace        = $::tsm::params::inclexcl_replace,
   $inclexcl_source         = $::tsm::params::inclexcl_source,
   ) inherits tsm::params {
 
