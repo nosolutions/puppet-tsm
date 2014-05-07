@@ -75,7 +75,7 @@ TSM class just makes sure the TSM packages are installed.
 ##Usage
 
 All available options (see [params.pp](manifests/params.pp)) should be
-changes via the main tsm class.
+changed via the main tsm class.
 
 ##Reference
 
