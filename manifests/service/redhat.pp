@@ -19,7 +19,8 @@ class tsm::service::redhat {
     group   => 'root',
     mode    => '0755',
     source  => $::tsm::service_script_source,
-  } ->
+  }
+
   service { $::tsm::service_name:
     ensure     => $::tsm::service_ensure,
     enable     => $::tsm::service_enable,
@@ -27,4 +28,6 @@ class tsm::service::redhat {
     hasstatus  => true,
     hasrestart => true,
   }
+
+  File[$::tsm::service_script] -> Service[$::tsm::service_name]
 }
