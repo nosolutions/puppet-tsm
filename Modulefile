@@ -1,4 +1,4 @@
-name    'tsm'
+name    'nosolutions-tsm'
 version '0.0.1'
 source 'https://github.com/nosolutions/puppet-tsm'
 author 'Toni Schmidbauer'
