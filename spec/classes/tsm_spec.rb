@@ -12,9 +12,11 @@ describe 'tsm' do
       }
     end
 
-    let(:params) {{
-      :tcp_server_address => 'tsm',
-    }}
+    let(:params) do
+      {
+        :tcp_server_address => 'tsm',
+      }
+    end
 
     it { should contain_class('tsm::install') }
     it { should contain_class('tsm::config') }
@@ -30,18 +32,22 @@ describe 'tsm' do
       }
     end
 
-    describe 'should insttall tsm packages ' do
-      let(:params) {{
-        :tcp_server_address => 'tsm',
-      }}
+    describe 'should install tsm packages ' do
+      let(:params) do
+        {
+          :tcp_server_address => 'tsm',
+        }
+      end
+
       it { should contain_tsm__installpkg('TIVsm-BA').with_ensure('installed') }
     end
 
     describe 'should allow package_ensure to be overridden'do
-      let(:params) {{
+      let(:params) do {
         :tcp_server_address => 'tsm',
         :package_ensure     => 'latest'
-      }}
+      }
+      end
 
       it do
         should contain_tsm__installpkg('TIVsm-BA').with({
@@ -75,10 +81,13 @@ describe 'tsm' do
     end
 
     describe 'when tsm::service_manage is true' do
-      let(:params) {{
-        :tcp_server_address => 'tsm',
-        :service_manage     => true,
-      }}
+      let(:params) do
+        {
+          :tcp_server_address => 'tsm',
+          :service_manage     => true,
+        }
+      end
+
       it { should contain_class('tsm::service::redhat')}
     end
   end
@@ -155,10 +164,13 @@ describe 'tsm' do
     end
 
     describe 'when tsm::service_manage is true' do
-      let(:params) {{
-        :tcp_server_address => 'tsm',
-        :service_manage     => true,
-      }}
+      let(:params) do
+        {
+          :tcp_server_address => 'tsm',
+          :service_manage     => true,
+        }
+      end
+
       it { should contain_class('tsm::service::solaris')}
     end
   end
