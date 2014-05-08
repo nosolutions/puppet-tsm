@@ -110,8 +110,9 @@ class tsm::params {
   $service_ensure = 'running'
   $service_enable = true
 
-  $tsm_host = 'unknown'
-  $tsm_port = 'unknown'
+  # default parameters fot dsm.sys
+  $comm_method        = 'TCPip'
+  $tcp_port           = '1500'
 
   $config          = '/opt/tivoli/tsm/client/ba/bin/dsm.sys'
   $config_template = 'tsm/dsm.sys.erb'
@@ -132,7 +133,7 @@ class tsm::params {
       case $::hardwareisa {
         i386: {
           $packages                = ['gsk8cry32','gsk8cry64','gsk8ssl32','gsk8ssl64','TIVsmCapi', 'TIVsmCba']
-          $package_uri             = "http://server/pkgs/solaris/${::hardwareisa}/5.10"
+          $package_uri             = "http://sunkist6.eb.lan.at/pkgs/solaris/${::hardwareisa}/5.10"
           $package_adminfile       = '/var/sadm/install/admin/puppet'
           $service_name            = 'tsm'
           $service_manifest        = '/var/svc/manifest/site/tsmsched.xml'
@@ -153,7 +154,7 @@ class tsm::params {
           $inclexcl_source         = 'puppet:///modules/tsm/InclExcl.solaris'
         }
         default:{
-          fail("Unsupported hardwareisa ${::hardwareisa} for osfamily ${::osfamily} in config.pp!")
+          fail("Unsupported kernelrelease ${::kernelrelease} for osfamily ${::osfamily} in config.pp!")
         }
       }
     }
