@@ -101,12 +101,11 @@ class tsm (
   $inclexcl_source         = $::tsm::params::inclexcl_source,
   $config_hash             = {},
   $tcp_server_address,
-
   ) inherits tsm::params {
 
   validate_string($package_ensure)
   validate_string($tcp_server_address)
-  validate_string($tcp_port)
+  validate_re($tcp_port,'\d+', "tcp_port option has to be a numeric value!")
   validate_string($comm_method)
   validate_array($packages)
   validate_string($package_uri)
