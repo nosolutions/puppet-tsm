@@ -2,3 +2,4 @@
 /spec/fixtures/manifests/site.pp
 /spec/fixtures/modules/sudo
 /spec/fixtures/modules/tsm
+/pkg/
