@@ -12,6 +12,10 @@ describe 'tsm' do
       }
     end
 
+    let(:params) {{
+      :tcp_server_address => 'tsm',
+    }}
+
     it { should contain_class('tsm::install') }
     it { should contain_class('tsm::config') }
     it { should contain_class('tsm::service') }
@@ -26,24 +30,36 @@ describe 'tsm' do
       }
     end
 
-    it { should contain_tsm__installpkg('TIVsm-BA').with_ensure('installed') }
+    describe 'should insttall tsm packages ' do
+      let(:params) {{
+        :tcp_server_address => 'tsm',
+      }}
+      it { should contain_tsm__installpkg('TIVsm-BA').with_ensure('installed') }
+    end
 
     describe 'should allow package_ensure to be overridden'do
-      let(:params) {{ :package_ensure => 'latest'}}
+      let(:params) {{
+        :tcp_server_address => 'tsm',
+        :package_ensure     => 'latest'
+      }}
 
       it do
         should contain_tsm__installpkg('TIVsm-BA').with({
-                                                         'ensure' => 'latest',
-                                                       })
+          :ensure => 'latest',
+        })
       end
     end
 
     describe 'should allow package_name to be overridden'do
-      let(:params) {{ :packages => ['deadbeaf'] }}
+      let(:params) {{
+        :tcp_server_address => 'tsm',
+        :packages           => ['deadbeaf']
+      }}
 
       it { should contain_tsm__installpkg("deadbeaf").with_ensure('installed') }
     end
   end
+
 
   context 'tsm::service on Redhat 6' do
     let :facts do
@@ -59,11 +75,11 @@ describe 'tsm' do
     end
 
     describe 'when tsm::service_manage is true' do
-      let :params do
-        { :service_manage => true }
-      end
+      let(:params) {{
+        :tcp_server_address => 'tsm',
+        :service_manage     => true,
+      }}
       it { should contain_class('tsm::service::redhat')}
-
     end
   end
 
@@ -78,16 +94,16 @@ describe 'tsm' do
 
     it do
       should contain_tsm__installpkg('TIVsmCba').with({
-                                                         'uri'    => /^http:\/\/.*/,
-                                                         'adminfile' => '/var/sadm/install/admin/puppet',
-                                                       })
+       :uri       => /^http:\/\/.*/,
+       :adminfile => '/var/sadm/install/admin/puppet',
+      })
     end
 
     it do
       should contain_tsm__installpkg('TIVsmCapi').with({
-                                                         'uri'    => /^http:\/\/.*/,
-                                                         'adminfile' => '/var/sadm/install/admin/puppet',
-                                                       })
+        :uri       => /^http:\/\/.*/,
+        :adminfile => '/var/sadm/install/admin/puppet',
+      })
     end
 
     it { should contain_package('TIVsmCba').that_requires('Package[TIVsmCapi]') }
@@ -139,9 +155,10 @@ describe 'tsm' do
     end
 
     describe 'when tsm::service_manage is true' do
-      let :params do
-        { :service_manage => true }
-      end
+      let(:params) {{
+        :tcp_server_address => 'tsm',
+        :service_manage     => true,
+      }}
       it { should contain_class('tsm::service::solaris')}
     end
   end
