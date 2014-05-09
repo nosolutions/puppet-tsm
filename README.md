@@ -62,7 +62,7 @@ IBM!) so you have to translate them with pkgtrans:
 
    pkgtrans . gskssl32.pkg gsk8ssl32/
 
-and copy them to you HTTP download location. You are going to need two
+and copy them to your HTTP download location. You are going to need two
 download locations one for sparc and one for i386 (see params.pp for
 an example).
 
