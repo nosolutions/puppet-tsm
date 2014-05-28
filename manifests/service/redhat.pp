@@ -14,7 +14,6 @@ class tsm::service::redhat {
 
   file { $::tsm::service_script:
     ensure  => file,
-    path    => $::tsm::service_script,
     owner   => 'root',
     group   => 'root',
     mode    => '0755',
@@ -24,7 +23,6 @@ class tsm::service::redhat {
   service { $::tsm::service_name:
     ensure     => $::tsm::service_ensure,
     enable     => $::tsm::service_enable,
-    name       => $::tsm::service_name,
     hasstatus  => true,
     hasrestart => true,
   }
