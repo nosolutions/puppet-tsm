@@ -14,7 +14,6 @@ class tsm::config inherits tsm {
 
   file { $::tsm::config:
     ensure  => file,
-    path    => $::tsm::config,
     replace => $::tsm::config_replace,
     owner   => 'root',
     group   => 'root',
@@ -24,11 +23,18 @@ class tsm::config inherits tsm {
 
   file { $::tsm::inclexcl:
     ensure  => file,
-    path    => $::tsm::inclexcl,
     replace => $::tsm::inclexcl_replace,
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
     source  => $::tsm::inclexcl_source,
+  }
+
+  file { $::tsm::config_opt:
+    ensure => file,
+    replace => $::tsm::config_replace,
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
   }
 }
