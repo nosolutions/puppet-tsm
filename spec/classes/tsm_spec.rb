@@ -23,6 +23,71 @@ describe 'tsm' do
     it { should contain_class('tsm::service') }
   end
 
+  context 'tsm::config with default options' do
+    it do
+      should contain_file('/opt/tivoli/tsm/client/ba/bin/dsm.sys').with({
+        'ensure'  => 'file',
+        'replace' => 'false',
+        'owner'   => 'root',
+        'group'   => 'root',
+        'mode'    => '0644'
+      })
+    end
+
+    it do
+      should contain_file('/opt/tivoli/tsm/client/ba/bin/dsm.opt').with({
+        'ensure'  => 'file',
+        'replace' => 'false',
+        'owner'   => 'root',
+        'group'   => 'root',
+        'mode'    => '0644'
+      })
+    end
+
+    context 'on Redhat 6' do
+      let :facts do
+        {
+          :osfamily                  => 'RedHat',
+          :operatingsystemmajrelease => '6',
+          :architecure               => 'i386'
+        }
+      end
+
+      it do
+        should contain_file('/opt/tivoli/tsm/client/ba/bin/InclExcl').with({
+          'ensure'  => 'file',
+          'replace' => 'false',
+          'owner'   => 'root',
+          'group'   => 'root',
+          'mode'    => '0644',
+          'source'  => 'puppet:///modules/tsm/InclExcl.redhat'
+        })
+      end
+    end
+
+    context 'on Solaris' do
+      let :facts do
+        {
+          :osfamily    => 'Solaris',
+          :hardwareisa => 'i386'
+        }
+      end
+
+      it do
+        should contain_file('/opt/tivoli/tsm/client/ba/bin/InclExcl').with({
+          'ensure'  => 'file',
+          'replace' => 'false',
+          'owner'   => 'root',
+          'group'   => 'root',
+          'mode'    => '0644',
+          'source'  => 'puppet:///modules/tsm/InclExcl.solaris'
+        })
+      end
+    end
+
+
+  end
+
   context 'tsm::install on RedHat 6' do
     let :facts do
       {
@@ -89,6 +154,50 @@ describe 'tsm' do
       end
 
       it { should contain_class('tsm::service::redhat')}
+
+      it do
+        should contain_file('/etc/init.d/dsmsched').with({
+          'ensure'  => 'file',
+          'owner'   => 'root',
+          'group'   => 'root',
+          'mode'    => '0755',
+          'source'  => 'puppet:///modules/tsm/dsmsched.redhat'
+        })
+      end
+
+      it do
+        should contain_service('dsmsched').with({
+          'ensure'     => 'running',
+          'enable'     => 'true',
+          'hasstatus'  => 'true',
+          'hasrestart' => 'true',
+        })
+      end
+
+      it { should contain_service('dsmsched').that_requires('File[/etc/init.d/dsmsched]') }
+    end
+
+    describe 'when service_manage is true and set_intial_password is true' do
+      let(:params) do
+        {
+          :tcp_server_address   => 'tsm',
+          :service_manage       => true,
+          :initial_password     => 'start',
+          :set_initial_password => true,
+        }
+      end
+
+      it do
+        should contain_exec('generate-tsm.pwd').with({
+          'creates' => '/etc/adsm/TSM.PWD',
+          'path'    => ['/bin', '/usr/bin'],
+        })
+      end
+
+      it { should contain_exec('generate-tsm.pwd').with_command(/dsmc set password start .*/) }
+
+      it { should contain_service('dsmsched').that_requires('Exec[generate-tsm.pwd]') }
+
     end
   end
 
@@ -172,6 +281,59 @@ describe 'tsm' do
       end
 
       it { should contain_class('tsm::service::solaris')}
+
+      it do
+        should contain_file('/lib/svc/method/tsmsched').with({
+          'ensure'  => 'file',
+          'owner'   => 'root',
+          'group'   => 'root',
+          'mode'    => '0755',
+          'source'  => 'puppet:///modules/tsm/tsmsched.solaris'
+        })
+      end
+
+      it do
+        should contain_file('/var/svc/manifest/site/tsmsched.xml').with({
+          'ensure'  => 'file',
+          'owner'   => 'root',
+          'group'   => 'root',
+          'mode'    => '0444',
+          'source'  => 'puppet:///modules/tsm/tsmsched.xml'
+        })
+      end
+
+      it do
+        should contain_service('tsm').with({
+          'ensure'  => 'running',
+          'enable'  => 'true',
+          'manifest' => '/var/svc/manifest/site/tsmsched.xml'
+        })
+      end
+
+      it { should contain_service('tsm').that_requires('File[/var/svc/manifest/site/tsmsched.xml]') }
+      it { should contain_service('tsm').that_requires('File[/lib/svc/method/tsmsched]') }
+    end
+
+    describe 'when service_manage is true and set_intial_password is true' do
+      let(:params) do
+        {
+          :tcp_server_address   => 'tsm',
+          :service_manage       => true,
+          :initial_password     => 'start',
+          :set_initial_password => true,
+        }
+      end
+
+      it do
+        should contain_exec('generate-tsm.pwd').with({
+          'creates' => '/etc/adsm/TSM.PWD',
+          'path'    => ['/bin', '/usr/bin'],
+        })
+      end
+
+      it { should contain_exec('generate-tsm.pwd').with_command(/dsmc set password start .*/) }
+
+      it { should contain_service('tsm').that_requires('Exec[generate-tsm.pwd]') }
     end
   end
 end
