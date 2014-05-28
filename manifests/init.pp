@@ -88,12 +88,17 @@ class tsm (
   $package_adminfile       = $::tsm::params::package_adminfile,
   $package_uri             = $::tsm::params::package_uri,
   $service_manage          = $::tsm::params::service_manage,
+  $service_ensure          = $::tsm::params::service_ensure,
   $service_name            = $::tsm::params::service_name,
   $service_manifest        = $::tsm::params::service_manifest,
   $service_manifest_source = $::tsm::params::service_manifest_source,
   $service_script          = $::tsm::params::service_script,
   $service_script_source   = $::tsm::params::service_script_source,
+  $tsm_pwd                 = $::tsm::params::tsm_pwd,
+  $initial_password        = $::tsm::params::initial_password,
+  $set_initial_password    = $::tsm::params::set_initial_password,
   $config                  = $::tsm::params::config,
+  $config_opt              = $::tsm::params::config_opt,
   $config_replace          = $::tsm::params::config_replace,
   $config_template         = $::tsm::params::config_template,
   $inclexcl                = $::tsm::params::inclexcl,
@@ -110,11 +115,16 @@ class tsm (
   validate_array($packages)
   validate_string($package_uri)
   validate_bool($service_manage)
+  validate_string($service_ensure)
   validate_string($service_name)
   validate_string($service_manifest_source)
   validate_absolute_path($service_script)
   validate_string($service_script_source)
+  validate_absolute_path($tsm_pwd)
+  validate_string($initial_password)
+  validate_bool($set_initial_password)
   validate_absolute_path($config)
+  validate_absolute_path($config_opt)
   validate_bool($config_replace)
   validate_string($config_template)
   validate_absolute_path($inclexcl)
