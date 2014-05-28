@@ -14,23 +14,26 @@ class tsm::service::solaris inherits tsm {
 
   file { $::tsm::service_script:
     ensure  => file,
-    path    => $::tsm::service_script,
     owner   => 'root',
     group   => 'root',
     mode    => '0755',
     source  => $::tsm::service_script_source,
-  } ->
+  }
+
   file { $::tsm::service_manifest:
     ensure  => file,
-    path    => $::tsm::service_manifest,
     owner   => 'root',
     group   => 'root',
-    mode    => '0755',
+    mode    => '0444',
     source  => $::tsm::service_manifest_source,
-  } ->
+  }
+
   service { $::tsm::service_name:
     ensure   => $::tsm::service_ensure,
     enable   => $::tsm::service_enable,
     manifest => $tsm::service_manifest,
   }
+
+  File[$::tsm::service_script]   -> Service[$::tsm::service_name]
+  File[$::tsm::service_manifest] -> Service[$::tsm::service_name]
 }
