@@ -107,14 +107,20 @@ class tsm::params {
   $package_ensure = 'installed'
 
   $service_manage = false
-  $service_ensure = 'running'
   $service_enable = true
+  $service_ensure = 'running'
+
+  # default password file
+  $tsm_pwd              = '/etc/adsm/TSM.PWD'
+  $initial_password     = 'start'
+  $set_initial_password = true
 
   # default parameters fot dsm.sys
   $comm_method        = 'TCPip'
   $tcp_port           = '1500'
 
   $config          = '/opt/tivoli/tsm/client/ba/bin/dsm.sys'
+  $config_opt      = '/opt/tivoli/tsm/client/ba/bin/dsm.opt'
   $config_template = 'tsm/dsm.sys.erb'
   $config_replace  = false
 
