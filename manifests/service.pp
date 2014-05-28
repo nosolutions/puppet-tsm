@@ -33,6 +33,19 @@ class tsm::service inherits tsm {
       solaris: {
         include tsm::service::solaris
       }
+      default: {
+        fail("Unsupported osfamily ${::osfamily} for managing the service!")
+      }
+    }
+
+    if $::tsm::set_initial_password == true {
+      $password = tsm_generate_rand_string()
+      exec {'generate-tsm.pwd':
+        command => "dsmc set password ${::tsm::initial_password} $password",
+        creates => $::tsm::tsm_pwd,
+        path    => ['/bin', '/usr/bin']
+      }
+      Exec['generate-tsm.pwd'] -> Service[$::tsm::service_name]
     }
   }
 }
