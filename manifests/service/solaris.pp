@@ -17,6 +17,7 @@ class tsm::service::solaris inherits tsm {
     owner   => 'root',
     group   => 'root',
     mode    => '0755',
+    replace => true,
     source  => $::tsm::service_script_source,
   }
 
