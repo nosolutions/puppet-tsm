@@ -9,3 +9,4 @@ project_page 'https://github.com/nosolutions/puppet-tsm'
 
 ## Add dependencies, if any:
 dependency 'puppetlabs/stdlib', '>= 0.1.6'
+dependency 'puppetlabs/concat', '>= 1.1.0'
