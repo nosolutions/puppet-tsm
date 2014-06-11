@@ -6,9 +6,10 @@ describe 'tsm' do
 
     let :facts do
       {
-        :osfamily      => system,
-        :kernelrelease => '5.10',
-        :hardwareisa   => 'i386',
+        :osfamily       => system,
+        :kernelrelease  => '5.10',
+        :hardwareisa    => 'i386',
+        :concat_basedir => '/dne',
       }
     end
 
@@ -25,7 +26,51 @@ describe 'tsm' do
 
   context 'tsm::config with default options' do
     it do
-      should contain_file('/opt/tivoli/tsm/client/ba/bin/dsm.sys').with({
+      should contain_concat('/opt/tivoli/tsm/client/ba/bin/dsm.sys').with({
+        'ensure' => 'present',
+        'owner'  => 'root',
+        'group'  => 'root',
+        'mode'   => '0644'
+      })
+    end
+
+    it do
+      should contain_concat__fragment('dsm_sys_template').with({
+        'target' => '/opt/tivoli/tsm/client/ba/bin/dsm.sys',
+      })
+    end
+
+    it do
+      should contain_concat__fragment('dsm_sys_local').with({
+        'target' => '/opt/tivoli/tsm/client/ba/bin/dsm.sys',
+        'source' => '/opt/tivoli/tsm/client/ba/bin/dsm.sys.local',
+        'order'  => '02',
+      })
+    end
+
+    it do
+      should contain_file('/opt/tivoli/tsm/client/ba/bin/dsm.sys.local').with({
+        'ensure'  => 'file',
+        'owner'   => 'root',
+        'group'   => 'root',
+        'mode'    => '0644'
+      })
+    end
+
+    it { should contain_concat__fragment('dsm_sys_local').that_requires('File[/opt/tivoli/tsm/client/ba/bin/dsm.sys.local]') }
+
+    it do
+      should contain_file('/opt/tivoli/tsm/client/ba/bin/InclExcl').with({
+        'ensure'  => 'file',
+        'replace' => 'false',
+        'owner'   => 'root',
+        'group'   => 'root',
+        'mode'    => '0644'
+      })
+    end
+
+    it do
+      should contain_file('/opt/tivoli/tsm/client/ba/bin/InclExcl.local').with({
         'ensure'  => 'file',
         'replace' => 'false',
         'owner'   => 'root',
@@ -44,12 +89,15 @@ describe 'tsm' do
       })
     end
 
+
+
     context 'on Redhat 6' do
       let :facts do
         {
           :osfamily                  => 'RedHat',
           :operatingsystemmajrelease => '6',
-          :architecure               => 'i386'
+          :architecure               => 'i386',
+          :concat_basedir            => '/dne',
         }
       end
 
@@ -68,8 +116,9 @@ describe 'tsm' do
     context 'on Solaris' do
       let :facts do
         {
-          :osfamily    => 'Solaris',
-          :hardwareisa => 'i386'
+          :osfamily       => 'Solaris',
+          :hardwareisa    => 'i386',
+          :concat_basedir => '/dne',
         }
       end
 
@@ -93,7 +142,8 @@ describe 'tsm' do
       {
         :osfamily                  => 'RedHat',
         :operatingsystemmajrelease => '6',
-        :architecure               => 'i386'
+        :architecure               => 'i386',
+        :concat_basedir            => '/dne',
       }
     end
 
@@ -137,7 +187,8 @@ describe 'tsm' do
       {
         :osfamily                  => 'RedHat',
         :operatingsystemmajrelease => '6',
-        :architecure               => 'i386'
+        :architecure               => 'i386',
+        :concat_basedir            => '/dne',
       }
     end
 
@@ -204,9 +255,11 @@ describe 'tsm' do
   context 'tsm::install on Solaris 10 i386' do
     let :facts do
       {
-        :osfamily      => 'Solaris',
-        :kernelrelease => '5.10',
-        :hardwareisa   => 'i386',
+        :osfamily       => 'Solaris',
+        :kernelrelease  => '5.10',
+        :hardwareisa    => 'i386',
+        :concat_basedir => '/dne',
+
       }
     end
 
@@ -234,9 +287,10 @@ describe 'tsm' do
   context 'tsm::install on Solaris 10 sparc' do
     let :facts do
       {
-        :osfamily      => 'Solaris',
-        :kernelrelease => '5.10',
-        :hardwareisa   => 'sparc',
+        :osfamily       => 'Solaris',
+        :kernelrelease  => '5.10',
+        :hardwareisa    => 'sparc',
+        :concat_basedir => '/dne',
       }
     end
 
@@ -265,6 +319,7 @@ describe 'tsm' do
         :osfamily      => 'Solaris',
         :kernelrelease => '5.10',
         :hardwareisa   => 'i386',
+        :concat_basedir => '/dne',
       }
     end
 
@@ -288,6 +343,7 @@ describe 'tsm' do
           'owner'   => 'root',
           'group'   => 'root',
           'mode'    => '0755',
+          'replace' => 'true',
           'source'  => 'puppet:///modules/tsm/tsmsched.solaris'
         })
       end
