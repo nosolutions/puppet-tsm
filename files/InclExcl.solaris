@@ -9,7 +9,6 @@ exclude.fs /var/run
 exclude /etc/shadow
 exclude /var/log/dsmsched.log
 exclude /var/log/tsmsched.out
-exclude /export/home/black/log/last.adsm.log
 exclude /var/adm/pacct*
 exclude /tmp/*
 exclude /tmp/.../*

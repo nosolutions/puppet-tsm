@@ -1,4 +1,4 @@
-exclude /var/cash/.../*
+exclude /var/cache/.../*
 exclude /var/crash/.../*
 exclude /var/lib/slocate/*
 exclude /var/lock/.../*
