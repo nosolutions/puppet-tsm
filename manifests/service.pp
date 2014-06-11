@@ -40,8 +40,9 @@ class tsm::service inherits tsm {
 
     if $::tsm::set_initial_password == true {
       $password = tsm_generate_rand_string()
+
       exec {'generate-tsm.pwd':
-        command => "dsmc set password ${::tsm::initial_password} $password",
+        command => "dsmc set password ${::tsm::initial_password} ${password}",
         creates => $::tsm::tsm_pwd,
         path    => ['/bin', '/usr/bin']
       }
