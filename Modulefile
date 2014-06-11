@@ -3,7 +3,7 @@ version '0.0.1'
 source 'https://github.com/nosolutions/puppet-tsm'
 author 'Toni Schmidbauer'
 license 'Apache License, Version 2.0'
-summary 'Installs TSM and deploys a default configuration'
+summary 'Install and manage the TSM client'
 description 'Install required TSM packages and deploys a default dsm.sys and dsm.opt'
 project_page 'https://github.com/nosolutions/puppet-tsm'
 
