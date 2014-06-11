@@ -102,6 +102,7 @@ class tsm (
   $config_replace          = $::tsm::params::config_replace,
   $config_template         = $::tsm::params::config_template,
   $inclexcl                = $::tsm::params::inclexcl,
+  $inclexcl_local          = $::tsm::params::inclexcl_local,
   $inclexcl_replace        = $::tsm::params::inclexcl_replace,
   $inclexcl_source         = $::tsm::params::inclexcl_source,
   $config_hash             = {},
@@ -128,6 +129,7 @@ class tsm (
   validate_bool($config_replace)
   validate_string($config_template)
   validate_absolute_path($inclexcl)
+  validate_absolute_path($inclexcl_local)
   validate_string($inclexcl_source)
 
   case $::osfamily {

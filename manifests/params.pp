@@ -125,6 +125,7 @@ class tsm::params {
   $config_replace  = false
 
   $inclexcl         = '/opt/tivoli/tsm/client/ba/bin/InclExcl'
+  $inclexcl_local   = '/opt/tivoli/tsm/client/ba/bin/InclExcl.local'
   $inclexcl_replace = false
 
   case $::osfamily {
