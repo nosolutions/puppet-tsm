@@ -2,66 +2,60 @@
 #
 #tm 01.10.2001 bsd teufel austreiben. sysv rules.
 #be 04.12.2006 bisschen angepasst fuer solaris smf
-#
+#ts 11.06.2014 ja, wir verwenden auch zonen...
 ##################################################
 
 getpid()
 {
-PID=""
-PID=`/usr/bin/ps -ef |egrep '/opt/tivoli/tsm/client/ba/bin/dsmc sched' \
-     | egrep -v egrep | awk '{print $2}'`
-#echo "test: getpid(): $PID"
+    PID=""
+    ZONENAME=`zonename`
+    PID=`pgrep -z $ZONENAME -f 'dsmc sched'`
 }
- 
+
 sch_start()
 {
-        getpid
+    getpid
 
-        if [ "$PID" !=  "" ]; then
-                echo "tsm scheduler already running (pid $PID)."
-                exit 1
-        fi
-        if [ -x /opt/tivoli/tsm/client/ba/bin/dsmc ]; then
-                echo 'starting tsm scheduler.'
-                /opt/tivoli/tsm/client/ba/bin/dsmc sched \
-                > /var/log/tsmsched.out 2>&1 &
-        else 
-                echo 'cant find tsm executable!'
-                exit 1
-        fi
+    if [ "$PID" !=  "" ]; then
+        echo "tsm scheduler already running (pid $PID)."
+        exit 1
+    fi
+    if [ -x /opt/tivoli/tsm/client/ba/bin/dsmc ]; then
+        echo 'starting tsm scheduler.'
+        /opt/tivoli/tsm/client/ba/bin/dsmc sched \
+            > /var/log/tsmsched.out 2>&1 &
+    else
+        echo 'cant find tsm executable!'
+        exit 1
+    fi
 }
 
 sch_stop()
 {
-        getpid
+    getpid
 
-        if [ "$PID" = "" ]; then
-                echo 'tsm scheduler not running.'
-                #exit 1
-        else
-                echo 'stopping tsm scheduler.'
-                [ "$PID" -gt 0 ] && kill -15 $PID
-        fi      
+    if [ "$PID" = "" ]; then
+        echo 'tsm scheduler not running.'
+        #exit 1
+    else
+        echo 'stopping tsm scheduler.'
+        [ "$PID" -gt 0 ] && kill -15 $PID
+    fi
 }
 
-
 case "$1" in
-
-'start')
+    'start')
         sch_start
         ;;
-
-'restart')
+    'restart')
         sch_stop
         sleep 3 #wichtig
         sch_start
         ;;
-
-'stop')
+    'stop')
         sch_stop
         ;;
-
-*)
+    *)
         echo "Usage: $0 { start | restart | stop }"
         exit 1
         ;;
