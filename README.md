@@ -87,16 +87,16 @@ if you would like to add additional default options for nodes you
 have to use a hash (parameter config_hash) our hiera. Here's a hiera
 example:
 
-  tsm::config_hash:
-    errorlogname: "/var/log/dsmerror.log"
-    errorlogretention: "31 D"
-    schedlogname: "/var/log/dsmsched.log"
-    schedlogretention: "30 d"
-    nodename: "%{::hostname}"
-    inclexcl: "/opt/tivoli/tsm/client/ba/bin/InclExcl"
-    passwordaccess: "generate"
-    domain: "all-local"
-    makesparsefile: "no"
+    tsm::config_hash:
+        errorlogname: "/var/log/dsmerror.log"
+        errorlogretention: "31 D"
+        schedlogname: "/var/log/dsmsched.log"
+        schedlogretention: "30 d"
+        nodename: "%{::hostname}"
+        inclexcl: "/opt/tivoli/tsm/client/ba/bin/InclExcl"
+        passwordaccess: "generate"
+        domain: "all-local"
+        makesparsefile: "no"
 
 There is also the possibility to add node local options to
 *dsm.sys.local*. Settings in *dsm.sys.local* are going to be merged
