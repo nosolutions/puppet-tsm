@@ -114,10 +114,10 @@ In the case of a puppet managed include/exclude file, you can add
 local include/exclude rules to
 */opt/tivoli/tsm/clien/ba/bin/InclExcl.local* and add a second
 inclexcl option that points to
-*/opt/tivoli/tsm/clien/ba/bin/InclExcl.local* to *dsm.sys. For example
+*/opt/tivoli/tsm/clien/ba/bin/InclExcl.local* to *dsm.sys*. For example
 add the following to *dsm.sys.local*:
 
-  inclexcl /opt/tivoli/tsm/client/ba/bin/InclExcl.local
+    inclexcl /opt/tivoli/tsm/client/ba/bin/InclExcl.local
 
 ##Reference
 
