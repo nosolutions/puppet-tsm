@@ -6,69 +6,147 @@
 #
 # [*server_name*]
 #   server_name - optional, server id in the config file
+#   Default: tsm
 #
 # [*comm_method*]
+#   TSM communication method
 #   comm_method - optional
+#   Default: TCPip
 #
 # [*tcp_port*]
+#   TCP port used for connecting to the tsm server
 #   tcp_port - optional
+#   Default: 1500
 #
 # [*package_ensure*]
+#   State of the tsm packages
 #   package_ensure - optional
+#   Default: 'installed'
 #
 # [*packages*]
+#   List of tsm package to be installed
 #   packages - optional
+#   Default:
+#      Linux: ['TIVsm-BA']
+#      Solaris i386: ['gsk8cry32','gsk8cry64','gsk8ssl32','gsk8ssl64','TIVsmCapi', 'TIVsmCba']
+#      Solaris sparc: ['gsk8cry64','gsk8ssl64','TIVsmCapi', 'TIVsmCba']
 #
 # [*package_adminfile*]
+#   Solaris SysV package admin file, required for an unattended installation
 #   package_adminfile - optional
+#   Default: /var/sadm/install/admin/puppet
 #
 # [*package_uri*]
+#   HTTP URI where to find the package, required for Solaris
 #   package_uri - optional
+#   Default: http://server/pkgs/solaris/${::hardwareisa}/5.10
 #
 # [*service_manage*]
+#   If we should manage the tsm service
 #   service_manage - optional
+#   Default: false
+#
+# [*service_ensure*]
+#   Default state of the tsm service
+#   service_manage - optional
+#   Default: 'running'
 #
 # [*service_name*]
+#   Name of the tsm service we manage
 #   service_name - optional
+#   Default:
+#      Linux: dsmsched
+#      Solaris: tsmsched
 #
 # [*service_manifest*]
+#   Path to the solaris smf manifest for tsm
 #   service_manifest - optional
+#   Default: /var/svc/manifest/site/tsmsched.xml
 #
 # [*service_manifest_source*]
+#   We do we get the solaris smf manifest from
 #   service_manifest_source - optional
+#   Default: puppet://modules/tsm/tsmsched.xml
 #
 # [*service_script*]
+#   Start/stop script for the tsm service
 #   service_script - optional
+#   Default:
+#      Linux: /etc/init.d/dsmsched
+#      Solaris: /lib/svc/method/tsmsched
 #
 # [*service_script_source*]
+#   Where to find the tsm service script for deployment
 #   service_script_source - optional
+#   Default:
+#      Linux: puppet://modules/tsm/dsmsched.redhat
+#      Solaris: puppet://modules/tsm/tsmsched.solaris
+#
+# [*tsm_pwd*]
+#   Path to the TSM password file
+#   config - optional
+#   Default: /etc/adsm/TSM.PWD
+#
+# [*initial_password*]
+#   First time password for connecting to the tsm server
+#   config - optional
+#   Default: 'start'
 #
 # [*config*]
+#   Path to dsm.sys
 #   config - optional
+#   Default: /opt/tivoli/tsm/client/ba/bin/dsm.sys
+#
+# [*config_opt*]
+#   Path to dsm.opt
+#   config - optional
+#   Default: /opt/tivoli/tsm/client/ba/bin/dsm.opt
 #
 # [*config_replace*]
+#   Whether or not to replace dsm.sys
 #   config_replace - optional
+#   Default: false
 #
 # [*config_template*]
+#   Where to find the ERB template for dsm.sys
 #   config_template - optional
+#   Default: 'tsm/dsm.sys.erb'
 #
 # [*inclexcl*]
+#   Path to the include/exclude file
 #   inclexcl - optional
+#   Default: /opt/tivoli/tsm/client/ba/bin/InclExcl
+#
+# [*inclexcl_local*]
+#   Path to the local include/exclude file
+#   inclexcl - optional
+#   Default: /opt/tivoli/tsm/client/ba/bin/InclExcl.local
+#
+# [*inclexcl_replace*]
+#   Whether or not to replace a existing InclExcl file
+#   inclexcl - optional
+#   Default: false
 #
 # [*inclexcl_source*]
+#   Where to find a default include/exclude file
 #   inclexcl_source - optional
+#   Default:
+#      Linux: puppet://modules/tsm/InclExcl.redhat
+#      Solaris: puppet://modules/tsm/InclExcl.solaris
 #
 # [*config_hash*]
 #   config_hash - hash with extended parameters
 #     keys => value
+#   Default: {}
 #
 # [*tcp_server_address*]
+#   TSM server used for this client
 #   tcp_server_address - obligatory
-#
 #
 # === Examples
 #
 #  class { tsm:
+#    tcp_server_address => 'tsmserver1'
 #  }
 #
 # === Authors
@@ -77,7 +155,7 @@
 #
 # === Copyright
 #
-# Copyright 2011 Your name here, unless otherwise noted.
+# Copyright 2014 Toni Schmidbauer
 #
 class tsm (
   $server_name             = $name,
