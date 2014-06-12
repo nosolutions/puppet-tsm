@@ -37,10 +37,10 @@ Storage Manager (TSM) client on the following operating systems:
 
 ###Setup requirements
 
-For RedHat Linux you need a yum repository that includes the rpm
-packages from the IBM provided installation tar.gz.
+For RedHat Linux you need a yum repository that contains the rpm
+packages IBM provides in the TSM installation tar.gz.
 
-This usually are
+These usually are
 
 * TIVsm-API64.x86_64.rpm
 * gskssl64-8.0.14.26.linux.x86_64.rpm
@@ -57,13 +57,13 @@ following packages for downloading:
 * gsk8ssl32.pkg
 * gsk8ssl64.pkg
 
-The gsk package are usually provided as file systems packages (thanks
-IBM!) so you have to translate them with pkgtrans:
+IBM provides the gsk packages as file systems packages (thanks IBM!),
+so you have to translate them with pkgtrans:
 
    pkgtrans . gskssl32.pkg gsk8ssl32/
 
 and copy them to your HTTP download location. You are going to need two
-download locations one for sparc and one for i386 (see params.pp for
+download locations: one for sparc and one for i386 (see params.pp for
 an example).
 
 ###Beginning with tsm
@@ -83,8 +83,8 @@ The default *dsm.sys* template only sets
 * TCPPort
 * TCPServeraddress
 
-if you would like to add additional default options for nodes you
-have to use a hash (parameter config_hash) our hiera. Here's a hiera
+if you would like to add additional default options for nodes, you
+have to use a hash (parameter config_hash) or hiera. Here's a hiera
 example:
 
     tsm::config_hash:
@@ -114,8 +114,8 @@ In the case of a puppet managed include/exclude file, you can add
 local include/exclude rules to
 */opt/tivoli/tsm/clien/ba/bin/InclExcl.local* and add a second
 inclexcl option that points to
-*/opt/tivoli/tsm/clien/ba/bin/InclExcl.local* to *dsm.sys*. For example
-add the following to *dsm.sys.local*:
+*/opt/tivoli/tsm/clien/ba/bin/InclExcl.local* to *dsm.sys*. For
+example add the following to *dsm.sys.local*:
 
     inclexcl /opt/tivoli/tsm/client/ba/bin/InclExcl.local
 
@@ -139,4 +139,5 @@ Fork me and create pull requests.
 
 ###Contributors
 
-The list of contributors can be found at: [https://github.com/nosolutions/puppet-tsm/graphs/contributors](https://github.com/nosolutions/puppet-tsm/graphs/contributors)
+The list of contributors can be found at:
+[https://github.com/nosolutions/puppet-tsm/graphs/contributors](https://github.com/nosolutions/puppet-tsm/graphs/contributors)
