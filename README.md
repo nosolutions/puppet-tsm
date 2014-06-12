@@ -74,12 +74,54 @@ TSM class just makes sure the TSM packages are installed.
 
 ##Usage
 
-All available options (see [params.pp](manifests/params.pp)) should be
+All available options (see [init.pp](manifests/init.pp)) should be
 changed via the main tsm class.
+
+The default *dsm.sys* template only sets
+
+* COMMMethod
+* TCPPort
+* TCPServeraddress
+
+if you would like to add additional default options for nodes you
+have to use a hash (parameter config_hash) our hiera. Here's a hiera
+example:
+
+  tsm::config_hash:
+    errorlogname: "/var/log/dsmerror.log"
+    errorlogretention: "31 D"
+    schedlogname: "/var/log/dsmsched.log"
+    schedlogretention: "30 d"
+    nodename: "%{::hostname}"
+    inclexcl: "/opt/tivoli/tsm/client/ba/bin/InclExcl"
+    passwordaccess: "generate"
+    domain: "all-local"
+    makesparsefile: "no"
+
+There is also the possibility to add node local options to
+*dsm.sys.local*. Settings in *dsm.sys.local* are going to be merged
+into the global *dsm.sys* on the next puppet run.
+
+### The Include/Exclude file
+
+If there is no */opt/tivoli/tsm/client/ba/bin/InclExcl* file
+available, this module also deploys a default *InclExcl* file.
+
+For a puppet managed include/exclude file set *inclexcl_replace* to
+*true*.
+
+In the case of a puppet managed include/exclude file, you can add
+local include/exclude rules to
+*/opt/tivoli/tsm/clien/ba/bin/InclExcl.local* and add a second
+inclexcl option that points to
+*/opt/tivoli/tsm/clien/ba/bin/InclExcl.local* to *dsm.sys. For example
+add the following to *dsm.sys.local*:
+
+  inclexcl /opt/tivoli/tsm/client/ba/bin/InclExcl.local
 
 ##Reference
 
-Please see [params.pp](manifests/params.pp) for an explanation of all available options
+Please see [init.pp](manifests/init.pp) for an explanation of all available options.
 
 ##Limitations
 
