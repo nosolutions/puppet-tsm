@@ -1,0 +1,98 @@
+{
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "RedHat",
+      "operatingsystemrelease": [
+        "5",
+        "6"
+      ]
+    },
+    {
+      "operatingsystem": "CentOS",
+      "operatingsystemrelease": [
+        "5",
+        "6"
+      ]
+    },
+    {
+      "operatingsystem": "OracleLinux",
+      "operatingsystemrelease": [
+        "5",
+        "6"
+      ]
+    },
+    {
+      "operatingsystem": "Scientific",
+      "operatingsystemrelease": [
+        "5",
+        "6"
+      ]
+    },
+    {
+      "operatingsystem": "Solaris",
+      "operatingsystemrelease": [
+        "5.10",
+        "5.11"
+      ]
+    },
+  ],
+  "requirements": [
+    {
+      "name": "pe",
+      "version_requirement": ">= 3.0.0 < 3.4.0"
+    },
+    {
+      "name": "puppet",
+      "version_requirement": "3.x"
+    }
+  ],
+  "name": "nosolutions-tsm",
+  "version": "0.0.1",
+  "source": "https://github.com/nosolutions/puppet-tsm",
+  "author": "Toni Schmidbauer",
+  "license": "Apache License, Version 2.0",
+  "summary": "Install and manage the TSM client",
+  "description": "Install required TSM packages and deploys a default dsm.sys and dsm.opt",
+  "project_page": "https://github.com/nosolutions/puppet-tsm",
+  "dependencies": [
+    {
+      "name": "puppetlabs/stdlib",
+      "version_requirement": ">= 0.1.6"
+    },
+    {
+      "name": "puppetlabs/concat",
+      "version_requirement": ">= 1.1.0"
+    }
+  ],
+  "types": [
+
+  ],
+  "checksums": {
+    "CHANGELOG.md": "c6475643eb2721bfb3833b05c49cb4de",
+    "Gemfile": "e916093b1df068e7bca86c249b2cd8ba",
+    "LICENSE": "783b7e40cdfb4a1344d15b1f7081af66",
+    "Modulefile": "a0b6c58dda417d77e58e9bf1f6ab054e",
+    "README": "ec1c3b02e2abf03ef5584b1cdcf3dcf2",
+    "README.md": "99ce50f149be7ae92990aea84d40b2d1",
+    "Rakefile": "0254db5d3fc38c67a2c160d7296a24f8",
+    "files/InclExcl.redhat": "61b1800fbc398d941ca24acf74418ec2",
+    "files/InclExcl.solaris": "3cd5df13c0cd698c2b214ee4259182de",
+    "files/dsmsched.redhat": "3977cbbf793ca325116b0902a57651cb",
+    "files/tsmsched.solaris": "0925fe8e0575d7d48aded935c08df151",
+    "files/tsmsched.xml": "781607708a19b2aa36dee240d2179da4",
+    "lib/puppet/parser/functions/tsm_generate_rand_string.rb": "15e4e810b2d12b393287bc55bc17e7de",
+    "manifests/config.pp": "0fd1066c76f9b56772b037f5e9bdc5c4",
+    "manifests/init.pp": "88067eb2db5912a9163f173e6711692b",
+    "manifests/install.pp": "b0d88208a0bd5d8918edd3a6dbbb7705",
+    "manifests/installpkg.pp": "5a58a3bd563ed0546a3afc5ba49a8b55",
+    "manifests/params.pp": "74813f8f4f1c2dcc976856d5d3c976fc",
+    "manifests/service/redhat.pp": "397555b2983c07b9c4dd39bbd33c5663",
+    "manifests/service/solaris.pp": "f5a77f13def1a76bcf1f9baa4d709cd3",
+    "manifests/service.pp": "5c6adc16fb271289f9757d8d91bd0c25",
+    "spec/classes/tsm_spec.rb": "91ada48742c2c2ecee33d58e75d02240",
+    "spec/defines/installpkg_spec.rb": "9b36b4b6e0aea7376362bbc77c22b099",
+    "spec/spec_helper.rb": "124428c06ac63e4fb259ed4feff2201a",
+    "templates/dsm.sys.erb": "4b9eb67a7dd7cc46d0609745e7fcc5f0",
+    "tests/init.pp": "e2dcf0c3b39fa5cbec7048afe06674a4"
+  }
+}
