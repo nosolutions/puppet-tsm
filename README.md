@@ -16,8 +16,6 @@
 Install and manage TSM (Tivoli Storage Manager) client with puppet. It's
 heavily inspired by the puppetlabs-ntp module.
 
-This is currently work in progress!
-
 ##Module Description
 
 This module handles installing, configuring and running the IBM Tivoli
