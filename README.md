@@ -23,9 +23,11 @@ This is currently work in progress!
 This module handles installing, configuring and running the IBM Tivoli
 Storage Manager (TSM) client on the following operating systems:
 
-* RedHat Linux
-* Solaris 10
-* Solaris 11
+* RedHat Linux 5/6
+* CentOS 5/6
+* Oracle Linux 5/6
+* Scientific Linux 5/6
+* Solaris 10/11
 
 ##Setup
 
