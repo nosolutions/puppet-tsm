@@ -12,8 +12,15 @@ SErvername  <%= scope.lookupvar("tsm::server_name") %>
 <%- if ! @config_hash.nil? -%>
 <%-   @config_hash.keys.sort.each do |config_key| -%>
 <%-     config_value = @config_hash[config_key] -%>
-<%-     line = "   %-21s %s" % [config_key, config_value] -%>
+<%-     if config_value.kind_of?(Array) -%>
+<%-       config_value.each do |item| -%>
+<%-         line = "   %-21s %s" % [config_key, item] -%>
 <%=     line %>
+<%-       end -%>
+<%-     else -%>
+<%-       line = "   %-21s %s" % [config_key, config_value] -%>
+<%=     line %>
+<%-     end -%>
 <%-   end -%>
 <%- end -%>
 
