@@ -1,4 +1,4 @@
-## 2014-07-23 release 0.0.3
+## 2014-07-23 release 0.1.0
 ###Summary
 Support multiple values for the inclexcl option in config_hash
 
