@@ -94,6 +94,7 @@ example:
         schedlogretention: "30 d"
         nodename: "%{::hostname}"
         inclexcl: "/opt/tivoli/tsm/client/ba/bin/InclExcl"
+        inclexcl: "/opt/tivoli/tsm/client/ba/bin/InclExcl.other"
         passwordaccess: "generate"
         domain: "all-local"
         makesparsefile: "no"
