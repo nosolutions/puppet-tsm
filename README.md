@@ -69,7 +69,7 @@ an example).
 ###Beginning with tsm
 
 Include class TSM on hosts where you would like to install the TSM
-client packages. By default no config files will be overridden. The
+client packages. By default no config files will be replaced. The
 TSM class just makes sure the TSM packages are installed.
 
 ##Usage
