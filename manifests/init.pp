@@ -139,6 +139,11 @@
 #     keys => value
 #   Default: {}
 #
+# [*config_opt_hash*]
+#   config_opt_hash - hash with opt parameters
+#     keys => value
+#   Default: undef
+#
 # [*tcp_server_address*]
 #   TSM server used for this client
 #   tcp_server_address - obligatory
@@ -184,6 +189,7 @@ class tsm (
   $inclexcl_replace        = $::tsm::params::inclexcl_replace,
   $inclexcl_source         = $::tsm::params::inclexcl_source,
   $config_hash             = {},
+  $config_opt_hash         = undef,
   $tcp_server_address,
   ) inherits tsm::params {
 

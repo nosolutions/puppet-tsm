@@ -25,17 +25,18 @@ class tsm::params {
   $set_initial_password = true
 
   # default parameters fot dsm.sys
-  $comm_method        = 'TCPip'
-  $tcp_port           = '1500'
+  $comm_method         = 'TCPip'
+  $tcp_port            = '1500'
 
-  $config          = '/opt/tivoli/tsm/client/ba/bin/dsm.sys'
-  $config_opt      = '/opt/tivoli/tsm/client/ba/bin/dsm.opt'
-  $config_template = 'tsm/dsm.sys.erb'
-  $config_replace  = false
+  $config              = '/opt/tivoli/tsm/client/ba/bin/dsm.sys'
+  $config_opt          = '/opt/tivoli/tsm/client/ba/bin/dsm.opt'
+  $config_template     = 'tsm/dsm.sys.erb'
+  $config_opt_template = 'tsm/dsm.opt.erb'
+  $config_replace      = false
 
-  $inclexcl         = '/opt/tivoli/tsm/client/ba/bin/InclExcl'
-  $inclexcl_local   = '/opt/tivoli/tsm/client/ba/bin/InclExcl.local'
-  $inclexcl_replace = false
+  $inclexcl            = '/opt/tivoli/tsm/client/ba/bin/InclExcl'
+  $inclexcl_local      = '/opt/tivoli/tsm/client/ba/bin/InclExcl.local'
+  $inclexcl_replace    = false
 
   case $::osfamily {
     redhat: {

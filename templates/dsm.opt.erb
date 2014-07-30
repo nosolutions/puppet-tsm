@@ -1,0 +1,16 @@
+
+************************************************************************
+*                                                                      *
+* Managed by Puppet                                                    *
+*                                                                      *
+* Tivoli Storage Manager                                               *
+*                                                                      *
+************************************************************************
+
+<%- if ! @config_opt_hash.nil? -%>
+<%-   config_opt_hash.keys.sort.each do |config_key| -%>
+<%-     config_value = @config_opt_hash[config_key] -%>
+<%-     line = "%-21s %s" % [config_key, config_value] -%>
+<%=     line %>
+<%-   end -%>
+<%- end -%>

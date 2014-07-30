@@ -55,11 +55,14 @@ class tsm::config inherits tsm {
     mode    => '0644',
   }
 
-  file { $::tsm::config_opt:
-    ensure  => file,
-    replace => $::tsm::config_replace,
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0644',
+  if $::tsm::config_opt_hash {
+    file { $::tsm::config_opt:
+      ensure  => file,
+      replace => $::tsm::config_replace,
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0644',
+      content => template($::tsm::config_opt_template),
+    }
   }
 }
