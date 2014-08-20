@@ -6,7 +6,6 @@ exclude.fs /system/volatile
 exclude.fs /system/object
 exclude.fs /dev/fd
 exclude.fs /var/run
-exclude /etc/shadow
 exclude /var/log/dsmsched.log
 exclude /var/log/tsmsched.out
 exclude /var/adm/pacct*
