@@ -8,7 +8,6 @@ manage dsm.opt, solaris inclexcl fixes
 
 ###Features
 - dsm.opt is now managed via ::tsm::config_opt_hash
-  you can also use dsm.opt.local for local changes
 
 ## 2014-07-23 release 0.1.0
 ###Summary
