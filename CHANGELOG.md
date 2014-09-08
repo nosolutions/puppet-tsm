@@ -1,5 +1,15 @@
-## 2014-09-08 release 0.2.0
+## 2014-09-08 release 0.2.2
 ###Summary
+
+create tag after changing the modulefile
+
+## 2014-09-08 release 0.2.1
+###Summary
+
+fixed a mistake in the changelog
+
+## 2014-09-08 release 0.2.0
+
 manage dsm.opt, solaris inclexcl fixes
 
 ###Bugfixes
