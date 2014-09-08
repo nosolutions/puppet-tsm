@@ -84,7 +84,7 @@ The default *dsm.sys* template only sets
 * TCPServeraddress
 
 if you would like to add additional default options for nodes, you
-have to use a hash (parameter config_hash) or hiera. Here's a hiera
+have to use a hash (parameter *config_hash*) or hiera. Here's a hiera
 example:
 
     tsm::config_hash:
@@ -102,6 +102,9 @@ example:
 There is also the possibility to add node local options to
 *dsm.sys.local*. Settings in *dsm.sys.local* are going to be merged
 into the global *dsm.sys* on the next puppet run.
+
+Use the parameter *config_opt_hash* to manage *dsm.opt* in a similar way
+as *dsm.sys*. There is currently no support for a local *dsm.opt* file.
 
 ### The Include/Exclude file
 
