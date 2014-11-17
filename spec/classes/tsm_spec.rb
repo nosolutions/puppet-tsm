@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'tsm' do
 
-  ['RedHat', 'Solaris'].each do |system|
+  ['RedHat', 'Solaris', 'Debian'].each do |system|
 
     let :facts do
       {
