@@ -5,6 +5,7 @@
 # === Authors
 #
 # Toni Schmidbauer <toni@stderr.at>
+# David Orn Johannsson <davideaglephotos@gmail.com>
 #
 # === Copyright
 #
@@ -18,6 +19,12 @@ class tsm::install inherits tsm {
   }
 
   case $::osfamily {
+    debian: {
+      Package['gskssl64'] ->
+      Package['gskcrypt64'] ->
+      Package['TIVsm-BA'] ->
+      Package['TIVsm-API64']
+    }
     solaris: {
       case $::hardwareisa {
         i386: {
