@@ -300,6 +300,23 @@ describe 'tsm' do
 
     end
   end
+  
+  context 'tsm::install on Debian 7' do
+    let :facts do
+      {
+        :osfamily                  => 'Debian',
+        :operatingsystemmajrelease => '7',
+        :architecure               => 'i386',
+        :concat_basedir            => '/dne',
+
+      }
+    end
+    
+    describe 'when tsm::service_manage is false' do
+      it { should_not contain_class('tsm::service::debian')}
+    end
+
+  end
 
   context 'tsm::install on Solaris 10 i386' do
     let :facts do

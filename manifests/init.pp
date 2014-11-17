@@ -27,7 +27,8 @@
 #   List of tsm package to be installed
 #   packages - optional
 #   Default:
-#      Linux: ['TIVsm-BA']
+#      Redhat: ['TIVsm-BA']
+#      Debian: ['TIVsm-API64', 'TIVsm-BA', 'gskcrypt64', 'gskssl64']
 #      Solaris i386: ['gsk8cry32','gsk8cry64','gsk8ssl32','gsk8ssl64','TIVsmCapi', 'TIVsmCba']
 #      Solaris sparc: ['gsk8cry64','gsk8ssl64','TIVsmCapi', 'TIVsmCba']
 #
