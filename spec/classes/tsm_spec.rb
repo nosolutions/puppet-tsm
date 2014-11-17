@@ -139,6 +139,28 @@ describe 'tsm' do
         })
       end
     end
+    
+    context 'on Debian 7' do
+      let :facts do
+        {
+          :osfamily                  => 'Debian',
+          :operatingsystemmajrelease => '7',
+          :architecure               => 'i386',
+          :concat_basedir            => '/dne',
+        }
+      end
+
+      it do
+        should contain_file('/opt/tivoli/tsm/client/ba/bin/InclExcl').with({
+          'ensure'  => 'file',
+          'replace' => 'false',
+          'owner'   => 'root',
+          'group'   => 'root',
+          'mode'    => '0644',
+          'source'  => 'puppet:///modules/tsm/InclExcl.debian'
+        })
+      end
+    end
 
     context 'on Solaris' do
       let :facts do
