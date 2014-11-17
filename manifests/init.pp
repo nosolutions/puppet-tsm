@@ -80,7 +80,8 @@
 #   Where to find the tsm service script for deployment
 #   service_script_source - optional
 #   Default:
-#      Linux: puppet://modules/tsm/dsmsched.redhat
+#      Redhat: puppet://modules/tsm/dsmsched.redhat
+#      Debian: puppet://modules/tsm/dsmsched.debian
 #      Solaris: puppet://modules/tsm/tsmsched.solaris
 #
 # [*tsm_pwd*]
@@ -132,7 +133,8 @@
 #   Where to find a default include/exclude file
 #   inclexcl_source - optional
 #   Default:
-#      Linux: puppet://modules/tsm/InclExcl.redhat
+#      Redhat: puppet://modules/tsm/InclExcl.redhat
+#      Debian: puppet://modules/tsm/InclExcl.debian
 #      Solaris: puppet://modules/tsm/InclExcl.solaris
 #
 # [*config_hash*]
