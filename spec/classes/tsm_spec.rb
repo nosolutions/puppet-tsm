@@ -315,7 +315,41 @@ describe 'tsm' do
     describe 'when tsm::service_manage is false' do
       it { should_not contain_class('tsm::service::debian')}
     end
+    
+    describe 'should install tsm packages ' do
+      let(:params) do
+        {
+          :tcp_server_address => 'tsm',
+        }
+      end
 
+      it { should contain_package('TIVsm-API64').that_requires('Package[TIVsm-BA]') }
+      it { should contain_package('TIVsm-BA').that_requires('Package[gskcrypt64]') }
+      it { should contain_package('gskcrypt64').that_requires('Package[gskssl64]') }
+    end
+    
+    describe 'should allow package_ensure to be overridden'do
+      let(:params) do {
+        :tcp_server_address => 'tsm',
+        :package_ensure     => 'latest'
+      }
+      end
+
+      it do
+        should contain_tsm__installpkg('TIVsm-API64').with({
+          :ensure => 'latest',
+        })
+      end
+    end
+    
+    describe 'should allow package_name to be overridden'do
+      let(:params) {{
+        :tcp_server_address => 'tsm',
+        :packages           => ['deadbeaf']
+      }}
+
+      it { should contain_tsm__installpkg("deadbeaf").with_ensure('installed') }
+    end
   end
 
   context 'tsm::install on Solaris 10 i386' do
