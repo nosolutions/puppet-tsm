@@ -351,6 +351,46 @@ describe 'tsm' do
       it { should contain_tsm__installpkg("deadbeaf").with_ensure('installed') }
     end
   end
+  
+  context 'tsm::service on Debian 7' do
+    let :facts do
+      {
+        :osfamily                  => 'Debian',
+        :operatingsystemmajrelease => '7',
+        :architecure               => 'i386',
+        :concat_basedir            => '/dne',
+      }
+    end
+    
+    describe 'when tsm::service_manage is false' do
+      it { should_not contain_class('tsm::service::debian')}
+    end
+    
+    describe 'when tsm::service_manage is true' do
+      it { should contain_class('tsm::service::debian')}
+
+      it do
+        should contain_file('/etc/init.d/dsmsched').with({
+          'ensure'  => 'file',
+          'owner'   => 'root',
+          'group'   => 'root',
+          'mode'    => '0755',
+          'source'  => 'puppet:///modules/tsm/dsmsched.debian'
+        })
+      end
+
+      it do
+        should contain_service('dsmsched').with({
+          'ensure'     => 'running',
+          'enable'     => 'true',
+          'hasstatus'  => 'true',
+          'hasrestart' => 'true',
+        })
+      end
+
+      it { should contain_service('dsmsched').that_requires('File[/etc/init.d/dsmsched]') }
+    end
+  end
 
   context 'tsm::install on Solaris 10 i386' do
     let :facts do
