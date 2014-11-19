@@ -22,8 +22,8 @@ class tsm::install inherits tsm {
     debian: {
       Package['gskssl64'] ->
       Package['gskcrypt64'] ->
-      Package['TIVsm-BA'] ->
-      Package['TIVsm-API64']
+      Package['tivsm-ba'] ->
+      Package['tivsm-api64']
     }
     solaris: {
       case $::hardwareisa {
