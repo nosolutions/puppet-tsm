@@ -48,8 +48,11 @@ These usually are
 * gskcrypt64-8.0.14.26.linux.x86_64.rpm
 * TIVsm-BA.x86_64.rpm
 
-For Debian you need a apt repository that contains the deb packages
-IBM provides in the TSM installation tar.gz.
+For Debian you need an apt repository that contains the deb packages.
+IBM only provides rpms so you might need to use alien to convert the
+rpms IBM provides in the TSM installation tar.gz.
+For info on converting rpms to debs consult:
+http://www.planetcobalt.net/sdb/tsm_debian.shtml
 
 These usually are
 
