@@ -203,7 +203,7 @@ describe 'tsm' do
         }
       end
 
-      it { should contain_tsm__installpkg('TIVsm-BA').with_ensure('installed') }
+      it { should contain_tsm__installpkg('tivsm-ba').with_ensure('installed') }
     end
 
     describe 'should allow package_ensure to be overridden'do
@@ -214,7 +214,7 @@ describe 'tsm' do
       end
 
       it do
-        should contain_tsm__installpkg('TIVsm-BA').with({
+        should contain_tsm__installpkg('tivsm-ba').with({
           :ensure => 'latest',
         })
       end
@@ -323,8 +323,8 @@ describe 'tsm' do
         }
       end
 
-      it { should contain_package('TIVsm-API64').that_requires('Package[TIVsm-BA]') }
-      it { should contain_package('TIVsm-BA').that_requires('Package[gskcrypt64]') }
+      it { should contain_package('tivsm-api64').that_requires('Package[tivsm-ba]') }
+      it { should contain_package('tivsm-ba').that_requires('Package[gskcrypt64]') }
       it { should contain_package('gskcrypt64').that_requires('Package[gskssl64]') }
     end
     
@@ -336,7 +336,7 @@ describe 'tsm' do
       end
 
       it do
-        should contain_tsm__installpkg('TIVsm-API64').with({
+        should contain_tsm__installpkg('tivsm-api64').with({
           :ensure => 'latest',
         })
       end
