@@ -198,7 +198,7 @@ class tsm (
 
   validate_string($package_ensure)
   validate_string($tcp_server_address)
-  validate_re($tcp_port,'\d+', "tcp_port option has to be a numeric value!")
+  validate_re($tcp_port,'\d+', 'tcp_port option has to be a numeric value!')
   validate_string($comm_method)
   validate_array($packages)
   validate_string($package_uri)
