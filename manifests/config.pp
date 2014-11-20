@@ -13,10 +13,10 @@
 class tsm::config inherits tsm {
 
   concat { $::tsm::config:
-    ensure  => present,
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0644',
+    ensure => present,
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0644',
   }
 
   concat::fragment { 'dsm_sys_template':
@@ -27,10 +27,10 @@ class tsm::config inherits tsm {
 
 
   file { "${::tsm::config}.local":
-    ensure  => file,
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0644',
+    ensure => file,
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0644',
   } ->
   concat::fragment { 'dsm_sys_local':
     target => $::tsm::config,
