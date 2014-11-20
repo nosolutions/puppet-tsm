@@ -28,7 +28,7 @@
 #   packages - optional
 #   Default:
 #      Redhat: ['TIVsm-BA']
-#      Debian: ['TIVsm-API64', 'TIVsm-BA', 'gskcrypt64', 'gskssl64']
+#      Debian: ['tivsm-api64', 'tivsm-ba', 'gskcrypt64', 'gskssl64']
 #      Solaris i386: ['gsk8cry32','gsk8cry64','gsk8ssl32','gsk8ssl64','TIVsmCapi', 'TIVsmCba']
 #      Solaris sparc: ['gsk8cry64','gsk8ssl64','TIVsmCapi', 'TIVsmCba']
 #
