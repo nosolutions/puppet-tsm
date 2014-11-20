@@ -42,7 +42,7 @@ define tsm::installpkg (
   case $::osfamily {
     solaris: {
       Package[$title] {
-        source          => "$uri/${title}.pkg",
+        source          => "${uri}/${title}.pkg",
         adminfile       => $adminfile,
         install_options => ['-G', ],
         provider        => 'sun',
