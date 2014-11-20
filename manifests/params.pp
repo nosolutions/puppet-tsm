@@ -47,7 +47,7 @@ class tsm::params {
       $inclexcl_source       = 'puppet:///modules/tsm/InclExcl.redhat'
     }
     debian: {
-      $packages              = ['tivsm-api64', 'tivsm-ba', 'gskcrypt64', 'gskssl64']
+      $packages              = ['TIVsm-API64', 'TIVsm-BA', 'gskcrypt64', 'gskssl64']
       $service_name          = 'dsmsched'
       $service_script        = '/etc/init.d/dsmsched'
       $service_script_source = 'puppet:///modules/tsm/dsmsched.debian'
