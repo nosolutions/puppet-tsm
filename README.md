@@ -26,6 +26,7 @@ Storage Manager (TSM) client on the following operating systems:
 * Oracle Linux 5/6
 * Scientific Linux 5/6
 * Solaris 10/11
+* Debian 7
 
 ##Setup
 
@@ -46,6 +47,19 @@ These usually are
 * gskssl64-8.0.14.26.linux.x86_64.rpm
 * gskcrypt64-8.0.14.26.linux.x86_64.rpm
 * TIVsm-BA.x86_64.rpm
+
+For Debian you need an apt repository that contains the deb packages.
+IBM only provides rpms so you might need to use alien to convert the
+rpms IBM provides in the TSM installation tar.gz.
+For info on converting rpms to debs consult:
+http://www.planetcobalt.net/sdb/tsm_debian.shtml
+
+These usually are
+
+* TIVsm-API64.deb
+* TIVsm-BA.deb
+* gskcrypt64.deb
+* gskssl64.deb
 
 For Solaris 10 and 11 you need a HTTP server that provides the
 following packages for downloading:
@@ -136,6 +150,7 @@ The module has been tested on:
 * RedHat Enterprise Linux 5/6
 * Solaris 10 i386/sparc
 * Solaris 11 i386/sparc
+* Debian 7
 
 ##Development
 

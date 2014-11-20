@@ -3,3 +3,4 @@
 /spec/fixtures/modules/sudo
 /spec/fixtures/modules/tsm
 /pkg/
+.project

@@ -30,6 +30,9 @@ class tsm::service inherits tsm {
       redhat: {
         include tsm::service::redhat
       }
+      debian: {
+        include tsm::service::debian
+      }
       solaris: {
         include tsm::service::solaris
       }

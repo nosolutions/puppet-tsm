@@ -12,6 +12,18 @@ describe 'tsm::installpkg', :type => :define do
 
     it { should contain_package('TIVsm-BA').with_ensure('installed') }
   end
+  
+  context 'on Debian' do
+    let(:title) { 'tivsm-ba'}
+      
+    let :facts do
+    {
+      :osfamily => 'Debian'
+    }
+    end
+
+    it { should contain_package('tivsm-ba').with_ensure('installed') }
+  end
 
   context 'on Solaris' do
     let :facts do

@@ -1,0 +1,15 @@
+exclude /var/cache/.../*
+exclude /var/crash/.../*
+exclude /var/lib/slocate/*
+exclude /var/lock/.../*
+exclude /var/log/.../*
+exclude /var/run/.../*
+exclude /var/spool/.../*
+exclude /.../core
+exclude /.../lost+found
+exclude /.../tmp/.../*
+exclude.dir /mnt
+exclude.dir /proc
+exclude.dir /sys
+exclude.fs /dev/shm
+exclude.fs /dev/pts

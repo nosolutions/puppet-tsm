@@ -5,6 +5,7 @@
 # === Authors
 #
 # Toni Schmidbauer <toni@stderr.at>
+# David Orn Johannsson <davideaglephotos@gmail.com>
 #
 # === Copyright
 #

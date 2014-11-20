@@ -27,7 +27,8 @@
 #   List of tsm package to be installed
 #   packages - optional
 #   Default:
-#      Linux: ['TIVsm-BA']
+#      Redhat: ['TIVsm-BA']
+#      Debian: ['TIVsm-API64', 'TIVsm-BA', 'gskcrypt64', 'gskssl64']
 #      Solaris i386: ['gsk8cry32','gsk8cry64','gsk8ssl32','gsk8ssl64','TIVsmCapi', 'TIVsmCba']
 #      Solaris sparc: ['gsk8cry64','gsk8ssl64','TIVsmCapi', 'TIVsmCba']
 #
@@ -79,7 +80,8 @@
 #   Where to find the tsm service script for deployment
 #   service_script_source - optional
 #   Default:
-#      Linux: puppet://modules/tsm/dsmsched.redhat
+#      Redhat: puppet://modules/tsm/dsmsched.redhat
+#      Debian: puppet://modules/tsm/dsmsched.debian
 #      Solaris: puppet://modules/tsm/tsmsched.solaris
 #
 # [*tsm_pwd*]
@@ -131,7 +133,8 @@
 #   Where to find a default include/exclude file
 #   inclexcl_source - optional
 #   Default:
-#      Linux: puppet://modules/tsm/InclExcl.redhat
+#      Redhat: puppet://modules/tsm/InclExcl.redhat
+#      Debian: puppet://modules/tsm/InclExcl.debian
 #      Solaris: puppet://modules/tsm/InclExcl.solaris
 #
 # [*config_hash*]
