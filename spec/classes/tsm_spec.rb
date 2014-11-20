@@ -366,8 +366,15 @@ describe 'tsm' do
     describe 'when tsm::service_manage is false' do
       it { should_not contain_class('tsm::service::debian')}
     end
-    
+      
     describe 'when tsm::service_manage is true' do
+      let(:params) do
+        {
+          :tcp_server_address => 'tsm',
+          :service_manage     => true,
+        }
+      end
+      
       it { should contain_class('tsm::service::debian')}
 
       it do
