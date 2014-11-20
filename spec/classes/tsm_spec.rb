@@ -145,7 +145,7 @@ describe 'tsm' do
         {
           :osfamily                  => 'Debian',
           :operatingsystemmajrelease => '7',
-          :architecure               => 'i386',
+          :architecure               => 'amd64',
           :concat_basedir            => '/dne',
         }
       end
@@ -306,7 +306,7 @@ describe 'tsm' do
       {
         :osfamily                  => 'Debian',
         :operatingsystemmajrelease => '7',
-        :architecure               => 'i386',
+        :architecure               => 'amd64',
         :concat_basedir            => '/dne',
 
       }
@@ -357,7 +357,7 @@ describe 'tsm' do
       {
         :osfamily                  => 'Debian',
         :operatingsystemmajrelease => '7',
-        :architecure               => 'i386',
+        :architecure               => 'amd64',
         :concat_basedir            => '/dne',
       }
     end
