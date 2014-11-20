@@ -58,8 +58,8 @@ These usually are
 
 * TIVsm-API64.deb
 * TIVsm-BA.deb
-* gskcrypt64-8.0.deb
-* gskssl64-8.0.deb
+* gskcrypt64.deb
+* gskssl64.deb
 
 For Solaris 10 and 11 you need a HTTP server that provides the
 following packages for downloading:
