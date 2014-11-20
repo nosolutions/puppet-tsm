@@ -203,7 +203,7 @@ describe 'tsm' do
         }
       end
 
-      it { should contain_tsm__installpkg('tivsm-ba').with_ensure('installed') }
+      it { should contain_tsm__installpkg('TIVsm-BA').with_ensure('installed') }
     end
 
     describe 'should allow package_ensure to be overridden'do
@@ -214,7 +214,7 @@ describe 'tsm' do
       end
 
       it do
-        should contain_tsm__installpkg('tivsm-ba').with({
+        should contain_tsm__installpkg('TIVsm-BA').with({
           :ensure => 'latest',
         })
       end
