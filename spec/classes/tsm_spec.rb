@@ -323,9 +323,10 @@ describe 'tsm' do
         }
       end
 
-      it { should contain_package('tivsm-api64').that_requires('Package[tivsm-ba]') }
-      it { should contain_package('tivsm-ba').that_requires('Package[gskcrypt64]') }
-      it { should contain_package('gskcrypt64').that_requires('Package[gskssl64]') }
+      it { should contain_tsm__installpkg('tivsm-ba').with_ensure('installed') }
+      it { should contain_tsm__installpkg('tivsm-api64').with_ensure('installed') }
+      it { should contain_tsm__installpkg('gskcrypt64').with_ensure('installed') }
+      it { should contain_tsm__installpkg('gskssl64').with_ensure('installed') }
     end
     
     describe 'should allow package_ensure to be overridden'do
