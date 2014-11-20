@@ -13,11 +13,11 @@
 class tsm::service::redhat {
 
   file { $::tsm::service_script:
-    ensure  => file,
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0755',
-    source  => $::tsm::service_script_source,
+    ensure => file,
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0755',
+    source => $::tsm::service_script_source,
   }
 
   service { $::tsm::service_name:
