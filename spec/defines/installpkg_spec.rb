@@ -14,6 +14,8 @@ describe 'tsm::installpkg', :type => :define do
   end
   
   context 'on Debian' do
+      let(:title) { 'tivsm-ba'}
+      
       let :facts do
           {
               :osfamily => 'Debian'
