@@ -154,7 +154,7 @@ The module has been tested on:
 
 ##Development
 
-Fork me and create pull requests.
+[Fork me](https://github.com/nosolutions/puppet-tsm/fork) and create pull requests.
 
 ###Contributors
 
