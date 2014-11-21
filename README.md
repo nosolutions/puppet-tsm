@@ -56,8 +56,8 @@ http://www.planetcobalt.net/sdb/tsm_debian.shtml
 
 These usually are
 
-* TIVsm-API64.deb
-* TIVsm-BA.deb
+* tivsm-api64.deb
+* tivsm-ba.deb
 * gskcrypt64.deb
 * gskssl64.deb
 
