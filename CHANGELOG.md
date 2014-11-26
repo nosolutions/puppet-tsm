@@ -1,3 +1,14 @@
+## 2014-11-26 release 0.3.0
+###Summary
+
+Integrated Debian 7 support, kindly provided by David orn Johannsson.
+
+###Features
+- this module now supports Debian 7
+
+###Bugfixes
+- various lint and documentation fixes
+
 ## 2014-09-08 release 0.2.2
 ###Summary
 
