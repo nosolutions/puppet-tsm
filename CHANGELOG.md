@@ -1,4 +1,4 @@
-## 2014-11-26 release 0.3.0
+## 2014-11-26 release 0.3.1
 ###Summary
 
 Integrated Debian 7 support, kindly provided by David orn Johannsson.
@@ -8,6 +8,7 @@ Integrated Debian 7 support, kindly provided by David orn Johannsson.
 
 ###Bugfixes
 - various lint and documentation fixes
+- removed deprecated Modulefile
 
 ## 2014-09-08 release 0.2.2
 ###Summary
