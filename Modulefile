@@ -1,5 +1,5 @@
 name    'nosolutions-tsm'
-version '0.2.2'
+version '0.3.0'
 source 'https://github.com/nosolutions/puppet-tsm'
 author 'Toni Schmidbauer'
 license 'GNU GPL v3'
