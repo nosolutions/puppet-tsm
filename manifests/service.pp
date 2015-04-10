@@ -28,7 +28,12 @@ class tsm::service inherits tsm {
   if $::tsm::service_manage == true {
     case $::osfamily {
       redhat: {
-        include tsm::service::redhat
+        if $::operatingsystemmajrelease == 7 {
+          include tsm::service::redhat7
+        }
+        else {
+          include tsm::service::redhat
+        }
       }
       debian: {
         include tsm::service::debian

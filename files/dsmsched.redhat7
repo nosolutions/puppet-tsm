@@ -1,0 +1,11 @@
+[Unit]
+Description=Dsm Scheduler
+After=syslog.target network.target
+
+[Service]
+Type=simple
+ExecStart=/opt/tivoli/tsm/client/ba/bin/dsmc sched
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
