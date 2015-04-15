@@ -5,17 +5,6 @@
 # config:
 # pidfile:
 #
-# ChangeLog:
-# * tm      01.10.2001 bsd teufel austreiben. sysv rules.
-# * pinhead 29.08.2002 anpassung an redhat
-# * markusr 29.11.2011 status option
-#
-# !! WARNING !!
-#
-# this file is managed by cfengine. any changes will be lost
-# on the next cfengine run. please ask you cfengine bofh for
-# help.
-
 prog="/opt/tivoli/tsm/client/ba/bin/dsmc"
 
 [ ! -x "$prog" ] && exit 0
