@@ -139,7 +139,7 @@ describe 'tsm' do
         })
       end
     end
-    
+
     context 'on Debian 7' do
       let :facts do
         {
@@ -300,7 +300,50 @@ describe 'tsm' do
 
     end
   end
-  
+
+  context 'tsm::service on Redhat 7' do
+    let :facts do
+      {
+        :osfamily                  => 'RedHat',
+        :operatingsystemmajrelease => '7',
+        :architecure               => 'i386',
+        :concat_basedir            => '/dne',
+      }
+    end
+
+    describe 'when tsm::service_manage is true' do
+      let(:params) do
+        {
+          :tcp_server_address => 'tsm',
+          :service_manage     => true,
+        }
+      end
+
+      it { should contain_class('tsm::service::redhat')}
+
+      it do
+        should contain_file('/etc/systemd/system/dsmsched.service').with({
+          'ensure'  => 'file',
+          'owner'   => 'root',
+          'group'   => 'root',
+          'mode'    => '0644',
+          'source'  => 'puppet:///modules/tsm/dsmsched.redhat7'
+        })
+      end
+
+      it do
+        should contain_service('dsmsched').with({
+          'ensure'     => 'running',
+          'enable'     => 'true',
+          'hasstatus'  => 'true',
+          'hasrestart' => 'true',
+        })
+      end
+
+      it { should contain_service('dsmsched').that_requires('File[/etc/systemd/system/dsmsched.service]') }
+    end
+  end
+
   context 'tsm::install on Debian 7' do
     let :facts do
       {
@@ -311,11 +354,11 @@ describe 'tsm' do
 
       }
     end
-    
+
     describe 'when tsm::service_manage is false' do
       it { should_not contain_class('tsm::service::debian')}
     end
-    
+
     describe 'should install tsm packages ' do
       let(:params) do
         {
@@ -328,7 +371,7 @@ describe 'tsm' do
       it { should contain_tsm__installpkg('gskcrypt64').with_ensure('installed') }
       it { should contain_tsm__installpkg('gskssl64').with_ensure('installed') }
     end
-    
+
     describe 'should allow package_ensure to be overridden'do
       let(:params) do {
         :tcp_server_address => 'tsm',
@@ -342,7 +385,7 @@ describe 'tsm' do
         })
       end
     end
-    
+
     describe 'should allow package_name to be overridden'do
       let(:params) {{
         :tcp_server_address => 'tsm',
@@ -352,7 +395,7 @@ describe 'tsm' do
       it { should contain_tsm__installpkg("deadbeaf").with_ensure('installed') }
     end
   end
-  
+
   context 'tsm::service on Debian 7' do
     let :facts do
       {
@@ -362,11 +405,11 @@ describe 'tsm' do
         :concat_basedir            => '/dne',
       }
     end
-    
+
     describe 'when tsm::service_manage is false' do
       it { should_not contain_class('tsm::service::debian')}
     end
-      
+
     describe 'when tsm::service_manage is true' do
       let(:params) do
         {
@@ -374,7 +417,7 @@ describe 'tsm' do
           :service_manage     => true,
         }
       end
-      
+
       it { should contain_class('tsm::service::debian')}
 
       it do
