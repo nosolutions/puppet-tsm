@@ -40,11 +40,20 @@ class tsm::params {
 
   case $::osfamily {
     redhat: {
-      $packages              = ['TIVsm-BA']
-      $service_name          = 'dsmsched'
-      $service_script        = '/etc/init.d/dsmsched'
-      $service_script_source = 'puppet:///modules/tsm/dsmsched.redhat'
-      $inclexcl_source       = 'puppet:///modules/tsm/InclExcl.redhat'
+      if $::operatingsystemmajrelease == 7 {
+        $packages              = ['TIVsm-BA']
+        $service_name          = 'dsmsched'
+        $service_script        = '/etc/systemd/system/dsmsched.service'
+        $service_script_source = 'puppet:///modules/tsm/dsmsched.redhat7'
+        $inclexcl_source       = 'puppet:///modules/tsm/InclExcl.redhat'
+      }
+      else {
+        $packages              = ['TIVsm-BA']
+        $service_name          = 'dsmsched'
+        $service_script        = '/etc/init.d/dsmsched'
+        $service_script_source = 'puppet:///modules/tsm/dsmsched.redhat'
+        $inclexcl_source       = 'puppet:///modules/tsm/InclExcl.redhat'
+      }
     }
     debian: {
       $packages              = ['tivsm-api64', 'tivsm-ba', 'gskcrypt64', 'gskssl64']

@@ -12,11 +12,16 @@
 #
 class tsm::service::redhat {
 
+  $service_script_mode = $::operatingsystemmajrelease ? {
+    7       => '0644',
+    default => '0755'
+  }
+
   file { $::tsm::service_script:
     ensure => file,
     owner  => 'root',
     group  => 'root',
-    mode   => '0755',
+    mode   => $service_script_mode,
     source => $::tsm::service_script_source,
   }
 
