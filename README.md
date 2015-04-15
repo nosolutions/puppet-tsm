@@ -21,10 +21,10 @@ heavily inspired by the puppetlabs-ntp module.
 This module handles installing, configuring and running the IBM Tivoli
 Storage Manager (TSM) client on the following operating systems:
 
-* RedHat Linux 5/6
-* CentOS 5/6
-* Oracle Linux 5/6
-* Scientific Linux 5/6
+* RedHat Linux 5/6/7
+* CentOS 5/6/7
+* Oracle Linux 5/6/7
+* Scientific Linux 5/6/7
 * Solaris 10/11
 * Debian 7
 
