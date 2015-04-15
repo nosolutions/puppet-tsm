@@ -1,3 +1,13 @@
+## 2014-??-?? release ??
+###Summary
+
+Integrated RedHat 7 support, kindly provided by Lorenzo Dalrio.
+
+###Features
+
+- we now use a systemd service under redhat 7 for starting/stopping
+  the dsmc scheduler
+
 ## 2014-11-26 release 0.3.1
 ###Summary
 
