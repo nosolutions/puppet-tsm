@@ -2,5 +2,9 @@ fixtures:
   symlinks:
     "tsm": "#{source_dir}"
   repositories:
-    stdlib: "https://github.com/puppetlabs/puppetlabs-stdlib.git"
-    concat: "https://github.com/puppetlabs/puppetlabs-concat.git"
+    stdlib:
+      repo: "https://github.com/puppetlabs/puppetlabs-stdlib.git"
+      ref: "2.2.1"
+    concat:
+      repo: "https://github.com/puppetlabs/puppetlabs-concat.git"
+      ref: "1.2.1"
