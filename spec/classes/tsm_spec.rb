@@ -27,10 +27,11 @@ describe 'tsm' do
   context 'tsm::config with default options' do
     it do
       should contain_concat('/opt/tivoli/tsm/client/ba/bin/dsm.sys').with({
-        'ensure' => 'present',
-        'owner'  => 'root',
-        'group'  => 'root',
-        'mode'   => '0644'
+        'ensure'  => 'present',
+        'replace' => false,
+        'owner'   => 'root',
+        'group'   => 'root',
+        'mode'    => '0644'
       })
     end
 
@@ -182,8 +183,36 @@ describe 'tsm' do
         })
       end
     end
+  end
 
 
+  context 'tsm::config with config_replace set to true' do
+    let(:params) do
+      {
+        :tcp_server_address => 'tsm',
+        :config_replace => true,
+      }
+    end
+
+    it do
+      should_not contain_file('/opt/tivoli/tsm/client/ba/bin/dsm.opt').with({
+          'ensure'  => 'file',
+          'replace' => true,
+          'owner'   => 'root',
+          'group'   => 'root',
+          'mode'    => '0644'
+        })
+    end
+
+    it do
+        should contain_concat('/opt/tivoli/tsm/client/ba/bin/dsm.sys').with({
+          'ensure'  => 'present',
+          'replace' => true,
+          'owner'   => 'root',
+          'group'   => 'root',
+          'mode'    => '0644'
+        })
+      end
   end
 
   context 'tsm::install on RedHat 6' do
@@ -271,6 +300,7 @@ describe 'tsm' do
           'enable'     => 'true',
           'hasstatus'  => 'true',
           'hasrestart' => 'true',
+          'subscribe'  => 'File[/opt/tivoli/tsm/client/ba/bin/dsm.sys]',
         })
       end
 
@@ -337,6 +367,7 @@ describe 'tsm' do
           'enable'     => 'true',
           'hasstatus'  => 'true',
           'hasrestart' => 'true',
+          'subscribe'  => 'File[/opt/tivoli/tsm/client/ba/bin/dsm.sys]',
         })
       end
 
@@ -436,6 +467,7 @@ describe 'tsm' do
           'enable'     => 'true',
           'hasstatus'  => 'true',
           'hasrestart' => 'true',
+          'subscribe'  => 'File[/opt/tivoli/tsm/client/ba/bin/dsm.sys]',
         })
       end
 
@@ -551,9 +583,10 @@ describe 'tsm' do
 
       it do
         should contain_service('tsm').with({
-          'ensure'  => 'running',
-          'enable'  => 'true',
-          'manifest' => '/var/svc/manifest/site/tsmsched.xml'
+          'ensure'    => 'running',
+          'enable'    => 'true',
+          'manifest'  => '/var/svc/manifest/site/tsmsched.xml',
+          'subscribe' => 'File[/opt/tivoli/tsm/client/ba/bin/dsm.sys]',
         })
       end
 
