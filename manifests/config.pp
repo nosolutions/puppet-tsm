@@ -14,6 +14,7 @@ class tsm::config inherits tsm {
 
   concat { $::tsm::config:
     ensure => present,
+    replace => $::tsm::config_replace,
     owner  => 'root',
     group  => 'root',
     mode   => '0644',
@@ -24,7 +25,6 @@ class tsm::config inherits tsm {
     content => template($::tsm::config_template),
     order   => '01',
   }
-
 
   file { "${::tsm::config}.local":
     ensure => file,
