@@ -7,6 +7,7 @@ SErvername  <%= scope.lookupvar("tsm::server_name") %>
    COMMMethod            <%= scope.lookupvar("tsm::comm_method") %>
    TCPPort               <%= scope.lookupvar("tsm::tcp_port") %>
    TCPServeraddress      <%= scope.lookupvar("tsm::tcp_server_address") %>
+   INCLExcl              <%= scope.lookupvar("tsm::inclexcl_local") %>
 
 * additional options
 <%- if ! @config_hash.nil? -%>
