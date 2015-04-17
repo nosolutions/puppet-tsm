@@ -1,12 +1,17 @@
-## 2014-??-?? release ??
+## 2014-??-?? release 1.0.0
 ###Summary
 
-Integrated RedHat 7 support, kindly provided by Lorenzo Dalrio.
+Integrated RedHat 7 support, kindly provided by Lorenzo Dalrio. Various bugfixes.
 
 ###Features
-
 - we now use a systemd service under redhat 7 for starting/stopping
   the dsmc scheduler
+- restart the tsm scheduler on config file changes (GH-11)
+- added inclexcl.local to the default dsm.sys options (GH-8)
+
+###Bugfixes
+
+- option config_replace is now also valid for dsm.sys (GH-12)
 
 ## 2014-11-26 release 0.3.1
 ###Summary
