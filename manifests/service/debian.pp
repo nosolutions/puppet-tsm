@@ -26,6 +26,7 @@ class tsm::service::debian {
     enable     => $::tsm::service_enable,
     hasstatus  => true,
     hasrestart => true,
+    subscribe  => File[$::tsm::config],
   }
 
   File[$::tsm::service_script] -> Service[$::tsm::service_name]
