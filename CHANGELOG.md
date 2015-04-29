@@ -1,3 +1,8 @@
+## 2015-04-29 release 1.0.1
+###Summary
+
+Fixed module compatibility matrix (RedHat 7).
+
 ## 2015-04-29 release 1.0.0
 ###Summary
 

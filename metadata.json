@@ -1,6 +1,6 @@
 {
   "name": "nosolutions-tsm",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Toni Schmidbauer",
   "summary": "Install and manage the TSM client",
   "license": "GPL-2.0",
@@ -21,28 +21,32 @@
       "operatingsystem": "RedHat",
       "operatingsystemrelease": [
         "5",
-        "6"
+        "6",
+	"7"
       ]
     },
     {
       "operatingsystem": "CentOS",
       "operatingsystemrelease": [
         "5",
-        "6"
+        "6",
+	"7"
       ]
     },
     {
       "operatingsystem": "OracleLinux",
       "operatingsystemrelease": [
         "5",
-        "6"
+        "6",
+	"7"
       ]
     },
     {
       "operatingsystem": "Scientific",
       "operatingsystemrelease": [
         "5",
-        "6"
+        "6",
+	"7"
       ]
     },
     {
