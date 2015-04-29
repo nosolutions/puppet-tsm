@@ -86,6 +86,10 @@ Include class TSM on hosts where you would like to install the TSM
 client packages. By default no config files will be replaced. The
 TSM class just makes sure the TSM packages are installed.
 
+If there is no dsm.sys this module creates a new one from the default
+template. Be sure to set *config_replace* to true if you would like
+to change dsm.sys after the default template has been deployed.
+
 ##Usage
 
 All available options (see [init.pp](manifests/init.pp)) should be
