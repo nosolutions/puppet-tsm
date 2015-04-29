@@ -1,4 +1,15 @@
 {
+  "name": "nosolutions-tsm",
+  "version": "1.0.0",
+  "author": "Toni Schmidbauer",
+  "summary": "Install and manage the TSM client",
+  "license": "GPL-2.0",
+  "source": "https://github.com/nosolutions/puppet-tsm",
+  "tags": [
+    "tsm",
+    "dsmsched",
+    "tivoli"
+  ],
   "operatingsystem_support": [
     {
       "operatingsystem": "Debian",
@@ -52,14 +63,8 @@
       "version_requirement": "3.x"
     }
   ],
-  "name": "nosolutions-tsm",
-  "version": "1.0.0",
-  "source": "https://github.com/nosolutions/puppet-tsm",
-  "author": "Toni Schmidbauer",
-  "license": "GPL-2.0",
-  "summary": "Install and manage the TSM client",
+  "issues_url": "https://github.com/nosolutions/puppet-tsm/issues",
   "project_page": "https://github.com/nosolutions/puppet-tsm",
-  "tags": ["tsm", "dsmsched", "tivoli"],
   "dependencies": [
     {
       "name": "puppetlabs/stdlib",
