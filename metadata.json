@@ -53,7 +53,7 @@
     }
   ],
   "name": "nosolutions-tsm",
-  "version": "0.3.1",
+  "version": "1.0.0",
   "source": "https://github.com/nosolutions/puppet-tsm",
   "author": "Toni Schmidbauer",
   "license": "GPL-2.0",
