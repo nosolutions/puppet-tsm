@@ -3,7 +3,7 @@
 
 The scheduler gets now restart on config file changes. We've also
 included inclexcl.local in the default dsm.sys template. This means
-when upgrading to 1.0.0 the dsm scheduler is going to be restartet.
+when upgrading to 1.0.0 the dsm scheduler is going to be restarted.
 
 ###Features
 - we now use a systemd service under redhat 7 for starting/stopping
