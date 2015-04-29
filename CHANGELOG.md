@@ -1,11 +1,13 @@
 ## 2014-??-?? release 1.0.0
 ###Summary
 
-Integrated RedHat 7 support, kindly provided by Lorenzo Dalrio. Various bugfixes.
+The scheduler gets now restart on config file changes. We've also
+included inclexcl.local in the default dsm.sys template. This means
+when upgrading to 1.0.0 the dsm scheduler is going to be restartet.
 
 ###Features
 - we now use a systemd service under redhat 7 for starting/stopping
-  the dsmc scheduler
+  the dsmc scheduler, kindly provided by Lorenzo Dalrio (GH-9).
 - restart the tsm scheduler on config file changes (GH-11)
 - added inclexcl.local to the default dsm.sys options (GH-8)
 
