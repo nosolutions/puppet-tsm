@@ -23,7 +23,7 @@
 #
 # === Copyright
 #
-# Copyright 2014 Toni Schmidbauer
+# Copyright 2014-2015 Toni Schmidbauer
 #
 
 define tsm::installpkg (

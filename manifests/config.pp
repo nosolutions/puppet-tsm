@@ -8,7 +8,7 @@
 #
 # === Copyright
 #
-# Copyright 2013 Toni Schmidbauer
+# Copyright 2013-2015 Toni Schmidbauer
 #
 class tsm::config inherits tsm {
 

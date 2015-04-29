@@ -8,7 +8,7 @@
 #
 # === Copyright
 #
-# Copyright 2014 Toni Schmidbauer
+# Copyright 2014-2015 Toni Schmidbauer
 #
 class tsm::service::redhat {
 
