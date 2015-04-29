@@ -1,4 +1,4 @@
-## 2014-??-?? release 1.0.0
+## 2015-04-29 release 1.0.0
 ###Summary
 
 The scheduler gets now restart on config file changes. We've also
