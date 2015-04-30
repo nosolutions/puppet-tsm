@@ -134,13 +134,8 @@ For a puppet managed include/exclude file set *inclexcl_replace* to
 
 In the case of a puppet managed include/exclude file, you can add
 local include/exclude rules to
-*/opt/tivoli/tsm/clien/ba/bin/InclExcl.local* and add a second
-inclexcl option that points to
-*/opt/tivoli/tsm/clien/ba/bin/InclExcl.local* to *dsm.sys*. For
-example add the following to *dsm.sys.local*:
-
-    inclexcl /opt/tivoli/tsm/client/ba/bin/InclExcl.local
-
+*/opt/tivoli/tsm/clien/ba/bin/InclExcl.local*
+The default dsm.sys template already includes the *InclExcl.local* file.
 ##Reference
 
 Please see [init.pp](manifests/init.pp) for an explanation of all available options.
