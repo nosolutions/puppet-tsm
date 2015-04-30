@@ -6,7 +6,7 @@ Fixed module compatibility matrix (RedHat 7).
 ## 2015-04-29 release 1.0.0
 ###Summary
 
-The scheduler gets now restart on config file changes. We've also
+The tsm scheduler gets now restarted on config file changes. We've also
 included inclexcl.local in the default dsm.sys template. This means
 when upgrading to 1.0.0 the dsm scheduler is going to be restarted.
 
