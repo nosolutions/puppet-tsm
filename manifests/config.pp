@@ -18,6 +18,7 @@ class tsm::config inherits tsm {
     owner  => 'root',
     group  => 'root',
     mode   => '0644',
+    notify => Service[$::tsm::service_name],
   }
 
   concat::fragment { 'dsm_sys_template':
