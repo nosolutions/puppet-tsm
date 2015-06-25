@@ -51,11 +51,12 @@ case "$1" in
                 echo "dsmc is running with PID: "$pid
         else
                 echo "dsmc is not running "
+                exit 1
         fi
         ;;
   *)
         echo "Usage: dsmcsched {start|stop|restart|status}"
         exit 1
-esac
+esac 
 
 exit 0

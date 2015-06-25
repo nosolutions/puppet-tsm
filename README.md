@@ -26,7 +26,7 @@ Storage Manager (TSM) client on the following operating systems:
 * Oracle Linux 5/6/7
 * Scientific Linux 5/6/7
 * Solaris 10/11
-* Debian 7
+* Debian 6/7
 
 ##Setup
 
@@ -149,7 +149,7 @@ The module has been tested on:
 * RedHat Enterprise Linux 5/6
 * Solaris 10 i386/sparc
 * Solaris 11 i386/sparc
-* Debian 7
+* Debian 6/7
 
 ##Development
 
