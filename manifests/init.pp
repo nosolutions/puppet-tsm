@@ -173,6 +173,8 @@ class tsm (
   $packages                = $::tsm::params::packages,
   $package_adminfile       = $::tsm::params::package_adminfile,
   $package_uri             = $::tsm::params::package_uri,
+  $package_provider        = $::tsm::params::package_provider,
+  $package_source          = $::tsm::params::package_source,
   $service_manage          = $::tsm::params::service_manage,
   $service_ensure          = $::tsm::params::service_ensure,
   $service_name            = $::tsm::params::service_name,
@@ -187,6 +189,7 @@ class tsm (
   $config_opt              = $::tsm::params::config_opt,
   $config_replace          = $::tsm::params::config_replace,
   $config_template         = $::tsm::params::config_template,
+  $rootgroup               = $::tsm::params::rootgroup,
   $inclexcl                = $::tsm::params::inclexcl,
   $inclexcl_local          = $::tsm::params::inclexcl_local,
   $inclexcl_replace        = $::tsm::params::inclexcl_replace,
@@ -205,9 +208,6 @@ class tsm (
   validate_bool($service_manage)
   validate_string($service_ensure)
   validate_string($service_name)
-  validate_string($service_manifest_source)
-  validate_absolute_path($service_script)
-  validate_string($service_script_source)
   validate_absolute_path($tsm_pwd)
   validate_string($initial_password)
   validate_bool($set_initial_password)
@@ -218,11 +218,31 @@ class tsm (
   validate_absolute_path($inclexcl)
   validate_absolute_path($inclexcl_local)
   validate_string($inclexcl_source)
+  validate_string($rootgroup)
 
   case $::osfamily {
     solaris: {
       validate_absolute_path($package_adminfile)
       validate_absolute_path($service_manifest)
+      validate_string($service_manifest_source)
+      validate_absolute_path($service_script)
+      validate_string($service_script_source)
+      validate_string($package_provider)
+      validate_string($package_source)
+    }
+    redhat: {
+      validate_string($service_manifest_source)
+      validate_absolute_path($service_script)
+      validate_string($service_script_source)
+    }
+    debian: {
+      validate_string($service_manifest_source)
+      validate_absolute_path($service_script)
+      validate_string($service_script_source)
+    }
+    AIX: {
+      validate_string($package_provider)
+      validate_string($package_source)
     }
     default: {
       # do nothing

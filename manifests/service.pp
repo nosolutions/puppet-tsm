@@ -36,6 +36,9 @@ class tsm::service inherits tsm {
       solaris: {
         include tsm::service::solaris
       }
+      'AIX': {
+        include tsm::service::aix
+      }
       default: {
         fail("Unsupported osfamily ${::osfamily} for managing the service!")
       }

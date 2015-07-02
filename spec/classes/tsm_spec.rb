@@ -89,6 +89,81 @@ describe 'tsm' do
         'mode'    => '0644'
       })
     end
+    
+    context 'on AIX' do
+   
+      let :facts do
+        {
+          :osfamily      => 'AIX',
+          :concat_basedir => '/dne',
+        }
+      end
+   
+      it do
+        should contain_concat('/usr/tivoli/tsm/client/ba/bin64/dsm.sys').with({
+          'ensure'  => 'present',
+          'replace' => false,
+          'owner'   => 'root',
+          'group'   => 'system',
+          'mode'    => '0644'
+        })
+      end
+   
+      it do
+        should contain_concat__fragment('dsm_sys_template').with({
+          'target' => '/usr/tivoli/tsm/client/ba/bin64/dsm.sys',
+        })
+      end
+   
+      it do
+        should contain_concat__fragment('dsm_sys_local').with({
+          'target' => '/usr/tivoli/tsm/client/ba/bin64/dsm.sys',
+          'source' => '/usr/tivoli/tsm/client/ba/bin64/dsm.sys.local',
+          'order'  => '02',
+        })
+      end
+   
+      it do
+        should contain_file('/usr/tivoli/tsm/client/ba/bin64/dsm.sys.local').with({
+          'ensure'  => 'file',
+          'owner'   => 'root',
+          'group'   => 'system',
+          'mode'    => '0644'
+        })
+      end
+   
+      it { should contain_concat__fragment('dsm_sys_local').that_requires('File[/usr/tivoli/tsm/client/ba/bin64/dsm.sys.local]') }
+   
+      it do
+        should contain_file('/usr/tivoli/tsm/client/ba/bin64/InclExcl').with({
+          'ensure'  => 'file',
+          'replace' => 'false',
+          'owner'   => 'root',
+          'group'   => 'system',
+          'mode'    => '0644'
+        })
+      end
+   
+      it do
+        should contain_file('/usr/tivoli/tsm/client/ba/bin64/InclExcl.local').with({
+          'ensure'  => 'file',
+          'replace' => 'false',
+          'owner'   => 'root',
+          'group'   => 'system',
+          'mode'    => '0644'
+        })
+      end
+   
+      it do
+        should_not contain_file('//usr/tivoli/tsm/client/ba/bin64/dsm.opt').with({
+          'ensure'  => 'file',
+          'replace' => 'false',
+          'owner'   => 'root',
+          'group'   => 'system',
+          'mode'    => '0644'
+        })
+      end
+    end
 
     context 'tsm::config with dsm.opt file' do
 
@@ -183,8 +258,28 @@ describe 'tsm' do
         })
       end
     end
-  end
 
+    context 'on AIX' do
+      let :facts do
+        {
+          :osfamily                  => 'AIX',
+          :concat_basedir            => '/dne',
+        }
+      end
+
+      it do
+        should contain_file('/usr/tivoli/tsm/client/ba/bin64/InclExcl').with({
+          'ensure'  => 'file',
+          'replace' => 'false',
+          'owner'   => 'root',
+          'group'   => 'system',
+          'mode'    => '0644',
+          'source'  => 'puppet:///modules/tsm/InclExcl.AIX'
+        })
+      end
+    end
+    
+  end
 
   context 'tsm::config with config_replace set to true' do
     let(:params) do
@@ -213,6 +308,42 @@ describe 'tsm' do
           'mode'    => '0644'
         })
       end
+    context 'on AIX' do
+
+      let :facts do
+        {
+          :osfamily                  => 'AIX',
+          :concat_basedir            => '/dne',
+        }
+      end
+        
+      let(:params) do
+        {
+          :tcp_server_address => 'tsm',
+          :config_replace => true,
+        }
+      end
+   
+      it do
+        should_not contain_file('/usr/tivoli/tsm/client/ba/bin64/dsm.opt').with({
+            'ensure'  => 'file',
+            'replace' => true,
+            'owner'   => 'root',
+            'group'   => 'system',
+            'mode'    => '0644'
+          })
+      end
+   
+      it do
+          should contain_concat('/usr/tivoli/tsm/client/ba/bin64/dsm.sys').with({
+            'ensure'  => 'present',
+            'replace' => true,
+            'owner'   => 'root',
+            'group'   => 'system',
+            'mode'    => '0644'
+          })
+      end
+    end
   end
 
   context 'tsm::install on RedHat 6' do
@@ -258,7 +389,6 @@ describe 'tsm' do
       it { should contain_tsm__installpkg("deadbeaf").with_ensure('installed') }
     end
   end
-
 
   context 'tsm::service on Redhat 6' do
     let :facts do
@@ -432,7 +562,7 @@ describe 'tsm' do
       {
         :osfamily                  => 'Debian',
         :operatingsystemmajrelease => '7',
-        :architecure               => 'amd64',
+        :architecture              => 'amd64',
         :concat_basedir            => '/dne',
       }
     end
@@ -616,4 +746,72 @@ describe 'tsm' do
       it { should contain_service('tsm').that_requires('Exec[generate-tsm.pwd]') }
     end
   end
+
+  context 'tsm::install on AIX' do
+    let :facts do
+      {
+        :osfamily                  => 'AIX',
+        :concat_basedir            => '/dne',
+
+      }
+    end
+
+    describe 'when tsm::service_manage is false' do
+      it { should_not contain_class('tsm::service::aix')}
+    end
+
+    describe 'should install tsm packages ' do
+      let(:params) do
+        {
+          :tcp_server_address => 'tsm',
+        }
+      end
+
+      it { should contain_tsm__installpkg('tivoli.tsm.client.ba.64bit.base').with_ensure('installed') }
+    end
+  end
+
+  context 'tsm::service on AIX' do
+    let :facts do
+      {
+        :osfamily                  => 'AIX',
+        :concat_basedir            => '/dne',
+      }
+    end
+
+    describe 'when tsm::service_manage is false' do
+      it { should_not contain_class('tsm::service::aix')}
+    end
+
+    describe 'when tsm::service_manage is true' do
+      let(:params) do
+        {
+          :tcp_server_address => 'tsm',
+          :service_manage     => true,
+        }
+      end
+
+      it { should contain_class('tsm::service::aix')}
+
+      it do
+        should contain_exec('mkssys').with({
+          'command'  => '/usr/bin/mkssys -s dsmsched -p /usr/bin/dsmc -u 0 -a "sched" -S -n 15 -f 9 -R -q',
+          'unless'   => '/usr/bin/lssrc -s dsmsched'
+        })
+      end
+
+      it do
+        should contain_service('dsmsched').with({
+          'ensure'     => 'running',
+          'enable'     => 'true',
+          'hasstatus'  => 'true',
+          'hasrestart' => 'false',
+          'subscribe'  => 'Concat[/usr/tivoli/tsm/client/ba/bin64/dsm.sys]',
+        })
+      end
+
+      it { should contain_service('dsmsched').that_requires('Exec[mkssys]') }
+    end
+  end
+
 end

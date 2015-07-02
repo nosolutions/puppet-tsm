@@ -13,13 +13,13 @@
 class tsm::config inherits tsm {
 
   concat { $::tsm::config:
-    ensure => present,
+    ensure  => present,
     replace => $::tsm::config_replace,
-    owner  => 'root',
-    group  => 'root',
-    mode   => '0644',
+    owner   => 'root',
+    group   => $::tsm::rootgroup,
+    mode    => '0644',
   }
-
+  
   concat::fragment { 'dsm_sys_template':
     target  => $::tsm::config,
     content => template($::tsm::config_template),
@@ -29,7 +29,7 @@ class tsm::config inherits tsm {
   file { "${::tsm::config}.local":
     ensure => file,
     owner  => 'root',
-    group  => 'root',
+    group  => $::tsm::rootgroup,
     mode   => '0644',
   } ->
   concat::fragment { 'dsm_sys_local':
@@ -42,7 +42,7 @@ class tsm::config inherits tsm {
     ensure  => file,
     replace => $::tsm::inclexcl_replace,
     owner   => 'root',
-    group   => 'root',
+    group   => $::tsm::rootgroup,
     mode    => '0644',
     source  => $::tsm::inclexcl_source,
   }
@@ -51,7 +51,7 @@ class tsm::config inherits tsm {
     ensure  => file,
     replace => $::tsm::inclexcl_replace,
     owner   => 'root',
-    group   => 'root',
+    group   => $::tsm::rootgroup,
     mode    => '0644',
   }
 
@@ -60,7 +60,7 @@ class tsm::config inherits tsm {
       ensure  => file,
       replace => $::tsm::config_replace,
       owner   => 'root',
-      group   => 'root',
+      group   => $::tsm::rootgroup,
       mode    => '0644',
       content => template($::tsm::config_opt_template),
     }
