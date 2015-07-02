@@ -16,6 +16,8 @@ class tsm::install inherits tsm {
     ensure    => $::tsm::package_ensure,
     uri       => $::tsm::package_uri,
     adminfile => $::tsm::package_adminfile,
+    provider  => $::tsm::package_provider,
+    source    => $::tsm::package_source,
   }
 
   case $::osfamily {

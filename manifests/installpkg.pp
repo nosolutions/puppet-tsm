@@ -30,10 +30,14 @@ define tsm::installpkg (
   $ensure    = 'installed',
   $adminfile = '/dev/null',
   $uri        = '',
+  $provider   = undef,
+  $source     = undef,
   ) {
   validate_string($ensure)
   validate_absolute_path($adminfile)
   validate_string($uri)
+  validate_string($provider)
+  validate_string($source)
 
   package { $title:
     ensure => $ensure,
@@ -47,7 +51,12 @@ define tsm::installpkg (
         install_options => ['-G', ],
         provider        => 'sun',
       }
-
+    }
+    'AIX': {
+      Package[$title] {
+        source   => $source,
+        provider => $provider,
+      }
     }
     default: {
     }

@@ -49,4 +49,17 @@ describe 'tsm::installpkg', :type => :define do
                                               })
     end
   end
+
+  context 'on AIX' do
+    let(:title) { 'tivoli.tsm.client.ba.64bit.base'}
+      
+    let :facts do
+    {
+      :osfamily => 'AIX'
+    }
+    end
+
+    it { should contain_package('tivoli.tsm.client.ba.64bit.base').with_ensure('installed') }
+  end
+
 end
