@@ -12,10 +12,10 @@ describe 'tsm::installpkg', :type => :define do
 
     it { should contain_package('TIVsm-BA').with_ensure('installed') }
   end
-  
+
   context 'on Debian' do
     let(:title) { 'tivsm-ba'}
-      
+
     let :facts do
     {
       :osfamily => 'Debian'
@@ -44,7 +44,7 @@ describe 'tsm::installpkg', :type => :define do
                                                 'ensure'          => 'installed',
                                                 'source'          => 'http://server/pkg/TIVsm-BA.pkg',
                                                 'adminfile'       => '/adminfile',
-                                                'install_options' => '-G',
+                                                'install_options' => ['-G'],
                                                 'provider'        => 'sun'
                                               })
     end
