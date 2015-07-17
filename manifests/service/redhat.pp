@@ -13,7 +13,7 @@
 class tsm::service::redhat {
 
   $service_script_mode = $::operatingsystemmajrelease ? {
-    7       => '0644',
+    '7'     => '0644',
     default => '0755'
   }
 

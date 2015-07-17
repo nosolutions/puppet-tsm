@@ -40,7 +40,7 @@ class tsm::params {
 
   case $::osfamily {
     redhat: {
-      if $::operatingsystemmajrelease == 7 {
+      if $::operatingsystemmajrelease == '7' {
         $packages              = ['TIVsm-BA']
         $service_name          = 'dsmsched'
         $service_script        = '/etc/systemd/system/dsmsched.service'
