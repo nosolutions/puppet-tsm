@@ -380,7 +380,7 @@ describe 'tsm' do
       {
         :osfamily                  => 'Debian',
         :operatingsystemmajrelease => '7',
-        :architecure               => 'amd64',
+        :architecture              => 'amd64',
         :concat_basedir            => '/dne',
 
       }
