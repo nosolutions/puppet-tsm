@@ -1,0 +1,12 @@
+exclude /var/run/.../*
+exclude /var/spool/.../*
+exclude /.../core
+exclude /.../tmp/.../*
+exclude.dir /mnt
+exclude.dir /proc
+exclude /cdrom/*
+exclude /cdrom/.../*
+exclude /unix/
+exclude.dir /unix/
+
+
