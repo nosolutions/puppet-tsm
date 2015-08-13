@@ -27,6 +27,7 @@ Storage Manager (TSM) client on the following operating systems:
 * Scientific Linux 5/6/7
 * Solaris 10/11
 * Debian 6/7
+* AIX 7.1
 
 ##Setup
 
@@ -79,6 +80,16 @@ so you have to translate them with pkgtrans:
 and copy them to your HTTP download location. You are going to need two
 download locations: one for sparc and one for i386 (see params.pp for
 an example).
+
+For AIX the application is shipped by IBM as LPP in BFF format. The 
+package can be installed using the 'nim' (default) or 'aix' provider.
+Installing from a NIM repository, the variable 'package_uri' must 
+contain a valid lpp_source in order to make the installation work.
+This module will then install 'tivoli.tsm.client.ba.64bit.base' and its 
+requesite software.
+
+By setting the 'service_manage' variable to true, 'dsmc sched' will be
+added as a subsystem definition to the subsystem object class in AIX.
 
 ###Beginning with tsm
 
@@ -150,6 +161,7 @@ The module has been tested on:
 * Solaris 10 i386/sparc
 * Solaris 11 i386/sparc
 * Debian 6/7
+* AIX 7.1
 
 ##Development
 
