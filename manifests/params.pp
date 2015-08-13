@@ -121,7 +121,11 @@ class tsm::params {
       $inclexcl_local   = '/usr/tivoli/tsm/client/ba/bin64/InclExcl.local'
       $packages         = ['tivoli.tsm.client.ba.64bit.base']
       $package_provider = 'nim'
+<<<<<<< HEAD
       $package_source   = undef
+=======
+      $package_uri      = ''
+>>>>>>> aix
       $service_name     = 'dsmsched'
       $inclexcl_source  = 'puppet:///modules/tsm/InclExcl.AIX'
       $rootgroup        = 'system'

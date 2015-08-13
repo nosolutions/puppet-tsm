@@ -165,6 +165,81 @@ describe 'tsm' do
       end
     end
 
+    context 'on AIX' do
+
+      let :facts do
+        {
+          :osfamily      => 'AIX',
+          :concat_basedir => '/dne',
+        }
+      end
+
+      it do
+        should contain_concat('/usr/tivoli/tsm/client/ba/bin64/dsm.sys').with({
+          'ensure'  => 'present',
+          'replace' => false,
+          'owner'   => 'root',
+          'group'   => 'system',
+          'mode'    => '0644'
+        })
+      end
+
+      it do
+        should contain_concat__fragment('dsm_sys_template').with({
+          'target' => '/usr/tivoli/tsm/client/ba/bin64/dsm.sys',
+        })
+      end
+
+      it do
+        should contain_concat__fragment('dsm_sys_local').with({
+          'target' => '/usr/tivoli/tsm/client/ba/bin64/dsm.sys',
+          'source' => '/usr/tivoli/tsm/client/ba/bin64/dsm.sys.local',
+          'order'  => '02',
+        })
+      end
+
+      it do
+        should contain_file('/usr/tivoli/tsm/client/ba/bin64/dsm.sys.local').with({
+          'ensure'  => 'file',
+          'owner'   => 'root',
+          'group'   => 'system',
+          'mode'    => '0644'
+        })
+      end
+
+      it { should contain_concat__fragment('dsm_sys_local').that_requires('File[/usr/tivoli/tsm/client/ba/bin64/dsm.sys.local]') }
+
+      it do
+        should contain_file('/usr/tivoli/tsm/client/ba/bin64/InclExcl').with({
+          'ensure'  => 'file',
+          'replace' => 'false',
+          'owner'   => 'root',
+          'group'   => 'system',
+          'mode'    => '0644'
+        })
+      end
+
+      it do
+        should contain_file('/usr/tivoli/tsm/client/ba/bin64/InclExcl.local').with({
+          'ensure'  => 'file',
+          'replace' => 'false',
+          'owner'   => 'root',
+          'group'   => 'system',
+          'mode'    => '0644'
+        })
+      end
+
+      it do
+        should_not contain_file('//usr/tivoli/tsm/client/ba/bin64/dsm.opt').with({
+          'ensure'  => 'file',
+          'replace' => 'false',
+          'owner'   => 'root',
+          'group'   => 'system',
+          'mode'    => '0644'
+        })
+      end
+    end
+
     context 'tsm::config with dsm.opt file' do
 
       config_opt_hash ={
@@ -278,7 +353,11 @@ describe 'tsm' do
         })
       end
     end
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> aix
   end
 
   context 'tsm::config with config_replace set to true' do
@@ -307,7 +386,44 @@ describe 'tsm' do
           'group'   => 'root',
           'mode'    => '0644'
         })
+    end
+
+    context 'on AIX' do
+
+      let :facts do
+        {
+          :osfamily                  => 'AIX',
+          :concat_basedir            => '/dne',
+        }
       end
+
+      let(:params) do
+        {
+          :tcp_server_address => 'tsm',
+          :config_replace => true,
+        }
+      end
+
+      it do
+        should_not contain_file('/usr/tivoli/tsm/client/ba/bin64/dsm.opt').with({
+            'ensure'  => 'file',
+            'replace' => true,
+            'owner'   => 'root',
+            'group'   => 'system',
+            'mode'    => '0644'
+          })
+      end
+
+      it do
+          should contain_concat('/usr/tivoli/tsm/client/ba/bin64/dsm.sys').with({
+            'ensure'  => 'present',
+            'replace' => true,
+            'owner'   => 'root',
+            'group'   => 'system',
+            'mode'    => '0644'
+          })
+      end
+<<<<<<< HEAD
     context 'on AIX' do
 
       let :facts do
@@ -343,6 +459,8 @@ describe 'tsm' do
             'mode'    => '0644'
           })
       end
+=======
+>>>>>>> aix
     end
   end
 
@@ -756,6 +874,7 @@ describe 'tsm' do
       }
     end
 
+<<<<<<< HEAD
     describe 'when tsm::service_manage is false' do
       it { should_not contain_class('tsm::service::aix')}
     end
@@ -768,6 +887,21 @@ describe 'tsm' do
       end
 
       it { should contain_tsm__installpkg('tivoli.tsm.client.ba.64bit.base').with_ensure('installed') }
+=======
+    let(:params) do
+      {
+        :tcp_server_address => 'tsm',
+        :package_uri        => 'lpp_aix71tl3sp4',
+      }
+    end
+
+    it do
+      should contain_tsm__installpkg('tivoli.tsm.client.ba.64bit.base').with({
+          'ensure'    => 'installed',
+          'uri'       => 'lpp_aix71tl3sp4',
+          'provider'  => 'nim',
+        })
+>>>>>>> aix
     end
   end
 

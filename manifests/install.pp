@@ -17,7 +17,10 @@ class tsm::install inherits tsm {
     uri       => $::tsm::package_uri,
     adminfile => $::tsm::package_adminfile,
     provider  => $::tsm::package_provider,
+<<<<<<< HEAD
     source    => $::tsm::package_source,
+=======
+>>>>>>> aix
   }
 
   case $::osfamily {

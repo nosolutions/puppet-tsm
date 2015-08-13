@@ -31,7 +31,10 @@ define tsm::installpkg (
   $adminfile = '/dev/null',
   $uri        = '',
   $provider   = undef,
+<<<<<<< HEAD
   $source     = undef,
+=======
+>>>>>>> aix
   ) {
   validate_string($ensure)
   validate_absolute_path($adminfile)
@@ -54,7 +57,11 @@ define tsm::installpkg (
     }
     'AIX': {
       Package[$title] {
+<<<<<<< HEAD
         source   => $source,
+=======
+        source   => $uri,
+>>>>>>> aix
         provider => $provider,
       }
     }
