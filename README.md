@@ -81,7 +81,9 @@ following packages for downloading:
 IBM provides the gsk packages as file systems packages (thanks IBM!),
 so you have to translate them with pkgtrans:
 
-   pkgtrans . gskssl32.pkg gsk8ssl32/
+```
+$ pkgtrans . gskssl32.pkg gsk8ssl32/
+```
 
 and copy them to your HTTP download location. You are going to need two
 download locations: one for sparc and one for i386 (see params.pp for
@@ -99,15 +101,19 @@ software.
 By setting the 'service_manage' variable to true, 'dsmc sched' will be
 added as a subsystem definition to the subsystem object class in AIX.
 
-###Beginning with tsm
+###Beginning with TSM
 
 Include class TSM on hosts where you would like to install the TSM
 client packages. By default no config files will be replaced. The
 TSM class just makes sure the TSM packages are installed.
 
+```puppet
+include tsm
+```
+
 If there is no dsm.sys this module creates a new one from the default
 template. Be sure to set *config_replace* to true if you would like
-to change dsm.sys after the default template has been deployed.
+to manage dsm.sys after the default template has been deployed.
 
 ##Usage
 
@@ -165,7 +171,7 @@ This module has been built on and tested against Puppet 3.1.0 and higher.
 
 The module has been tested on:
 
-* RedHat Enterprise Linux 5/6
+* RedHat Enterprise Linux 5/6/7
 * Solaris 10 i386/sparc
 * Solaris 11 i386/sparc
 * Debian 6/7
