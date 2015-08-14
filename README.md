@@ -39,6 +39,8 @@ Storage Manager (TSM) client on the following operating systems:
 
 ###Setup requirements
 
+####RedHat
+
 For RedHat Linux you need a yum repository that contains the rpm
 packages IBM provides in the TSM installation tar.gz.
 
@@ -48,6 +50,8 @@ These usually are
 * gskssl64-8.0.14.26.linux.x86_64.rpm
 * gskcrypt64-8.0.14.26.linux.x86_64.rpm
 * TIVsm-BA.x86_64.rpm
+
+####Debian
 
 For Debian you need an apt repository that contains the deb packages.
 IBM only provides rpms so you might need to use alien to convert the
@@ -61,6 +65,8 @@ These usually are
 * tivsm-ba.deb
 * gskcrypt64.deb
 * gskssl64.deb
+
+####Solaris
 
 For Solaris 10 and 11 you need a HTTP server that provides the
 following packages for downloading:
@@ -81,12 +87,14 @@ and copy them to your HTTP download location. You are going to need two
 download locations: one for sparc and one for i386 (see params.pp for
 an example).
 
-For AIX the application is shipped by IBM as LPP in BFF format. The 
-package can be installed using the 'nim' (default) or 'aix' provider.
-Installing from a NIM repository, the variable 'package_uri' must 
-contain a valid lpp_source in order to make the installation work.
-This module will then install 'tivoli.tsm.client.ba.64bit.base' and its 
-requesite software.
+####AIX
+
+For AIX TSM is shipped by IBM as LPP in BFF format. The package can be
+installed using the 'nim' (default) or 'aix' provider.  Installing
+from a NIM repository, the variable `package_uri` must contain a valid
+lpp_source in order to make the installation work.  This module will
+then install `tivoli.tsm.client.ba.64bit.base` and its requesite
+software.
 
 By setting the 'service_manage' variable to true, 'dsmc sched' will be
 added as a subsystem definition to the subsystem object class in AIX.
