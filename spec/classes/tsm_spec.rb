@@ -431,7 +431,7 @@ describe 'tsm' do
           'enable'     => 'true',
           'hasstatus'  => 'true',
           'hasrestart' => 'true',
-          'subscribe'  => 'File[/opt/tivoli/tsm/client/ba/bin/dsm.sys]',
+          'subscribe'  => 'Concat[/opt/tivoli/tsm/client/ba/bin/dsm.sys]',
         })
       end
 
@@ -498,7 +498,7 @@ describe 'tsm' do
           'enable'     => 'true',
           'hasstatus'  => 'true',
           'hasrestart' => 'true',
-          'subscribe'  => 'File[/opt/tivoli/tsm/client/ba/bin/dsm.sys]',
+          'subscribe'  => 'Concat[/opt/tivoli/tsm/client/ba/bin/dsm.sys]',
         })
       end
 
@@ -598,7 +598,7 @@ describe 'tsm' do
           'enable'     => 'true',
           'hasstatus'  => 'true',
           'hasrestart' => 'true',
-          'subscribe'  => 'File[/opt/tivoli/tsm/client/ba/bin/dsm.sys]',
+          'subscribe'  => 'Concat[/opt/tivoli/tsm/client/ba/bin/dsm.sys]',
         })
       end
 
@@ -717,7 +717,7 @@ describe 'tsm' do
           'ensure'    => 'running',
           'enable'    => 'true',
           'manifest'  => '/var/svc/manifest/site/tsmsched.xml',
-          'subscribe' => 'File[/opt/tivoli/tsm/client/ba/bin/dsm.sys]',
+          'subscribe' => 'Concat[/opt/tivoli/tsm/client/ba/bin/dsm.sys]',
         })
       end
 

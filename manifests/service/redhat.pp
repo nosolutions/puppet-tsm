@@ -30,7 +30,7 @@ class tsm::service::redhat {
     enable     => $::tsm::service_enable,
     hasstatus  => true,
     hasrestart => true,
-    subscribe  => File[$::tsm::config],
+    subscribe  => Concat[$::tsm::config],
   }
 
   File[$::tsm::service_script] -> Service[$::tsm::service_name]

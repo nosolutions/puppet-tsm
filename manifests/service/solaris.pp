@@ -33,7 +33,7 @@ class tsm::service::solaris inherits tsm {
     ensure    => $::tsm::service_ensure,
     enable    => $::tsm::service_enable,
     manifest  => $tsm::service_manifest,
-    subscribe => File[$::tsm::config],
+    subscribe => Concat[$::tsm::config],
   }
 
   File[$::tsm::service_script]   -> Service[$::tsm::service_name]
