@@ -1,16 +1,18 @@
 ## unreleased release 1.1.0
 ### Summary
 
-Added AIX support and run test with the future parser enabled.
+Added AIX support and run test with the future parser enabled,
+bugfixes.
 
 ###Features
-- added AIX 7.1 support provided by @urgemerge
+- added AIX 7.1 support provided by purgemerge (mrvdijk at gmail.com)
 - Added Puppet 4 to the test matrix
 
 ###Bugfixes
 
 - AIX support (GH-20)
 - Puppet master reporting issue with config_opt_hash (GH-19)
+- Issue with service dependency on dsm.sys (GH-14)
 
 ## 2015-04-29 release 1.0.1
 ###Summary
