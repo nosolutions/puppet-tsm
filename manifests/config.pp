@@ -19,7 +19,7 @@ class tsm::config inherits tsm {
     group   => $::tsm::rootgroup,
     mode    => '0644',
   }
-  
+
   concat::fragment { 'dsm_sys_template':
     target  => $::tsm::config,
     content => template($::tsm::config_template),
@@ -63,6 +63,11 @@ class tsm::config inherits tsm {
       group   => $::tsm::rootgroup,
       mode    => '0644',
       content => template($::tsm::config_opt_template),
+    }
+  }
+  else {
+    file { $::tsm::config_opt:
+      ensure => present,
     }
   }
 }

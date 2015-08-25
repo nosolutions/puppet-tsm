@@ -81,13 +81,7 @@ describe 'tsm' do
     end
 
     it do
-      should_not contain_file('/opt/tivoli/tsm/client/ba/bin/dsm.opt').with({
-        'ensure'  => 'file',
-        'replace' => 'false',
-        'owner'   => 'root',
-        'group'   => 'root',
-        'mode'    => '0644'
-      })
+      should contain_file('/opt/tivoli/tsm/client/ba/bin/dsm.opt').with_ensure('present')
     end
 
     context 'on AIX' do
@@ -166,30 +160,26 @@ describe 'tsm' do
     end
 
     context 'tsm::config with dsm.opt file' do
-
       config_opt_hash ={
         'key1' => 'val1',
         'key2' => 'val2',
         'key3' => 'val3',
       }
 
-      describe 'should install tsm packages ' do
-        let(:params) {{
+      let(:params) {{
           :tcp_server_address => 'tsm',
           :config_opt_hash    => config_opt_hash,
         }}
 
-        it do
-          should contain_file('/opt/tivoli/tsm/client/ba/bin/dsm.opt').with({
+      it do
+        should contain_file('/opt/tivoli/tsm/client/ba/bin/dsm.opt').with({
             'owner'  => 'root',
             'group'  => 'root',
             'mode'   => '0644'
           })
 
-          config_opt_hash.each do |k,v|
-            should contain_file('/opt/tivoli/tsm/client/ba/bin/dsm.opt').with_content(/#{k}( +)#{v}/)
-          end
-
+        config_opt_hash.each do |k,v|
+          should contain_file('/opt/tivoli/tsm/client/ba/bin/dsm.opt').with_content(/#{k}( +)#{v}/)
         end
       end
     end
