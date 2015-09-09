@@ -1,4 +1,4 @@
-## unreleased release 1.1.0
+## 2015-09-09 release 1.1.0
 ### Summary
 
 Added AIX support and run test with the future parser enabled.
