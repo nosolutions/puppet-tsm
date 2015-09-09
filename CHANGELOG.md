@@ -1,8 +1,14 @@
 ## unreleased release 1.1.0
 ### Summary
 
-Added AIX support and run test with the future parser enabled,
-bugfixes.
+Added AIX support and run test with the future parser enabled.
+
+If there is no `dsm.opt` this release will create an emtpy one to
+avoid the warning message
+
+`ANS0990W Options file '/opt/tivoli/tsm/client/ba/bin/dsm.opt' could not be found`
+
+and return code `8`.
 
 ###Features
 - added AIX 7.1 support provided by purgemerge (mrvdijk at gmail.com)
