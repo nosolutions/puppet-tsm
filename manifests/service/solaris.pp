@@ -10,7 +10,7 @@
 #
 # Copyright 2014-2015 Toni Schmidbauer
 #
-class tsm::service::solaris inherits tsm {
+class tsm::service::solaris {
 
   file { $::tsm::service_script:
     ensure  => file,

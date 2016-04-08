@@ -11,7 +11,7 @@
 #
 # Copyright 2013-2015 Toni Schmidbauer
 #
-class tsm::install inherits tsm {
+class tsm::install {
   tsm::installpkg { $::tsm::packages:
     ensure    => $::tsm::package_ensure,
     uri       => $::tsm::package_uri,

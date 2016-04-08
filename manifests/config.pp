@@ -10,7 +10,7 @@
 #
 # Copyright 2013-2015 Toni Schmidbauer
 #
-class tsm::config inherits tsm {
+class tsm::config {
 
   concat { $::tsm::config:
     ensure  => present,
