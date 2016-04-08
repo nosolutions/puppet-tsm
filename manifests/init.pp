@@ -174,7 +174,6 @@ class tsm (
   $package_adminfile       = $::tsm::params::package_adminfile,
   $package_uri             = $::tsm::params::package_uri,
   $package_provider        = $::tsm::params::package_provider,
-  $package_source          = $::tsm::params::package_source,
   $service_manage          = $::tsm::params::service_manage,
   $service_ensure          = $::tsm::params::service_ensure,
   $service_name            = $::tsm::params::service_name,
@@ -228,7 +227,6 @@ class tsm (
       validate_absolute_path($service_script)
       validate_string($service_script_source)
       validate_string($package_provider)
-      validate_string($package_source)
     }
     redhat: {
       validate_string($service_manifest_source)
@@ -242,7 +240,6 @@ class tsm (
     }
     AIX: {
       validate_string($package_provider)
-      validate_string($package_source)
     }
     default: {
       # do nothing
