@@ -37,50 +37,56 @@ class tsm::params {
   case $::osfamily {
     redhat: {
       if $::operatingsystemmajrelease == '7' {
-        $config                = '/opt/tivoli/tsm/client/ba/bin/dsm.sys'
-        $config_opt            = '/opt/tivoli/tsm/client/ba/bin/dsm.opt'
-        $inclexcl              = '/opt/tivoli/tsm/client/ba/bin/InclExcl'
-        $inclexcl_local        = '/opt/tivoli/tsm/client/ba/bin/InclExcl.local'
-        $packages              = ['TIVsm-BA']
-        $package_adminfile     = undef
-        $package_uri           = undef
-        $package_provider      = undef
-        $service_name          = 'dsmsched'
-        $service_script        = '/etc/systemd/system/dsmsched.service'
-        $service_script_source = 'puppet:///modules/tsm/dsmsched.redhat7'
-        $inclexcl_source       = 'puppet:///modules/tsm/InclExcl.redhat'
-        $rootgroup             = 'root'
+        $config                  = '/opt/tivoli/tsm/client/ba/bin/dsm.sys'
+        $config_opt              = '/opt/tivoli/tsm/client/ba/bin/dsm.opt'
+        $inclexcl                = '/opt/tivoli/tsm/client/ba/bin/InclExcl'
+        $inclexcl_local          = '/opt/tivoli/tsm/client/ba/bin/InclExcl.local'
+        $packages                = ['TIVsm-BA']
+        $package_adminfile       = undef
+        $package_uri             = undef
+        $package_provider        = undef
+        $service_name            = 'dsmsched'
+        $service_script          = '/etc/systemd/system/dsmsched.service'
+        $service_script_source   = 'puppet:///modules/tsm/dsmsched.redhat7'
+        $service_manifest        = undef
+        $service_manifest_source = undef
+        $inclexcl_source         = 'puppet:///modules/tsm/InclExcl.redhat'
+        $rootgroup               = 'root'
       }
       else {
-        $config                = '/opt/tivoli/tsm/client/ba/bin/dsm.sys'
-        $config_opt            = '/opt/tivoli/tsm/client/ba/bin/dsm.opt'
-        $inclexcl              = '/opt/tivoli/tsm/client/ba/bin/InclExcl'
-        $inclexcl_local        = '/opt/tivoli/tsm/client/ba/bin/InclExcl.local'
-        $packages              = ['TIVsm-BA']
-        $package_adminfile     = undef
-        $package_uri           = undef
-        $package_provider      = undef
-        $service_name          = 'dsmsched'
-        $service_script        = '/etc/init.d/dsmsched'
-        $service_script_source = 'puppet:///modules/tsm/dsmsched.redhat'
-        $inclexcl_source       = 'puppet:///modules/tsm/InclExcl.redhat'
-        $rootgroup             = 'root'
+        $config                  = '/opt/tivoli/tsm/client/ba/bin/dsm.sys'
+        $config_opt              = '/opt/tivoli/tsm/client/ba/bin/dsm.opt'
+        $inclexcl                = '/opt/tivoli/tsm/client/ba/bin/InclExcl'
+        $inclexcl_local          = '/opt/tivoli/tsm/client/ba/bin/InclExcl.local'
+        $packages                = ['TIVsm-BA']
+        $package_adminfile       = undef
+        $package_uri             = undef
+        $package_provider        = undef
+        $service_name            = 'dsmsched'
+        $service_script          = '/etc/init.d/dsmsched'
+        $service_script_source   = 'puppet:///modules/tsm/dsmsched.redhat'
+        $service_manifest        = undef
+        $service_manifest_source = undef
+        $inclexcl_source         = 'puppet:///modules/tsm/InclExcl.redhat'
+        $rootgroup               = 'root'
       }
     }
     debian: {
-      $config                = '/opt/tivoli/tsm/client/ba/bin/dsm.sys'
-      $config_opt            = '/opt/tivoli/tsm/client/ba/bin/dsm.opt'
-      $inclexcl              = '/opt/tivoli/tsm/client/ba/bin/InclExcl'
-      $inclexcl_local        = '/opt/tivoli/tsm/client/ba/bin/InclExcl.local'
-      $packages              = ['tivsm-api64', 'tivsm-ba', 'gskcrypt64', 'gskssl64']
-      $package_adminfile     = undef
-      $package_uri           = undef
-      $package_provider      = undef
-      $service_name          = 'dsmsched'
-      $service_script        = '/etc/init.d/dsmsched'
-      $service_script_source = 'puppet:///modules/tsm/dsmsched.debian'
-      $inclexcl_source       = 'puppet:///modules/tsm/InclExcl.debian'
-      $rootgroup             = 'root'
+      $config                  = '/opt/tivoli/tsm/client/ba/bin/dsm.sys'
+      $config_opt              = '/opt/tivoli/tsm/client/ba/bin/dsm.opt'
+      $inclexcl                = '/opt/tivoli/tsm/client/ba/bin/InclExcl'
+      $inclexcl_local          = '/opt/tivoli/tsm/client/ba/bin/InclExcl.local'
+      $packages                = ['tivsm-api64', 'tivsm-ba', 'gskcrypt64', 'gskssl64']
+      $package_adminfile       = undef
+      $package_uri             = undef
+      $package_provider        = undef
+      $service_name            = 'dsmsched'
+      $service_script          = '/etc/init.d/dsmsched'
+      $service_script_source   = 'puppet:///modules/tsm/dsmsched.debian'
+      $service_manifest        = undef
+      $service_manifest_source = undef
+      $inclexcl_source         = 'puppet:///modules/tsm/InclExcl.debian'
+      $rootgroup               = 'root'
     }
     solaris: {
       case $::hardwareisa {
@@ -124,16 +130,18 @@ class tsm::params {
       }
     }
     'AIX': {
-      $config           = '/usr/tivoli/tsm/client/ba/bin64/dsm.sys'
-      $config_opt       = '/usr/tivoli/tsm/client/ba/bin64/dsm.opt'
-      $inclexcl         = '/usr/tivoli/tsm/client/ba/bin64/InclExcl'
-      $inclexcl_local   = '/usr/tivoli/tsm/client/ba/bin64/InclExcl.local'
-      $packages         = ['tivoli.tsm.client.ba.64bit.base']
-      $package_provider = 'nim'
-      $package_uri      = undef
-      $service_name     = 'dsmsched'
-      $inclexcl_source  = 'puppet:///modules/tsm/InclExcl.AIX'
-      $rootgroup        = 'system'
+      $config                  = '/usr/tivoli/tsm/client/ba/bin64/dsm.sys'
+      $config_opt              = '/usr/tivoli/tsm/client/ba/bin64/dsm.opt'
+      $inclexcl                = '/usr/tivoli/tsm/client/ba/bin64/InclExcl'
+      $inclexcl_local          = '/usr/tivoli/tsm/client/ba/bin64/InclExcl.local'
+      $packages                = ['tivoli.tsm.client.ba.64bit.base']
+      $package_provider        = 'nim'
+      $package_uri             = undef
+      $service_name            = 'dsmsched'
+      $service_manifest        = undef
+      $service_manifest_source = undef
+      $inclexcl_source         = 'puppet:///modules/tsm/InclExcl.AIX'
+      $rootgroup               = 'system'
     }
     default: {
       fail("Unsupported osfamily ${::osfamily} in config.pp!")
