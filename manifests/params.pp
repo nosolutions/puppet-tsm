@@ -42,6 +42,9 @@ class tsm::params {
         $inclexcl              = '/opt/tivoli/tsm/client/ba/bin/InclExcl'
         $inclexcl_local        = '/opt/tivoli/tsm/client/ba/bin/InclExcl.local'
         $packages              = ['TIVsm-BA']
+        $package_adminfile     = undef
+        $package_uri           = undef
+        $package_provider      = undef
         $service_name          = 'dsmsched'
         $service_script        = '/etc/systemd/system/dsmsched.service'
         $service_script_source = 'puppet:///modules/tsm/dsmsched.redhat7'
@@ -54,6 +57,9 @@ class tsm::params {
         $inclexcl              = '/opt/tivoli/tsm/client/ba/bin/InclExcl'
         $inclexcl_local        = '/opt/tivoli/tsm/client/ba/bin/InclExcl.local'
         $packages              = ['TIVsm-BA']
+        $package_adminfile     = undef
+        $package_uri           = undef
+        $package_provider      = undef
         $service_name          = 'dsmsched'
         $service_script        = '/etc/init.d/dsmsched'
         $service_script_source = 'puppet:///modules/tsm/dsmsched.redhat'
@@ -67,6 +73,9 @@ class tsm::params {
       $inclexcl              = '/opt/tivoli/tsm/client/ba/bin/InclExcl'
       $inclexcl_local        = '/opt/tivoli/tsm/client/ba/bin/InclExcl.local'
       $packages              = ['tivsm-api64', 'tivsm-ba', 'gskcrypt64', 'gskssl64']
+      $package_adminfile     = undef
+      $package_uri           = undef
+      $package_provider      = undef
       $service_name          = 'dsmsched'
       $service_script        = '/etc/init.d/dsmsched'
       $service_script_source = 'puppet:///modules/tsm/dsmsched.debian'
@@ -121,7 +130,7 @@ class tsm::params {
       $inclexcl_local   = '/usr/tivoli/tsm/client/ba/bin64/InclExcl.local'
       $packages         = ['tivoli.tsm.client.ba.64bit.base']
       $package_provider = 'nim'
-      $package_uri      = ''
+      $package_uri      = undef
       $service_name     = 'dsmsched'
       $inclexcl_source  = 'puppet:///modules/tsm/InclExcl.AIX'
       $rootgroup        = 'system'
