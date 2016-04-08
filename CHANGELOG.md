@@ -1,3 +1,16 @@
+## 2016-nn-nn release 1.1.1
+### Summary
+
+Fix usage of InclExcl file in the default dsm.sys (thanks to Gerben
+Welter). Up until now `InclExcl.local` was include in the dsm.sys
+template, this should be `InclExcl`. 
+
+Cleanup if inherits usage and fixes for puppet 4.
+
+##Bugfixes
+- puppet 4 tests fail (GH-30)
+- remove inherits from manifests (GH-27)
+
 ## 2015-09-09 release 1.1.0
 ### Summary
 
