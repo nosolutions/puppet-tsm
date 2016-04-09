@@ -179,7 +179,7 @@ describe 'tsm' do
           })
 
         config_opt_hash.each do |k,v|
-          should contain_file('/opt/tivoli/tsm/client/ba/bin/dsm.opt').with_content(/#{k}( +)#{v}/)
+          should contain_file('/opt/tivoli/tsm/client/ba/bin/dsm.opt').with_content(/#{k}\s+#{v}/)
         end
       end
     end
