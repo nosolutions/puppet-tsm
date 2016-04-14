@@ -2,7 +2,9 @@
 * HEADER: file are going to overwritten on the next puppet run.
 * HEADER: If you would like to include local settings, use dsm.opt.local
 
-<%- if ! @config_opt_hash.nil? -%>
+<%- @config_opt_hash = scope['::tsm::config_opt_hash']%>
+
+<%- if not @config_opt_hash.nil? -%>
 <%-   @config_opt_hash.keys.sort.each do |config_key| -%>
 <%-     config_value = @config_opt_hash[config_key] -%>
 <%-     line = "%-21s %s" % [config_key, config_value] -%>

@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe 'tsm' do
-
   ['RedHat', 'Solaris', 'Debian'].each do |system|
 
     let :facts do
@@ -160,7 +159,7 @@ describe 'tsm' do
     end
 
     context 'tsm::config with dsm.opt file' do
-      config_opt_hash ={
+      config_opt_hash = {
         'key1' => 'val1',
         'key2' => 'val2',
         'key3' => 'val3',
