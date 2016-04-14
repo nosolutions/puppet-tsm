@@ -8,6 +8,7 @@ group :development, :unit_test do
   gem 'puppet-lint',              :require => false
   gem 'coveralls',                :require => false
   gem 'simplecov',                :require => false
+  gem 'simplecov-console',        :require => false
 end
 
 if puppetversion = ENV['PUPPET_GEM_VERSION']
