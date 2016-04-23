@@ -35,7 +35,7 @@ class tsm::params {
   $inclexcl_replace    = false
 
   case $::osfamily {
-    redhat: {
+    'RedHat': {
       if $::operatingsystemmajrelease == '7' {
         $config                  = '/opt/tivoli/tsm/client/ba/bin/dsm.sys'
         $config_opt              = '/opt/tivoli/tsm/client/ba/bin/dsm.opt'
@@ -147,7 +147,7 @@ class tsm::params {
       $rootgroup               = 'system'
     }
     default: {
-      fail("Unsupported osfamily ${::osfamily} in config.pp!")
+      fail("Unsupported osfamily ${::osfamily} in params.pp!")
     }
   }
 }

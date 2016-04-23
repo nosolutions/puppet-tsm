@@ -5,6 +5,7 @@ group :development, :unit_test do
   gem 'metadata-json-lint',       :require => false
   gem 'puppetlabs_spec_helper',   :require => false
   gem 'rspec-puppet', '>= 2.3.2', :require => false
+  gem 'rspec-puppet-facts',       :require => false
   gem 'puppet-lint',              :require => false
   gem 'coveralls',                :require => false
   gem 'simplecov',                :require => false
