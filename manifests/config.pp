@@ -11,7 +11,6 @@
 # Copyright 2013-2015 Toni Schmidbauer
 #
 class tsm::config {
-
   concat { $::tsm::config:
     ensure  => present,
     replace => $::tsm::config_replace,

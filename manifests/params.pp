@@ -147,7 +147,7 @@ class tsm::params {
       $rootgroup               = 'system'
     }
     default: {
-      fail("Unsupported osfamily ${::osfamily} in config.pp!")
+      fail("Unsupported osfamily ${::osfamily} in params.pp!")
     }
   }
 }
