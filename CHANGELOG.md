@@ -1,3 +1,14 @@
+## 2016-04-26 release 1.1.3
+### Summary
+
+After fixing #27 the dsm.sys template did no longer use `$config_hash`
+for extra settings on newer puppet versions (reported by Gerben
+Welter). Using the scope function in the template fixes this issue.
+
+## Bugfixes
+- dsm.sys.erb does not include config_hash after fixing #27 (GH-35)
+
+
 ## 2016-04-14 release 1.1.2
 ### Summary
 
