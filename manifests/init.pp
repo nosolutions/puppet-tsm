@@ -220,7 +220,7 @@ class tsm (
   validate_string($rootgroup)
 
   case $::osfamily {
-    solaris: {
+    'solaris': {
       validate_absolute_path($package_adminfile)
       validate_absolute_path($service_manifest)
       validate_string($service_manifest_source)
@@ -228,17 +228,17 @@ class tsm (
       validate_string($service_script_source)
       validate_string($package_provider)
     }
-    redhat: {
+    'redhat': {
       validate_string($service_manifest_source)
       validate_absolute_path($service_script)
       validate_string($service_script_source)
     }
-    debian: {
+    'debian': {
       validate_string($service_manifest_source)
       validate_absolute_path($service_script)
       validate_string($service_script_source)
     }
-    AIX: {
+    'AIX': {
       validate_string($package_provider)
     }
     default: {
