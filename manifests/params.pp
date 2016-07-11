@@ -35,7 +35,7 @@ class tsm::params {
   $inclexcl_replace    = false
 
   case $::osfamily {
-    redhat: {
+    'redhat': {
       if $::operatingsystemmajrelease == '7' {
         $config                  = '/opt/tivoli/tsm/client/ba/bin/dsm.sys'
         $config_opt              = '/opt/tivoli/tsm/client/ba/bin/dsm.opt'
@@ -71,7 +71,7 @@ class tsm::params {
         $rootgroup               = 'root'
       }
     }
-    debian: {
+    'debian': {
       $config                  = '/opt/tivoli/tsm/client/ba/bin/dsm.sys'
       $config_opt              = '/opt/tivoli/tsm/client/ba/bin/dsm.opt'
       $inclexcl                = '/opt/tivoli/tsm/client/ba/bin/InclExcl'
@@ -88,9 +88,9 @@ class tsm::params {
       $inclexcl_source         = 'puppet:///modules/tsm/InclExcl.debian'
       $rootgroup               = 'root'
     }
-    solaris: {
+    'solaris': {
       case $::hardwareisa {
-        i386: {
+        'i386': {
           $config                  = '/opt/tivoli/tsm/client/ba/bin/dsm.sys'
           $config_opt              = '/opt/tivoli/tsm/client/ba/bin/dsm.opt'
           $inclexcl                = '/opt/tivoli/tsm/client/ba/bin/InclExcl'
@@ -107,7 +107,7 @@ class tsm::params {
           $inclexcl_source         = 'puppet:///modules/tsm/InclExcl.solaris'
           $rootgroup               = 'root'
         }
-        sparc: {
+        'sparc': {
           $config                  = '/opt/tivoli/tsm/client/ba/bin/dsm.sys'
           $config_opt              = '/opt/tivoli/tsm/client/ba/bin/dsm.opt'
           $inclexcl                = '/opt/tivoli/tsm/client/ba/bin/InclExcl'
