@@ -24,7 +24,7 @@ class tsm::params {
   $initial_password     = 'start'
   $set_initial_password = true
 
-  # default parameters fot dsm.sys
+  # default parameters for dsm.sys
   $comm_method         = 'TCPip'
   $tcp_port            = '1500'
 
