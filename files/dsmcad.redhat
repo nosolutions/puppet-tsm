@@ -1,52 +1,168 @@
-#!/bin/bash
+#!/bin/sh
 #
-# chkconfig: 345 99 99
-# description: starts the tsm Client Acceptor Daemon at system boot
-# config:
-# pidfile:
+# (C) Copyright IBM Corporation 2011
 #
-prog="/opt/tivoli/tsm/client/ba/bin/dsmcad"
+# chkconfig: 35 95 5
+# description: TSM Client Acceptor Daemon
+#
+### BEGIN INIT INFO
+# Provides: dsmcad
+# Required-Start: $local_fs $remote_fs $network
+# Required-Stop:
+# Default-Start: 3 5
+# Default-Stop: 0 1 2 6
+# Short-Description: TSM Client Acceptor Daemon
+# Description: Start dsmcad to enable scheduler and Web GUI.
+### END INIT INFO
 
-[ ! -x "$prog" ] && exit 0
+DSMCAD_DIR=/opt/tivoli/tsm/client/ba/bin
+DSMCAD_BIN=$DSMCAD_DIR/dsmcad
+if [ ! -x $DSMCAD_BIN ]
+then
+   echo "$DSMCAD_BIN is not installed"
+   if [ "$1" = "stop" ]
+   then
+      exit 0
+   else
+      exit 5
+   fi
+fi
 
-# Source function library.
-. /etc/rc.d/init.d/functions
+if [ -f /etc/redhat-release ]
+then
+   . /etc/init.d/functions
+
+   start_()
+   {
+      echo -n "Starting dsmcad:"
+      cd $DSMCAD_DIR
+      daemon $DSMCAD_BIN
+      echo
+   }
+
+   stop_()
+   {
+      echo -n "Stopping dsmcad:"
+      killproc -d 10 dsmcad
+      echo
+      return $?
+   }
+
+   status_()
+   {
+      status dsmcad
+   }
+
+elif [ -f /etc/SuSE-release ]
+then
+   . /etc/rc.status
+
+   rc_reset
+
+   export LANG=en_US.UTF-8
+   export LC_ALL=en_US.UTF-8
+
+   start_()
+   {
+      echo -n "Starting dsmcad:"
+      cd $DSMCAD_DIR
+      startproc $DSMCAD_BIN
+      rc_status -v
+   }
+
+   stop_()
+   {
+      echo -n "Stopping dsmcad:"
+      killproc $DSMCAD_BIN
+      rc_status -v
+   }
+
+   status_()
+   {
+      echo -n "Checking dsmcad:"
+      checkproc $DSMCAD_BIN
+      rc_status -v
+   }
+
+elif [ -f /etc/os-release ]
+then
+   . /etc/os-release
+
+   if [ $NAME = "Ubuntu" ]
+   then
+
+      start_()
+      {
+         cd $DSMCAD_DIR
+         if start-stop-daemon --status --exec $DSMCAD_BIN
+         then
+            echo "dsmcad is already running, pid" `pidof $DSMCAD_BIN`
+         else
+            if start-stop-daemon --start --exec $DSMCAD_BIN
+            then
+               echo "dsmcad is started, pid" `pidof $DSMCAD_BIN`
+            else
+               echo "dsmcad could not be started"
+            fi
+         fi
+      }
+
+      stop_()
+      {
+         if start-stop-daemon --status --exec $DSMCAD_BIN
+         then
+            if start-stop-daemon --stop --exec $DSMCAD_BIN
+            then
+               echo "dsmcad is stopped"
+            else
+               echo "dsmcad could not be stopped"
+            fi
+         else
+            echo "dsmcad is not running"
+         fi
+      }
+
+      status_()
+      {
+         if start-stop-daemon --status --exec $DSMCAD_BIN
+         then
+            echo "dsmcad is running, pid" `pidof $DSMCAD_BIN`
+         else
+            echo "dsmcad is not running"
+         fi
+      }
+
+   fi
+
+else
+   echo "This distribution is not supported"
+   exit 2
+fi
+
+
 
 case "$1" in
-'start')
-        PID=`pidofproc dsmcad`
-        if [ "$PID" != "" ]; then
-                echo 'tsm scheduler already running.'
-                exit 1
-        fi
-        echo -n "Starting dsmc"
-        if [ -x /opt/tivoli/tsm/client/ba/bin/dsmcad ]; then
-                /opt/tivoli/tsm/client/ba/bin/dsmcad \
-                > /var/log/dsmc.out 2>&1 &
-                echo_success Starting dsmcad
-                echo
-        else
-                echo_failure
-                exit 1
-        fi
-        ;;
+   start)
+      start_
+   ;;
 
-'stop')
-        killproc $prog
-        echo "Stopping dsmcad"
-        ;;
+   stop)
+      stop_
+   ;;
 
-'restart')
-        $0 stop
-        $0 start
-        ;;
+   restart)
+      stop_
+      sleep 2
+      start_
+   ;;
 
-'status')
-        status $prog
-        ;;
+   status)
+      status_
+   ;;
 
-*)
-        echo "Usage: $0 { start | stop }"
-        exit 1
-        ;;
+   *)
+      echo "Usage: $0 {start|stop|restart|status}"
+      exit 1
+   ;;
 esac
+

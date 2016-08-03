@@ -166,6 +166,7 @@ The default dsm.sys template already includes the *InclExcl.local* file.
 
 If you want to use the Client Acceptor Daemon (dsmcad) instead of the Scheduler (dsmsched),
 you have to overwrite the following variables.
+
 Example for RedHat 7:
 
     tsm::service_script: "/etc/systemd/system/dsmcad.service"
