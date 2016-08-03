@@ -1,0 +1,52 @@
+#!/bin/bash
+#
+# chkconfig: 345 99 99
+# description: starts the tsm Client Acceptor Daemon at system boot
+# config:
+# pidfile:
+#
+prog="/opt/tivoli/tsm/client/ba/bin/dsmcad"
+
+[ ! -x "$prog" ] && exit 0
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+case "$1" in
+'start')
+        PID=`pidofproc dsmcad`
+        if [ "$PID" != "" ]; then
+                echo 'tsm scheduler already running.'
+                exit 1
+        fi
+        echo -n "Starting dsmc"
+        if [ -x /opt/tivoli/tsm/client/ba/bin/dsmcad ]; then
+                /opt/tivoli/tsm/client/ba/bin/dsmcad \
+                > /var/log/dsmc.out 2>&1 &
+                echo_success Starting dsmcad
+                echo
+        else
+                echo_failure
+                exit 1
+        fi
+        ;;
+
+'stop')
+        killproc $prog
+        echo "Stopping dsmcad"
+        ;;
+
+'restart')
+        $0 stop
+        $0 start
+        ;;
+
+'status')
+        status $prog
+        ;;
+
+*)
+        echo "Usage: $0 { start | stop }"
+        exit 1
+        ;;
+esac
