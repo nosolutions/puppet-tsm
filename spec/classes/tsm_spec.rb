@@ -163,6 +163,7 @@ describe 'tsm' do
         'key1' => 'val1',
         'key2' => 'val2',
         'key3' => 'val3',
+        'key4' => [ 'val41', 'val42', ],
       }
 
       let(:params) {{
@@ -178,7 +179,15 @@ describe 'tsm' do
           })
 
         config_opt_hash.each do |k,v|
-          should contain_file('/opt/tivoli/tsm/client/ba/bin/dsm.opt').with_content(/#{k}\s+#{v}/)
+          if v.is_a?(String)
+            should contain_file('/opt/tivoli/tsm/client/ba/bin/dsm.opt').with_content(/#{k}\s+#{v}/)
+          elsif v.is_a?(Array)
+            v.each do |a|
+              should contain_file('/opt/tivoli/tsm/client/ba/bin/dsm.opt').with_content(/#{k}\s+#{a}/)
+            end
+          else
+            fail "value is neither String nor Array"
+          end
         end
       end
     end
