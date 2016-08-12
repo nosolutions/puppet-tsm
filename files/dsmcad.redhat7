@@ -1,0 +1,14 @@
+[Unit]
+Description=IBM Tivoli Storage Manager Client dsmcad systemd-style sample service description
+Documentation=http://www-01.ibm.com/support/knowledgecenter/SSGSG7_7.1.4/client/t_protect_wf.html?lang=en
+After=local-fs.target network-online.target
+
+[Service]
+Type=forking
+GuessMainPID=no
+Environment="DSM_LOG=/opt/tivoli/tsm/client/ba/bin" "LD_LIBRARY_PATH=/opt/tivoli/tsm/client/ba/bin"
+ExecStart=/opt/tivoli/tsm/client/ba/bin/dsmcad
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

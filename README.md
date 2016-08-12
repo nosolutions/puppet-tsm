@@ -161,6 +161,18 @@ In the case of a puppet managed include/exclude file, you can add
 local include/exclude rules to
 */opt/tivoli/tsm/clien/ba/bin/InclExcl.local*
 The default dsm.sys template already includes the *InclExcl.local* file.
+
+### Using the Client Acceptor Daemon (dsmcad)
+
+If you want to use the Client Acceptor Daemon (dsmcad) instead of the Scheduler (dsmsched),
+you have to overwrite the following variables.
+
+Example for RedHat 7:
+
+    tsm::service_script: "/etc/systemd/system/dsmcad.service"
+    tsm::service_name: "dsmcad"
+    tsm::service_script_source: 'puppet:///modules/tsm/dsmcad.redhat7'
+
 ##Reference
 
 Please see [init.pp](manifests/init.pp) for an explanation of all available options.

@@ -1,0 +1,62 @@
+#!/bin/bash
+#
+### BEGIN INIT INFO
+# Provides:             dsmcad
+# Required-Start:       $local_fs $remote_fs $syslog networking
+# Required-Stop:
+# Default-Start:        2 3 4 5
+# Default-Stop:         0 1 6
+# Short-Description:    dsmcad
+# Description:          IBM Tivoli Backup Client
+### END INIT INFO
+#
+
+# PATH=${PATH}:/usr/adsm:/usr/local/sbin
+# export PATH
+export LANG=is_IS
+DSM_DIR=/opt/tivoli/tsm/client/ba/bin
+DSM_CONFIG=/opt/tivoli/tsm/client/ba/bin/dsm.opt
+export DSM_DIR DSM_CONFIG
+linke=`ls -d /opt/tivoli/tsm/client/ba/bin/is_IS`
+if test "$linke"
+then
+        sleep 0
+else
+        ln -s /opt/tivoli/tsm/client/ba/bin/en_US /opt/tivoli/tsm/client/ba/bin/is_IS
+fi
+# See how we were called.
+case "$1" in
+  start)
+        echo -n "Starting dsmcad. "
+        dsmc sch -RunAsService > /dev/null 2>&1 &
+        echo
+        ;;
+  stop)
+        echo -n "Stopping dsmcad: "
+        pid=`/bin/ps ax | /bin/grep -w dsmc | /bin/grep -v grep | /bin/grep -v dsmcad | /usr/bin/awk '{print $1}'`
+        if test "$pid"
+        then
+                kill $pid
+        echo
+        fi
+        ;;
+  restart)
+        $0 stop
+        $0 start
+        ;;
+  status)
+        pid=`/bin/ps ax | /bin/grep -w dsmc | /bin/grep -v grep | /bin/grep -v dsmcad | /usr/bin/awk '{print $1}'`
+        if test "$pid"
+        then
+                echo "dsmcad is running with PID: "$pid
+        else
+                echo "dsmcad is not running "
+                exit 1
+        fi
+        ;;
+  *)
+        echo "Usage: dsmcad {start|stop|restart|status}"
+        exit 1
+esac
+
+exit 0

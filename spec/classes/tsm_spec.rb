@@ -459,6 +459,134 @@ describe 'tsm' do
 
     end
   end
+  context 'tsm::service::dsmcad on Redhat 6' do
+    let :facts do
+      {
+        :osfamily                  => 'RedHat',
+        :operatingsystemmajrelease => '6',
+        :architecure               => 'i386',
+        :concat_basedir            => '/dne',
+      }
+    end
+
+    describe 'when tsm::service_manage is false' do
+      it { should_not contain_class('tsm::service::redhat')}
+    end
+
+    describe 'when tsm::service_manage is true' do
+      let(:params) do
+        {
+          :tcp_server_address    => 'tsm',
+          :service_manage        => true,
+          :service_script        => '/etc/init.d/dsmcad',
+          :service_name          => 'dsmcad',
+          :service_script_source => 'puppet:///modules/tsm/dsmcad.redhat',
+
+        }
+      end
+
+      it { should contain_class('tsm::service::redhat')}
+
+      it do
+        should contain_file('/etc/init.d/dsmcad').with({
+          'ensure'  => 'file',
+          'owner'   => 'root',
+          'group'   => 'root',
+          'mode'    => '0755',
+          'source'  => 'puppet:///modules/tsm/dsmcad.redhat'
+        })
+      end
+
+      it do
+        should contain_service('dsmcad').with({
+          'ensure'     => 'running',
+          'enable'     => 'true',
+          'hasstatus'  => 'true',
+          'hasrestart' => 'true',
+          'subscribe'  => 'Concat[/opt/tivoli/tsm/client/ba/bin/dsm.sys]',
+        })
+      end
+
+      it { should contain_service('dsmcad').that_requires('File[/etc/init.d/dsmcad]') }
+    end
+
+    describe 'when service_manage is true and set_intial_password is true' do
+      let(:params) do
+        {
+          :tcp_server_address    => 'tsm',
+          :service_manage        => true,
+          :initial_password      => 'start',
+          :set_initial_password  => true,
+          :service_script        => '/etc/init.d/dsmcad',
+          :service_name          => 'dsmcad',
+          :service_script_source => 'puppet:///modules/tsm/dsmcad.redhat',
+        }
+      end
+
+      it do
+        should contain_exec('generate-tsm.pwd').with({
+          'creates' => '/etc/adsm/TSM.PWD',
+          'path'    => ['/bin', '/usr/bin'],
+        })
+      end
+
+      it { should contain_exec('generate-tsm.pwd').with_command(/dsmc set password start .*/) }
+
+      it { should contain_service('dsmcad').that_requires('Exec[generate-tsm.pwd]') }
+
+    end
+  end
+
+
+  context 'tsm::service::dsmcad on Redhat 7' do
+    let :facts do
+      {
+        :osfamily                  => 'RedHat',
+        :operatingsystemmajrelease => '7',
+        :architecure               => 'i386',
+        :concat_basedir            => '/dne',
+        :service_script            => '/etc/systemd/system/dsmcad.service',
+        :service_name              => 'dsmcad',
+        :service_script_source     => 'puppet:///modules/tsm/dsmcad.redhat7',
+      }
+    end
+
+    describe 'when tsm::service_manage is true' do
+      let(:params) do
+        {
+          :tcp_server_address    => 'tsm',
+          :service_manage        => true,
+          :service_script        => '/etc/systemd/system/dsmcad.service',
+          :service_name          => 'dsmcad',
+          :service_script_source => 'puppet:///modules/tsm/dsmcad.redhat7',
+        }
+      end
+
+      it { should contain_class('tsm::service::redhat')}
+
+      it do
+        should contain_file('/etc/systemd/system/dsmcad.service').with({
+          'ensure'  => 'file',
+          'owner'   => 'root',
+          'group'   => 'root',
+          'mode'    => '0644',
+          'source'  => 'puppet:///modules/tsm/dsmcad.redhat7'
+        })
+      end
+
+      it do
+        should contain_service('dsmcad').with({
+          'ensure'     => 'running',
+          'enable'     => 'true',
+          'hasstatus'  => 'true',
+          'hasrestart' => 'true',
+          'subscribe'  => 'Concat[/opt/tivoli/tsm/client/ba/bin/dsm.sys]',
+        })
+      end
+
+      it { should contain_service('dsmcad').that_requires('File[/etc/systemd/system/dsmcad.service]') }
+    end
+  end
 
   context 'tsm::service on Redhat 7' do
     let :facts do
@@ -603,6 +731,56 @@ describe 'tsm' do
       it { should contain_service('dsmsched').that_requires('File[/etc/init.d/dsmsched]') }
     end
   end
+  context 'tsm::service::dsmcad on Debian 7' do
+    let :facts do
+      {
+        :osfamily                  => 'Debian',
+        :operatingsystemmajrelease => '7',
+        :architecture              => 'amd64',
+        :concat_basedir            => '/dne',
+      }
+    end
+
+    describe 'when tsm::service_manage is false' do
+      it { should_not contain_class('tsm::service::debian')}
+    end
+
+    describe 'when tsm::service_manage is true' do
+      let(:params) do
+        {
+          :tcp_server_address    => 'tsm',
+          :service_manage        => true,
+          :service_script        => '/etc/init.d/dsmcad',
+          :service_name          => 'dsmcad',
+          :service_script_source => 'puppet:///modules/tsm/dsmcad.debian',
+        }
+      end
+
+      it { should contain_class('tsm::service::debian')}
+
+      it do
+        should contain_file('/etc/init.d/dsmcad').with({
+          'ensure'  => 'file',
+          'owner'   => 'root',
+          'group'   => 'root',
+          'mode'    => '0755',
+          'source'  => 'puppet:///modules/tsm/dsmcad.debian'
+        })
+      end
+
+      it do
+        should contain_service('dsmcad').with({
+          'ensure'     => 'running',
+          'enable'     => 'true',
+          'hasstatus'  => 'true',
+          'hasrestart' => 'true',
+          'subscribe'  => 'Concat[/opt/tivoli/tsm/client/ba/bin/dsm.sys]',
+        })
+      end
+
+      it { should contain_service('dsmcad').that_requires('File[/etc/init.d/dsmcad]') }
+    end
+  end
 
   context 'tsm::install on Solaris 10 i386' do
     let :facts do
@@ -721,6 +899,92 @@ describe 'tsm' do
 
       it { should contain_service('tsm').that_requires('File[/var/svc/manifest/site/tsmsched.xml]') }
       it { should contain_service('tsm').that_requires('File[/lib/svc/method/tsmsched]') }
+    end
+
+    describe 'when service_manage is true and set_intial_password is true' do
+      let(:params) do
+        {
+          :tcp_server_address   => 'tsm',
+          :service_manage       => true,
+          :initial_password     => 'start',
+          :set_initial_password => true,
+        }
+      end
+
+      it do
+        should contain_exec('generate-tsm.pwd').with({
+          'creates' => '/etc/adsm/TSM.PWD',
+          'path'    => ['/bin', '/usr/bin'],
+        })
+      end
+
+      it { should contain_exec('generate-tsm.pwd').with_command(/dsmc set password start .*/) }
+
+      it { should contain_service('tsm').that_requires('Exec[generate-tsm.pwd]') }
+    end
+  end
+
+  context 'tsm::service::dsmcad on Solaris 10' do
+    let :facts do
+      {
+        :osfamily       => 'Solaris',
+        :kernelrelease  => '5.10',
+        :hardwareisa    => 'i386',
+        :concat_basedir => '/dne',
+      }
+    end
+
+    describe 'when tsm::service_manage is false' do
+      it { should_not contain_class('tsm::service::solaris')}
+    end
+
+    describe 'when tsm::service_manage is true' do
+      let(:params) do
+        {
+          :tcp_server_address      => 'tsm',
+          :service_manage          => true,
+          :service_manifest        => '/var/svc/manifest/site/tsmcad.xml',
+          :service_manifest_source => 'puppet:///modules/tsm/tsmcad.xml',
+          :service_script          => '/lib/svc/method/tsmcad',
+          :service_name            => 'tsm',
+          :service_script_source   => 'puppet:///modules/tsm/tsmcad.solaris',
+        }
+      end
+
+      it { should contain_class('tsm::service::solaris')}
+
+      it do
+        should contain_file('/lib/svc/method/tsmcad').with({
+          'ensure'  => 'file',
+          'owner'   => 'root',
+          'group'   => 'root',
+          'mode'    => '0755',
+          'replace' => 'true',
+          'source'  => 'puppet:///modules/tsm/tsmcad.solaris'
+        })
+      end
+
+      it do
+        should contain_file('/var/svc/manifest/site/tsmcad.xml').with({
+          'ensure'  => 'file',
+          'owner'   => 'root',
+          'group'   => 'root',
+          'mode'    => '0444',
+          'source'  => 'puppet:///modules/tsm/tsmcad.xml'
+        })
+      end
+
+      it do
+        should contain_service('tsm').with({
+          'ensure'    => 'running',
+          'enable'    => 'true',
+          'manifest'  => '/var/svc/manifest/site/tsmcad.xml',
+          'subscribe' => 'Concat[/opt/tivoli/tsm/client/ba/bin/dsm.sys]',
+        })
+      end
+
+      it { should contain_service('tsm').that_requires('File[/var/svc/manifest/site/tsmcad.xml]') }
+      it { should contain_service('tsm').that_requires('File[/lib/svc/method/tsmcad]') }
     end
 
     describe 'when service_manage is true and set_intial_password is true' do

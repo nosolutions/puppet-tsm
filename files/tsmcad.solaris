@@ -1,0 +1,65 @@
+#!/sbin/sh
+#
+#tm 01.10.2001 bsd teufel austreiben. sysv rules.
+#be 04.12.2006 bisschen angepasst fuer solaris smf
+#ts 11.06.2014 ja, wir verwenden auch zonen...
+#sg 03.08.2016 dsmcad
+##################################################
+
+getpid()
+{
+    PID=""
+    ZONENAME=`zonename`
+    PID=`pgrep -z $ZONENAME -f 'dsmcad'`
+}
+
+cad_start()
+{
+    getpid
+
+    if [ "$PID" !=  "" ]; then
+        echo "tsm cad already running (pid $PID)."
+        exit 1
+    fi
+    if [ -x /opt/tivoli/tsm/client/ba/bin/dsmcad ]; then
+        echo 'starting tsm cad.'
+        /opt/tivoli/tsm/client/ba/bin/dsmcad \
+            > /var/log/tsmcad.out 2>&1 &
+    else
+        echo 'cant find tsm executable!'
+        exit 1
+    fi
+}
+
+cad_stop()
+{
+    getpid
+
+    if [ "$PID" = "" ]; then
+        echo 'tsm cad not running.'
+        #exit 1
+    else
+        echo 'stopping tsm cad.'
+        [ "$PID" -gt 0 ] && kill -15 $PID
+    fi
+}
+
+case "$1" in
+    'start')
+        cad_start
+        ;;
+    'restart')
+        cad_stop
+        sleep 3 #wichtig
+        cad_start
+        ;;
+    'stop')
+        cad_stop
+        ;;
+    *)
+        echo "Usage: $0 { start | restart | stop }"
+        exit 1
+        ;;
+esac
+
+exit 0
