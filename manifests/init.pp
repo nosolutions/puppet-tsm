@@ -52,6 +52,11 @@
 #   service_manage - optional
 #   Default: 'running'
 #
+# [*service_enable*]
+#   Default state of the tsm service
+#   service_manage - optional
+#   Default: 'true'
+#
 # [*service_name*]
 #   Name of the tsm service we manage
 #   service_name - optional
@@ -176,6 +181,7 @@ class tsm (
   $package_provider        = $::tsm::params::package_provider,
   $service_manage          = $::tsm::params::service_manage,
   $service_ensure          = $::tsm::params::service_ensure,
+  $service_enable          = $::tsm::params::service_enable,
   $service_name            = $::tsm::params::service_name,
   $service_manifest        = $::tsm::params::service_manifest,
   $service_manifest_source = $::tsm::params::service_manifest_source,
@@ -205,7 +211,8 @@ class tsm (
   validate_array($packages)
   validate_string($package_uri)
   validate_bool($service_manage)
-  validate_string($service_ensure)
+  validate_re($service_ensure,'^true$|^false$|^running$|^stopped$')
+  validate_bool($service_enable)
   validate_string($service_name)
   validate_absolute_path($tsm_pwd)
   validate_string($initial_password)
