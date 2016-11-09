@@ -171,6 +171,7 @@
 # Copyright 2014-2015 Toni Schmidbauer
 #
 class tsm (
+  $tcp_server_address,
   $server_name             = $name,
   $comm_method             = $::tsm::params::comm_method,
   $tcp_port                = $::tsm::params::tcp_port,
@@ -201,7 +202,6 @@ class tsm (
   $inclexcl_source         = $::tsm::params::inclexcl_source,
   $config_hash             = {},
   $config_opt_hash         = undef,
-  $tcp_server_address,
   ) inherits tsm::params {
 
   validate_string($package_ensure)
