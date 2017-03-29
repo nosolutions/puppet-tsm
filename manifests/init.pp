@@ -124,14 +124,26 @@
 #   inclexcl - optional
 #   Default: /opt/tivoli/tsm/client/ba/bin/InclExcl
 #
+# [*inclexcl_hash*]
+#   Hash from Hiera to build contents of inclexcl_hash_source
+#   inclexcl_hash - optional
+#   Default: {}
+#
+# [*inclexcl_hash_source*]
+#   Path to the include/exclude file built from hiera
+#   inclexcl_hash_source - optional
+#   Default:
+#      Redhat, Debian, Solaris:  /opt/tivoli/tsm/client/ba/bin/InclExcl.hash
+#      AIX:                      /usr/tivoli/tsm/client/ba/bin64/InclExcl.hash
+#
 # [*inclexcl_local*]
 #   Path to the local include/exclude file
-#   inclexcl - optional
+#   inclexcl_local - optional
 #   Default: /opt/tivoli/tsm/client/ba/bin/InclExcl.local
 #
 # [*inclexcl_replace*]
 #   Whether or not to replace a existing InclExcl file
-#   inclexcl - optional
+#   inclexcl_replace - optional
 #   Default: false
 #
 # [*inclexcl_source*]
@@ -197,6 +209,8 @@ class tsm (
   $config_template         = $::tsm::params::config_template,
   $rootgroup               = $::tsm::params::rootgroup,
   $inclexcl                = $::tsm::params::inclexcl,
+  $inclexcl_hash           = {},
+  $inclexcl_hash_source    = $::tsm::params::inclexcl_hash_source,
   $inclexcl_local          = $::tsm::params::inclexcl_local,
   $inclexcl_replace        = $::tsm::params::inclexcl_replace,
   $inclexcl_source         = $::tsm::params::inclexcl_source,
