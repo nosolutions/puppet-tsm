@@ -1,3 +1,29 @@
+## 2017-04-13 release 1.2.0
+### Summary
+
+I call this release 'what took you so long'. It includes the following
+fixes and enhancements:
+
+- Accept hash from Hiera to build an additional InclExcl.hash by GerbenWelter
+- Include service_enable to class parameters by Marc Haber
+- Add initial dsmcad support by mms-segu
+- Support arrays in config_opt_hash allowing for multiple DOMAIN entries in dsm.opt by Marc Haber
+- A small fix by rndmh3ro
+- We now add InclExcl.local (empty per default) to the standard dsm.sys
+
+### Features
+
+- You can now set the service enable parameter with ::tsm::service_enable
+- It is possible to add InclExcl entries via hiera and the ::tsm::inclexcl_hash option
+- You can change the standard dsmsched service to dsmscad (see the readme for details)
+- ::tsm::config_opt_hash now supports arrays for multiple entries are possible (e.g. for DOMAIN)
+
+### Bugfixes
+
+- various lint fixes
+- service_enable parameter was missing from init.pp
+- InclExcl.local should be added to the default dsm.sys
+
 ## 2016-04-26 release 1.1.3
 ### Summary
 
