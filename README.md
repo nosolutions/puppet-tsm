@@ -160,7 +160,23 @@ For a puppet managed include/exclude file set *inclexcl_replace* to
 In the case of a puppet managed include/exclude file, you can add
 local include/exclude rules to
 */opt/tivoli/tsm/clien/ba/bin/InclExcl.local*
-The default dsm.sys template already includes the *InclExcl.local* file.
+
+The default dsm.sys template already includes the *InclExcl.local*
+file.
+
+It is also possible to add InclExcl entries via hiera. Please use the
+*inclexcl_hash* option for this:
+
+```hiera
+tsm::inclexcl_hash
+  exclude:
+  - /var/log/.../*
+  - /var/tmp/.../*
+```
+
+The default location for the file generated with *tsm::inclexcl_hash*
+is /opt/tivoli/tsm/client/ba/bin/InclExcl.hash. You can change this
+with the *tsm::inclexcl_hash_source* option.
 
 ### Using the Client Acceptor Daemon (dsmcad)
 
