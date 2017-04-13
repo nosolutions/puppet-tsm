@@ -30,8 +30,8 @@ class tsm::config {
     owner  => 'root',
     group  => $::tsm::rootgroup,
     mode   => '0644',
-  } ->
-  concat::fragment { 'dsm_sys_local':
+  }
+  -> concat::fragment { 'dsm_sys_local':
     target => $::tsm::config,
     source => "${::tsm::config}.local",
     order  => '02',

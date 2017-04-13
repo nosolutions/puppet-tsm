@@ -23,18 +23,18 @@ class tsm::install {
     solaris: {
       case $::hardwareisa {
         i386: {
-          Package['gsk8cry32'] ->
-          Package['gsk8ssl32'] ->
-          Package['gsk8cry64'] ->
-          Package['gsk8ssl64'] ->
-          Package['TIVsmCapi'] ->
-          Package['TIVsmCba']
+          Package['gsk8cry32']
+          -> Package['gsk8ssl32']
+          -> Package['gsk8cry64']
+          -> Package['gsk8ssl64']
+          -> Package['TIVsmCapi']
+          -> Package['TIVsmCba']
         }
         sparc: {
-          Package['gsk8cry64'] ->
-          Package['gsk8ssl64'] ->
-          Package['TIVsmCapi'] ->
-          Package['TIVsmCba']
+          Package['gsk8cry64']
+          -> Package['gsk8ssl64']
+          -> Package['TIVsmCapi']
+          -> Package['TIVsmCba']
         }
         default: {
           fail("Unsupported hardwareisa ${::hardwareisa} for osfamily ${::osfamily} in install.pp!")

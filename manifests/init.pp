@@ -253,9 +253,9 @@ class tsm (
     }
   }
 
-  anchor {'tsm::begin': } ->
-  class { '::tsm::install': } ->
-  class { '::tsm::config': } ->
-  class { '::tsm::service': } ->
-  anchor {'tsm::end': }
+  anchor {'tsm::begin': }
+  -> class { '::tsm::install': }
+  -> class { '::tsm::config': }
+  -> class { '::tsm::service': }
+  -> anchor {'tsm::end': }
 }
