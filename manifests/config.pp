@@ -46,6 +46,14 @@ class tsm::config {
     source  => $::tsm::inclexcl_source,
   }
 
+  file { $::tsm::inclexcl_hash_source:
+    ensure  => file,
+    owner   => 'root',
+    group   => $::tsm::rootgroup,
+    mode    => '0644',
+    content => template('tsm/inclexcl_hash.erb'),
+  }
+
   file { $::tsm::inclexcl_local:
     ensure  => file,
     replace => $::tsm::inclexcl_replace,

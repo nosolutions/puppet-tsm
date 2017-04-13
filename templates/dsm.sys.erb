@@ -8,6 +8,9 @@ Servername  <%= scope.lookupvar("tsm::server_name") %>
    TCPPort               <%= scope.lookupvar("tsm::tcp_port") %>
    TCPServeraddress      <%= scope.lookupvar("tsm::tcp_server_address") %>
    INCLExcl              <%= scope.lookupvar("tsm::inclexcl") %>
+<%- if scope['::tsm::inclexcl_hash'] != {} -%>
+   INCLExcl              <%= scope.lookupvar("tsm::inclexcl_hash_source") %>
+<%- end -%>
 
 * additional options
 <%- if ! scope['::tsm::config_hash'].nil? -%>

@@ -40,6 +40,7 @@ class tsm::params {
         $config                  = '/opt/tivoli/tsm/client/ba/bin/dsm.sys'
         $config_opt              = '/opt/tivoli/tsm/client/ba/bin/dsm.opt'
         $inclexcl                = '/opt/tivoli/tsm/client/ba/bin/InclExcl'
+        $inclexcl_hash_source    = '/opt/tivoli/tsm/client/ba/bin/InclExcl.hash'
         $inclexcl_local          = '/opt/tivoli/tsm/client/ba/bin/InclExcl.local'
         $packages                = ['TIVsm-BA']
         $package_adminfile       = undef
@@ -57,6 +58,7 @@ class tsm::params {
         $config                  = '/opt/tivoli/tsm/client/ba/bin/dsm.sys'
         $config_opt              = '/opt/tivoli/tsm/client/ba/bin/dsm.opt'
         $inclexcl                = '/opt/tivoli/tsm/client/ba/bin/InclExcl'
+        $inclexcl_hash_source    = '/opt/tivoli/tsm/client/ba/bin/InclExcl.hash'
         $inclexcl_local          = '/opt/tivoli/tsm/client/ba/bin/InclExcl.local'
         $packages                = ['TIVsm-BA']
         $package_adminfile       = undef
@@ -75,6 +77,7 @@ class tsm::params {
       $config                  = '/opt/tivoli/tsm/client/ba/bin/dsm.sys'
       $config_opt              = '/opt/tivoli/tsm/client/ba/bin/dsm.opt'
       $inclexcl                = '/opt/tivoli/tsm/client/ba/bin/InclExcl'
+      $inclexcl_hash_source    = '/opt/tivoli/tsm/client/ba/bin/InclExcl.hash'
       $inclexcl_local          = '/opt/tivoli/tsm/client/ba/bin/InclExcl.local'
       $packages                = ['tivsm-api64', 'tivsm-ba', 'gskcrypt64', 'gskssl64']
       $package_adminfile       = undef
@@ -94,6 +97,7 @@ class tsm::params {
           $config                  = '/opt/tivoli/tsm/client/ba/bin/dsm.sys'
           $config_opt              = '/opt/tivoli/tsm/client/ba/bin/dsm.opt'
           $inclexcl                = '/opt/tivoli/tsm/client/ba/bin/InclExcl'
+          $inclexcl_hash_source    = '/opt/tivoli/tsm/client/ba/bin/InclExcl.hash'
           $inclexcl_local          = '/opt/tivoli/tsm/client/ba/bin/InclExcl.local'
           $packages                = ['gsk8cry32','gsk8cry64','gsk8ssl32','gsk8ssl64','TIVsmCapi', 'TIVsmCba']
           $package_uri             = "http://server/pkgs/solaris/${::hardwareisa}/5.10"
@@ -111,6 +115,7 @@ class tsm::params {
           $config                  = '/opt/tivoli/tsm/client/ba/bin/dsm.sys'
           $config_opt              = '/opt/tivoli/tsm/client/ba/bin/dsm.opt'
           $inclexcl                = '/opt/tivoli/tsm/client/ba/bin/InclExcl'
+          $inclexcl_hash_source    = '/opt/tivoli/tsm/client/ba/bin/InclExcl.hash'
           $inclexcl_local          = '/opt/tivoli/tsm/client/ba/bin/InclExcl.local'
           $packages                = ['gsk8cry64','gsk8ssl64','TIVsmCapi', 'TIVsmCba']
           $package_uri             = "http://server/pkgs/solaris/${::hardwareisa}/5.10"
@@ -133,6 +138,7 @@ class tsm::params {
       $config                  = '/usr/tivoli/tsm/client/ba/bin64/dsm.sys'
       $config_opt              = '/usr/tivoli/tsm/client/ba/bin64/dsm.opt'
       $inclexcl                = '/usr/tivoli/tsm/client/ba/bin64/InclExcl'
+      $inclexcl_hash_source    = '/usr/tivoli/tsm/client/ba/bin64/InclExcl.hash'
       $inclexcl_local          = '/usr/tivoli/tsm/client/ba/bin64/InclExcl.local'
       $packages                = ['tivoli.tsm.client.ba.64bit.base']
       $package_provider        = 'nim'
