@@ -168,6 +168,11 @@
 #   TSM server used for this client
 #   tcp_server_address - obligatory
 #
+# [*inclexcl_hash*]
+#   inclexcl_hash - hash of files/dirs to include/exclude.
+#     keys => value
+#   Default: {}
+#
 # === Examples
 #
 #  class { tsm:
@@ -216,6 +221,9 @@ class tsm (
   $inclexcl_source         = $::tsm::params::inclexcl_source,
   $config_hash             = {},
   $config_opt_hash         = undef,
+
+  $inclexcl_hash           = {},
+
   ) inherits tsm::params {
 
   validate_string($package_ensure)

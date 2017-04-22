@@ -60,6 +60,7 @@ class tsm::config {
     owner   => 'root',
     group   => $::tsm::rootgroup,
     mode    => '0644',
+    content => template('tsm/inclexcl.local.erb'),
   }
 
   if $::tsm::config_opt_hash {
