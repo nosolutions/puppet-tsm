@@ -203,10 +203,14 @@ class tsm (
   $tsm_pwd                 = $::tsm::params::tsm_pwd,
   $initial_password        = $::tsm::params::initial_password,
   $set_initial_password    = $::tsm::params::set_initial_password,
+  $config_dir              = $::tsm::params::config_dir,
   $config                  = $::tsm::params::config,
   $config_opt              = $::tsm::params::config_opt,
   $config_replace          = $::tsm::params::config_replace,
-  $config_template         = $::tsm::params::config_template,
+  $config_template         = undef,
+  $config_header_template  = $::tsm::params::config_header_template, 
+  $config_global_template  = $::tsm::params::config_global_template, 
+  $config_stanza_template  = $::tsm::params::config_stanza_template, 
   $rootgroup               = $::tsm::params::rootgroup,
   $inclexcl                = $::tsm::params::inclexcl,
   $inclexcl_hash           = {},
@@ -214,14 +218,13 @@ class tsm (
   $inclexcl_local          = $::tsm::params::inclexcl_local,
   $inclexcl_replace        = $::tsm::params::inclexcl_replace,
   $inclexcl_source         = $::tsm::params::inclexcl_source,
+  $config_global_hash      = {},
   $config_hash             = {},
   $config_opt_hash         = undef,
+  $stanzas                 = {},
   ) inherits tsm::params {
 
   validate_string($package_ensure)
-  validate_string($tcp_server_address)
-  validate_re($tcp_port,'\d+', 'tcp_port option has to be a numeric value!')
-  validate_string($comm_method)
   validate_array($packages)
   validate_string($package_uri)
   validate_bool($service_manage)
@@ -234,10 +237,6 @@ class tsm (
   validate_absolute_path($config)
   validate_absolute_path($config_opt)
   validate_bool($config_replace)
-  validate_string($config_template)
-  validate_absolute_path($inclexcl)
-  validate_absolute_path($inclexcl_local)
-  validate_string($inclexcl_source)
   validate_string($rootgroup)
 
   case $::osfamily {

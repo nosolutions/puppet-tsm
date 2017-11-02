@@ -1,0 +1,11 @@
+* stanza for server <%= @server_name %>
+Servername  <%= @server_name %>
+   COMMMethod <%= @comm_method %>
+   TCPPort <%= @tcp_port %>
+   TCPServeraddress <%= @tcp_server_address %>
+<%- @config_hash.each do |config_key, config_values| -%>
+  <%- [config_values].flatten.each do |config_value| -%>
+   <%= "%-21s %s" % [config_key, config_value] %>
+  <%- end -%>
+<%- end -%>
+
