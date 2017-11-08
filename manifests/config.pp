@@ -61,7 +61,7 @@ class tsm::config {
 
     } else {
 
-      create_resources('tsm::stanzas', $::tsm::stanzas)
+      create_resources('tsm::stanza', $::tsm::stanzas)
 
     }
 
