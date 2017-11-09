@@ -1,0 +1,7 @@
+* global options
+<%- scope['::tsm::config_global_hash'].each do |config_key, config_values| -%>
+  <%- [config_values].flatten.each do |config_value| -%>
+<%= "%-21s %s" % [config_key, config_value] %>
+  <%- end -%>
+<%- end -%>
+

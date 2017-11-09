@@ -8,9 +8,10 @@
 #
 # === Copyright
 #
-# Copyright 2013-2015 Toni Schmidbauer
+# Copyright 2013-2017 Toni Schmidbauer
 #
 class tsm::config {
+
   concat { $::tsm::config:
     ensure  => present,
     replace => $::tsm::config_replace,
@@ -19,12 +20,17 @@ class tsm::config {
     mode    => '0644',
   }
 
-  concat::fragment { 'dsm_sys_template':
-    target  => $::tsm::config,
-    content => template($::tsm::config_template),
-    order   => '01',
+  if $::tsm::config_template {
+    include tsm::config::full_template
+  } else {
+    include tsm::config::stanzas
   }
 
+  concat::fragment { 'dsm_sys_local_banner':
+    target  => $::tsm::config,
+    content => "* settings included from dsm.sys.local (if any)\n",
+    order   => '30',
+  }
   file { "${::tsm::config}.local":
     ensure => file,
     owner  => 'root',
@@ -34,32 +40,7 @@ class tsm::config {
   -> concat::fragment { 'dsm_sys_local':
     target => $::tsm::config,
     source => "${::tsm::config}.local",
-    order  => '02',
-  }
-
-  file { $::tsm::inclexcl:
-    ensure  => file,
-    replace => $::tsm::inclexcl_replace,
-    owner   => 'root',
-    group   => $::tsm::rootgroup,
-    mode    => '0644',
-    source  => $::tsm::inclexcl_source,
-  }
-
-  file { $::tsm::inclexcl_hash_source:
-    ensure  => file,
-    owner   => 'root',
-    group   => $::tsm::rootgroup,
-    mode    => '0644',
-    content => template('tsm/inclexcl_hash.erb'),
-  }
-
-  file { $::tsm::inclexcl_local:
-    ensure  => file,
-    replace => $::tsm::inclexcl_replace,
-    owner   => 'root',
-    group   => $::tsm::rootgroup,
-    mode    => '0644',
+    order  => '31',
   }
 
   if $::tsm::config_opt_hash {

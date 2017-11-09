@@ -10,6 +10,7 @@ group :development, :unit_test do
   gem 'coveralls',                :require => false
   gem 'simplecov',                :require => false
   gem 'simplecov-console',        :require => false
+  gem 'semantic_puppet',          :require => false
 end
 
 if puppetversion = ENV['PUPPET_GEM_VERSION']
