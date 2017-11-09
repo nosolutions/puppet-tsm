@@ -28,15 +28,18 @@ class tsm::params {
   $comm_method         = 'TCPip'
   $tcp_port            = '1500'
 
-  $config_template     = 'tsm/dsm.sys.erb'
-  $config_opt_template = 'tsm/dsm.opt.erb'
-  $config_replace      = false
+  $config_header_template = 'tsm/dsm.sys_header.erb'
+  $config_global_template = 'tsm/dsm.sys_global.erb'
+  $config_stanza_template = 'tsm/dsm.sys_stanza.erb'
+  $config_opt_template    = 'tsm/dsm.opt.erb'
+  $config_replace         = false
 
   $inclexcl_replace    = false
 
   case $::osfamily {
     'redhat': {
       if $::operatingsystemmajrelease == '7' {
+        $config_dir              = '/opt/tivoli/tsm/client/ba/bin'
         $config                  = '/opt/tivoli/tsm/client/ba/bin/dsm.sys'
         $config_opt              = '/opt/tivoli/tsm/client/ba/bin/dsm.opt'
         $inclexcl                = '/opt/tivoli/tsm/client/ba/bin/InclExcl'
@@ -55,6 +58,7 @@ class tsm::params {
         $rootgroup               = 'root'
       }
       else {
+        $config_dir              = '/opt/tivoli/tsm/client/ba/bin'
         $config                  = '/opt/tivoli/tsm/client/ba/bin/dsm.sys'
         $config_opt              = '/opt/tivoli/tsm/client/ba/bin/dsm.opt'
         $inclexcl                = '/opt/tivoli/tsm/client/ba/bin/InclExcl'
@@ -74,6 +78,7 @@ class tsm::params {
       }
     }
     'debian': {
+      $config_dir              = '/opt/tivoli/tsm/client/ba/bin'
       $config                  = '/opt/tivoli/tsm/client/ba/bin/dsm.sys'
       $config_opt              = '/opt/tivoli/tsm/client/ba/bin/dsm.opt'
       $inclexcl                = '/opt/tivoli/tsm/client/ba/bin/InclExcl'
@@ -94,6 +99,7 @@ class tsm::params {
     'solaris': {
       case $::hardwareisa {
         'i386': {
+          $config_dir              = '/opt/tivoli/tsm/client/ba/bin'
           $config                  = '/opt/tivoli/tsm/client/ba/bin/dsm.sys'
           $config_opt              = '/opt/tivoli/tsm/client/ba/bin/dsm.opt'
           $inclexcl                = '/opt/tivoli/tsm/client/ba/bin/InclExcl'
@@ -112,6 +118,7 @@ class tsm::params {
           $rootgroup               = 'root'
         }
         'sparc': {
+          $config_dir              = '/opt/tivoli/tsm/client/ba/bin'
           $config                  = '/opt/tivoli/tsm/client/ba/bin/dsm.sys'
           $config_opt              = '/opt/tivoli/tsm/client/ba/bin/dsm.opt'
           $inclexcl                = '/opt/tivoli/tsm/client/ba/bin/InclExcl'
@@ -135,6 +142,7 @@ class tsm::params {
       }
     }
     'AIX': {
+      $config_dir              = '/usr/tivoli/tsm/client/ba/bin64'
       $config                  = '/usr/tivoli/tsm/client/ba/bin64/dsm.sys'
       $config_opt              = '/usr/tivoli/tsm/client/ba/bin64/dsm.opt'
       $inclexcl                = '/usr/tivoli/tsm/client/ba/bin64/InclExcl'
