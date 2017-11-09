@@ -231,8 +231,8 @@
 # Copyright 2014-2015 Toni Schmidbauer
 #
 class tsm (
-  $tcp_server_address,
   $server_name             = $name,
+  $tcp_server_address      = undef,
   $comm_method             = $::tsm::params::comm_method,
   $tcp_port                = $::tsm::params::tcp_port,
   $package_ensure          = $::tsm::params::package_ensure,

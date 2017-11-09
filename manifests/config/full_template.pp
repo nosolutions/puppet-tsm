@@ -13,6 +13,14 @@
 # Copyright 2013-2017 Toni Schmidbauer
 #
 class tsm::config::full_template {
+  validate_string($::tsm::server_name)
+  validate_string($::tsm::comm_method)
+  validate_integer($::tsm::tcp_port, 65535, 1)
+  validate_string($::tsm::tcp_server_address)
+  validate_absolute_path($::tsm::inclexcl)
+  validate_absolute_path($::tsm::inclexcl_local)
+  validate_string($::tsm::inclexcl_source)
+  validate_bool($::tsm::inclexcl_replace)
 
   concat::fragment { 'dsm_sys_template':
     target  => $::tsm::config,
