@@ -1,16 +1,17 @@
-# == Define: tsm::stanza
+# == Define: tsm::config::stanza
 #
-# Will create a stanza for each given servers in the dsm.sys file
+# Will create a stanza fragment for inclusion in
+# the dms.sys config file.
 #
 # === Authors
 #
-# Andreas Zuber <zuber@puzzle.ch>
+# Toni Schmidbauer <toni@stderr.at>
 #
 # === Copyright
 #
-# Copyright 2017-2017 Andreas Zuber
+# Copyright 2013-2017 Toni Schmidbauer
 #
-define tsm::stanza(
+define tsm::config::stanza(
   $tcp_server_address,
   $server_name          = $name,
   $comm_method          = $::tsm::comm_method,
