@@ -14,7 +14,7 @@ describe 'tsm::config' do
     context "on #{os}" do
       let(:facts) { facts }
       it { is_expected.to compile.with_all_deps }
-      it { should contain_concat__fragment('dsm_sys_template').with_content(/^\s+key\s+value/) }
+      it { should contain_concat__fragment('dsm_sys_stanza_tsm').with_content(/^\s+key\s+value/) }
     end
   end
 end

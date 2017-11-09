@@ -36,7 +36,7 @@ class tsm::config {
       content => template($::tsm::config_header_template),
       order   => '00',
     }
-    concat::fragment { 'dsm_sys_options':
+    concat::fragment { 'dsm_sys_global':
       target  => $::tsm::config,
       content => template($::tsm::config_global_template),
       order   => '20',

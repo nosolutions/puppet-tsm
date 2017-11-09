@@ -32,7 +32,7 @@ define tsm::stanza(
   validate_string($inclexcl_source)
   validate_bool($inclexcl_replace)
 
-  concat::fragment { "dsm_sys_stanza_${name}_template":
+  concat::fragment { "dsm_sys_stanza_${name}":
     target  => $::tsm::config,
     content => template($::tsm::config_stanza_template),
     order   => "20_${name}",
