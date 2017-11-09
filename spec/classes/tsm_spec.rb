@@ -56,7 +56,7 @@ describe 'tsm' do
       should contain_concat__fragment('dsm_sys_local').with({
         'target' => '/opt/tivoli/tsm/client/ba/bin/dsm.sys',
         'source' => '/opt/tivoli/tsm/client/ba/bin/dsm.sys.local',
-        'order'  => '30',
+        'order'  => '31',
       })
     end
 
@@ -136,7 +136,7 @@ describe 'tsm' do
         should contain_concat__fragment('dsm_sys_local').with({
           'target' => '/usr/tivoli/tsm/client/ba/bin64/dsm.sys',
           'source' => '/usr/tivoli/tsm/client/ba/bin64/dsm.sys.local',
-          'order'  => '30',
+          'order'  => '31',
         })
       end
 

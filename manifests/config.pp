@@ -26,16 +26,21 @@ class tsm::config {
     include tsm::config::stanzas
   }
 
+  concat::fragment { 'dsm_sys_local_banner':
+    target  => $::tsm::config,
+    content => "* settings included from dsm.sys.local (if any)\n",
+    order   => '30',
+  }
   file { "${::tsm::config}.local":
     ensure => file,
     owner  => 'root',
     group  => $::tsm::rootgroup,
     mode   => '0644',
-  }
-  -> concat::fragment { 'dsm_sys_local':
+  } ->
+  concat::fragment { 'dsm_sys_local':
     target => $::tsm::config,
     source => "${::tsm::config}.local",
-    order  => '30',
+    order  => '31',
   }
 
   if $::tsm::config_opt_hash {
