@@ -43,20 +43,20 @@ class tsm::config {
     }
 
     if empty($::tsm::stanzas) {
-      
+
       # This is for backwards compatibity and uses the old tsm
       # class parameters to create a stanza
       tsm::stanza{$::tsm::server_name:
-        comm_method           => $::tsm::comm_method,
-        tcp_port              => $::tsm::tcp_port,
-        tcp_server_address    => $::tsm::tcp_server_address,
-        inclexcl              => $::tsm::inclexcl,
-        inclexcl_source       => $::tsm::inclexcl_source,
-        inclexcl_local        => $::tsm::inclexcl_local,
-        inclexcl_hash         => $::tsm::inclexcl_hash,
-        inclexcl_hash_source  => $::tsm::inclexcl_hash_source,
-        inclexcl_replace      => $::tsm::inclexcl_replace,
-        config_hash           => $::tsm::config_hash,
+        comm_method          => $::tsm::comm_method,
+        tcp_port             => $::tsm::tcp_port,
+        tcp_server_address   => $::tsm::tcp_server_address,
+        inclexcl             => $::tsm::inclexcl,
+        inclexcl_source      => $::tsm::inclexcl_source,
+        inclexcl_local       => $::tsm::inclexcl_local,
+        inclexcl_hash        => $::tsm::inclexcl_hash,
+        inclexcl_hash_source => $::tsm::inclexcl_hash_source,
+        inclexcl_replace     => $::tsm::inclexcl_replace,
+        config_hash          => $::tsm::config_hash,
       }
 
     } else {

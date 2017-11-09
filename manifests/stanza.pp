@@ -63,4 +63,3 @@ define tsm::stanza(
     mode    => '0644',
   }
 }
- 
