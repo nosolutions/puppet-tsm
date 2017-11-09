@@ -1,4 +1,4 @@
-# == Class: tsm::config
+# == Class: tsm::config::full_template
 #
 # This class is used if the user replaces the whole
 # template and does not use the partials for header,

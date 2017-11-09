@@ -149,6 +149,30 @@ into the global *dsm.sys* on the next puppet run.
 Use the parameter *config_opt_hash* to manage *dsm.opt* in a similar way
 as *dsm.sys*. There is currently no support for a local *dsm.opt* file.
 
+### Defining multiple stanzas
+
+You can also define your multiple servers by defining multiple
+configuration stanzas.
+
+example:
+
+    tsm::stanzas:
+      tsmserver1:
+        tcp_server_address: "tsmserver1"
+        config_hash:
+          errorlogname: "/var/log/dsmerror.log"
+          errorlogretention: "31 D"
+          schedlogname: "/var/log/dsmsched.log"
+          schedlogretention: "30 d"
+          nodename: "%{::hostname}"
+          inclexcl: "/opt/tivoli/tsm/client/ba/bin/InclExcl"
+          inclexcl: "/opt/tivoli/tsm/client/ba/bin/InclExcl.other"
+          passwordaccess: "generate"
+          domain: "all-local"
+          makesparsefile: "no"
+        tsmserver2:
+          tcp_server_address: "tsmserver2"
+
 ### The Include/Exclude file
 
 If there is no */opt/tivoli/tsm/client/ba/bin/InclExcl* file

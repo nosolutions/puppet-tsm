@@ -3,6 +3,62 @@
 # Will create a stanza fragment for inclusion in
 # the dms.sys config file.
 #
+# === Parameters
+#
+# [*server_name*]
+#   server_name - optional, server id in the config file
+#   Default: tsm
+#
+# [*comm_method*]
+#   TSM communication method
+#   comm_method - optional
+#   Default: TCPip
+#
+# [*tcp_port*]
+#   TCP port used for connecting to the tsm server
+#   tcp_port - optional
+#   Default: 1500
+#
+# [*inclexcl*]
+#   Path to the include/exclude file
+#   inclexcl - optional
+#   Default: /opt/tivoli/tsm/client/ba/bin/InclExcl_${name}
+#
+# [*inclexcl_hash*]
+#   Hash from Hiera to build contents of inclexcl_hash_source
+#   inclexcl_hash - optional
+#   Default: {}
+#
+# [*inclexcl_hash_source*]
+#   Path to the include/exclude file built from hiera
+#   inclexcl_hash_source - optional
+#   Default:
+#      Redhat, Debian, Solaris:  /opt/tivoli/tsm/client/ba/bin/InclExcl_${name}.hash
+#      AIX:                      /usr/tivoli/tsm/client/ba/bin64/InclExcl_${name}.hash
+#
+# [*inclexcl_local*]
+#   Path to the local include/exclude file
+#   inclexcl_local - optional
+#   Default: /opt/tivoli/tsm/client/ba/bin/InclExcl_${name}.local
+#
+# [*inclexcl_replace*]
+#   Whether or not to replace a existing InclExcl file
+#   inclexcl_replace - optional
+#   Default: false
+#
+# [*inclexcl_source*]
+#   Where to find a default include/exclude file
+#   inclexcl_source - optional
+#   Default:
+#      Redhat: puppet://modules/tsm/InclExcl.redhat
+#      Debian: puppet://modules/tsm/InclExcl.debian
+#      Solaris: puppet://modules/tsm/InclExcl.solaris
+#
+# [*config_hash*]
+#   config_hash - hash with extended parameters
+#     keys => value
+#   Default: {}
+#
 # === Authors
 #
 # Toni Schmidbauer <toni@stderr.at>

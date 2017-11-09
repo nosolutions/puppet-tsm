@@ -99,6 +99,15 @@
 #   config - optional
 #   Default: 'start'
 #
+# [*config_dir*]
+#   Path where the per stanza InclExcl files will be deployed
+#   config - optional
+#   Default:
+#     RedHat: /opt/tivoli/tsm/client/ba/bin
+#     Debian: /opt/tivoli/tsm/client/ba/bin
+#     Solaris: /opt/tivoli/tsm/client/ba/bin
+#     AIX: /usr/tivoli/tsm/client/ba/bin64
+#
 # [*config*]
 #   Path to dsm.sys
 #   config - optional
@@ -115,9 +124,24 @@
 #   Default: false
 #
 # [*config_template*]
-#   Where to find the ERB template for dsm.sys
+#   Where to find the full ERB template for dsm.sys
 #   config_template - optional
 #   Default: 'tsm/dsm.sys.erb'
+#
+# [*config_header_template*]
+#   Where to find the partial header ERB template for dsm.sys
+#   config_template - optional
+#   Default: tsm/dsm.sys_header.erb
+#
+# [*config_global_template*]
+#   Where to find the partial global ERB template for dsm.sys
+#   config_template - optional
+#   Default: tsm/dsm.sys_global.erb
+#
+# [*config_stanza_template*]
+#   Where to find the partial stanza ERB template for dsm.sys
+#   config_template - optional
+#   Default: tsm/dsm.sys_stanza.erb
 #
 # [*inclexcl*]
 #   Path to the include/exclude file
@@ -154,6 +178,11 @@
 #      Debian: puppet://modules/tsm/InclExcl.debian
 #      Solaris: puppet://modules/tsm/InclExcl.solaris
 #
+# [*config_global_hash*]
+#   config_hash - hash with global parameters for the dms.sys file
+#     keys => value
+#   Default: {}
+#
 # [*config_hash*]
 #   config_hash - hash with extended parameters
 #     keys => value
@@ -168,10 +197,29 @@
 #   TSM server used for this client
 #   tcp_server_address - obligatory
 #
+# [*stanzas*]
+#   Define multiple server stanzas as a hash.
+#   config_hash - hash of tsm::config::stanza instances
+#   Default: undef
+#
 # === Examples
+#
+#  Single server configuration:
 #
 #  class { tsm:
 #    tcp_server_address => 'tsmserver1'
+#  }
+#
+#  Configure multiple stanzas:
+#
+#  class { tsm:
+#    stanzas => {
+#      'tsmserver1' => {
+#        'tcp_server_address' => 'tsmserver1'
+#      },
+#      'tsmserver2' => {
+#        'tcp_server_address' => 'tsmserver2'
+#      },
 #  }
 #
 # === Authors
