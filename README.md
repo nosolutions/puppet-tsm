@@ -125,6 +125,7 @@ The default *dsm.sys* template only sets
 * COMMMethod
 * TCPPort
 * TCPServeraddress
+* INCLExcl
 
 if you would like to add additional default options for nodes, you
 have to use a hash (parameter *config_hash*) or hiera. Here's a hiera
@@ -136,8 +137,6 @@ example:
         schedlogname: "/var/log/dsmsched.log"
         schedlogretention: "30 d"
         nodename: "%{::hostname}"
-        inclexcl: "/opt/tivoli/tsm/client/ba/bin/InclExcl"
-        inclexcl: "/opt/tivoli/tsm/client/ba/bin/InclExcl.other"
         passwordaccess: "generate"
         domain: "all-local"
         makesparsefile: "no"
@@ -165,8 +164,6 @@ example:
           schedlogname: "/var/log/dsmsched.log"
           schedlogretention: "30 d"
           nodename: "%{::hostname}"
-          inclexcl: "/opt/tivoli/tsm/client/ba/bin/InclExcl"
-          inclexcl: "/opt/tivoli/tsm/client/ba/bin/InclExcl.other"
           passwordaccess: "generate"
           domain: "all-local"
           makesparsefile: "no"
