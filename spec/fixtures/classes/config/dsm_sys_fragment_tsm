@@ -5,13 +5,12 @@ Servername  tsm
    TCPServeraddress      127.0.0.1
    INCLExcl              /opt/tivoli/tsm/client/ba/bin/InclExcl
    INCLExcl              /opt/tivoli/tsm/client/ba/bin/InclExcl.local
-   INCLExcl              /opt/tivoli/tsm/client/ba/bin/InclExcl.hash
+   domain                all-local
    errorlogname          /var/log/dsmerror.log
    errorlogretention     31 D
-   schedlogname          /var/log/dsmsched.log
-   schedlogretention     30 d
+   makesparsefile        no
    nodename              node01
    passwordaccess        generate
-   domain                all-local
-   makesparsefile        no
+   schedlogname          /var/log/dsmsched.log
+   schedlogretention     30 d
 
