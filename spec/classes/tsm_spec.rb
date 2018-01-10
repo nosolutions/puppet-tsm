@@ -35,16 +35,28 @@ describe 'tsm' do
     end
 
     it do
-      should contain_concat__fragment('dsm_sys_template').with({
+      should contain_concat__fragment('dsm_sys_header').with({
         'target' => '/opt/tivoli/tsm/client/ba/bin/dsm.sys',
       })
     end
 
     it do
+      should contain_concat__fragment('dsm_sys_global').with({
+        'target' => '/opt/tivoli/tsm/client/ba/bin/dsm.sys',
+      })
+    end
+
+    it do
+      should contain_concat__fragment('dsm_sys_stanza_tsm').with({
+        'target' => '/opt/tivoli/tsm/client/ba/bin/dsm.sys',
+      })
+    end
+
+  it do
       should contain_concat__fragment('dsm_sys_local').with({
         'target' => '/opt/tivoli/tsm/client/ba/bin/dsm.sys',
         'source' => '/opt/tivoli/tsm/client/ba/bin/dsm.sys.local',
-        'order'  => '02',
+        'order'  => '31',
       })
     end
 
@@ -103,7 +115,19 @@ describe 'tsm' do
       end
 
       it do
-        should contain_concat__fragment('dsm_sys_template').with({
+        should contain_concat__fragment('dsm_sys_header').with({
+          'target' => '/usr/tivoli/tsm/client/ba/bin64/dsm.sys',
+        })
+      end
+
+      it do
+        should contain_concat__fragment('dsm_sys_global').with({
+          'target' => '/usr/tivoli/tsm/client/ba/bin64/dsm.sys',
+        })
+      end
+
+      it do
+        should contain_concat__fragment('dsm_sys_stanza_tsm').with({
           'target' => '/usr/tivoli/tsm/client/ba/bin64/dsm.sys',
         })
       end
@@ -112,7 +136,7 @@ describe 'tsm' do
         should contain_concat__fragment('dsm_sys_local').with({
           'target' => '/usr/tivoli/tsm/client/ba/bin64/dsm.sys',
           'source' => '/usr/tivoli/tsm/client/ba/bin64/dsm.sys.local',
-          'order'  => '02',
+          'order'  => '31',
         })
       end
 

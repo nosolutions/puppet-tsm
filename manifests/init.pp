@@ -99,6 +99,15 @@
 #   config - optional
 #   Default: 'start'
 #
+# [*config_dir*]
+#   Path where the per stanza InclExcl files will be deployed
+#   config - optional
+#   Default:
+#     RedHat: /opt/tivoli/tsm/client/ba/bin
+#     Debian: /opt/tivoli/tsm/client/ba/bin
+#     Solaris: /opt/tivoli/tsm/client/ba/bin
+#     AIX: /usr/tivoli/tsm/client/ba/bin64
+#
 # [*config*]
 #   Path to dsm.sys
 #   config - optional
@@ -115,9 +124,24 @@
 #   Default: false
 #
 # [*config_template*]
-#   Where to find the ERB template for dsm.sys
+#   Where to find the full ERB template for dsm.sys
 #   config_template - optional
 #   Default: 'tsm/dsm.sys.erb'
+#
+# [*config_header_template*]
+#   Where to find the partial header ERB template for dsm.sys
+#   config_template - optional
+#   Default: tsm/dsm.sys_header.erb
+#
+# [*config_global_template*]
+#   Where to find the partial global ERB template for dsm.sys
+#   config_template - optional
+#   Default: tsm/dsm.sys_global.erb
+#
+# [*config_stanza_template*]
+#   Where to find the partial stanza ERB template for dsm.sys
+#   config_template - optional
+#   Default: tsm/dsm.sys_stanza.erb
 #
 # [*inclexcl*]
 #   Path to the include/exclude file
@@ -154,6 +178,11 @@
 #      Debian: puppet://modules/tsm/InclExcl.debian
 #      Solaris: puppet://modules/tsm/InclExcl.solaris
 #
+# [*config_global_hash*]
+#   config_hash - hash with global parameters for the dms.sys file
+#     keys => value
+#   Default: {}
+#
 # [*config_hash*]
 #   config_hash - hash with extended parameters
 #     keys => value
@@ -168,10 +197,29 @@
 #   TSM server used for this client
 #   tcp_server_address - obligatory
 #
+# [*stanzas*]
+#   Define multiple server stanzas as a hash.
+#   config_hash - hash of tsm::config::stanza instances
+#   Default: undef
+#
 # === Examples
+#
+#  Single server configuration:
 #
 #  class { tsm:
 #    tcp_server_address => 'tsmserver1'
+#  }
+#
+#  Configure multiple stanzas:
+#
+#  class { tsm:
+#    stanzas => {
+#      'tsmserver1' => {
+#        'tcp_server_address' => 'tsmserver1'
+#      },
+#      'tsmserver2' => {
+#        'tcp_server_address' => 'tsmserver2'
+#      },
 #  }
 #
 # === Authors
@@ -183,8 +231,8 @@
 # Copyright 2014-2015 Toni Schmidbauer
 #
 class tsm (
-  $tcp_server_address,
   $server_name             = $name,
+  $tcp_server_address      = undef,
   $comm_method             = $::tsm::params::comm_method,
   $tcp_port                = $::tsm::params::tcp_port,
   $package_ensure          = $::tsm::params::package_ensure,
@@ -203,10 +251,14 @@ class tsm (
   $tsm_pwd                 = $::tsm::params::tsm_pwd,
   $initial_password        = $::tsm::params::initial_password,
   $set_initial_password    = $::tsm::params::set_initial_password,
+  $config_dir              = $::tsm::params::config_dir,
   $config                  = $::tsm::params::config,
   $config_opt              = $::tsm::params::config_opt,
   $config_replace          = $::tsm::params::config_replace,
-  $config_template         = $::tsm::params::config_template,
+  $config_template         = undef,
+  $config_header_template  = $::tsm::params::config_header_template,
+  $config_global_template  = $::tsm::params::config_global_template,
+  $config_stanza_template  = $::tsm::params::config_stanza_template,
   $rootgroup               = $::tsm::params::rootgroup,
   $inclexcl                = $::tsm::params::inclexcl,
   $inclexcl_hash           = {},
@@ -214,14 +266,13 @@ class tsm (
   $inclexcl_local          = $::tsm::params::inclexcl_local,
   $inclexcl_replace        = $::tsm::params::inclexcl_replace,
   $inclexcl_source         = $::tsm::params::inclexcl_source,
+  $config_global_hash      = {},
   $config_hash             = {},
   $config_opt_hash         = undef,
+  $stanzas                 = {},
   ) inherits tsm::params {
 
   validate_string($package_ensure)
-  validate_string($tcp_server_address)
-  validate_re($tcp_port,'\d+', 'tcp_port option has to be a numeric value!')
-  validate_string($comm_method)
   validate_array($packages)
   validate_string($package_uri)
   validate_bool($service_manage)
@@ -234,10 +285,6 @@ class tsm (
   validate_absolute_path($config)
   validate_absolute_path($config_opt)
   validate_bool($config_replace)
-  validate_string($config_template)
-  validate_absolute_path($inclexcl)
-  validate_absolute_path($inclexcl_local)
-  validate_string($inclexcl_source)
   validate_string($rootgroup)
 
   case $::osfamily {

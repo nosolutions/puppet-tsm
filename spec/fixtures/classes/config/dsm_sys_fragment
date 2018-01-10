@@ -1,0 +1,10 @@
+* stanza for server tsm
+Servername  tsm
+   COMMMethod            TCPip
+   TCPPort               1500
+   TCPServeraddress      127.0.0.1
+   INCLExcl              /opt/tivoli/tsm/client/ba/bin/InclExcl
+   INCLExcl              /opt/tivoli/tsm/client/ba/bin/InclExcl.local
+   INCLExcl              /opt/tivoli/tsm/client/ba/bin/InclExcl.hash
+   key                   value
+

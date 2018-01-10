@@ -1,0 +1,16 @@
+* stanza for server tsmserver1
+Servername  tsmserver1
+   COMMMethod            TCPip
+   TCPPort               1234
+   TCPServeraddress      127.0.0.1
+   INCLExcl              /opt/tivoli/tsm/client/ba/bin/InclExcl_tsmserver1
+   INCLExcl              /opt/tivoli/tsm/client/ba/bin/InclExcl_tsmserver1.local
+   domain                all-local
+   errorlogname          /var/log/dsmerror.log
+   errorlogretention     31 D
+   makesparsefile        no
+   nodename              node01
+   passwordaccess        generate
+   schedlogname          /var/log/dsmsched.log
+   schedlogretention     30 d
+
