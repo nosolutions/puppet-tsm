@@ -5,7 +5,7 @@ Servername  <%= @server_name %>
    TCPServeraddress      <%= @tcp_server_address %>
    INCLExcl              <%= @inclexcl %>
    INCLExcl              <%= @inclexcl_local %>
-<%- if @inclexcl_hash -%>
+<%- if @inclexcl_hash != {} -%>
    INCLExcl              <%= @inclexcl_hash_source %>
 <%- end -%>
 <%- @config_hash.sort.each do |config_key, config_values| -%>
