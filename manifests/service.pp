@@ -28,16 +28,16 @@ class tsm::service {
   if $::tsm::service_manage == true {
     case $::osfamily {
       redhat: {
-        include tsm::service::redhat
+        contain tsm::service::redhat
       }
       debian: {
-        include tsm::service::debian
+        contain tsm::service::debian
       }
       solaris: {
-        include tsm::service::solaris
+        contain tsm::service::solaris
       }
       'AIX': {
-        include tsm::service::aix
+        contain tsm::service::aix
       }
       default: {
         fail("Unsupported osfamily ${::osfamily} for managing the service!")
