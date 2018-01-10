@@ -8,7 +8,7 @@ Servername  <%= @server_name %>
 <%- if @inclexcl_hash -%>
    INCLExcl              <%= @inclexcl_hash_source %>
 <%- end -%>
-<%- @config_hash.each do |config_key, config_values| -%>
+<%- @config_hash.sort.each do |config_key, config_values| -%>
   <%- [config_values].flatten.each do |config_value| -%>
    <%= "%-21s %s" % [config_key, config_value] %>
   <%- end -%>
