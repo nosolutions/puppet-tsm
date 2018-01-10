@@ -21,9 +21,9 @@ class tsm::config {
   }
 
   if $::tsm::config_template {
-    include tsm::config::full_template
+    contain tsm::config::full_template
   } else {
-    include tsm::config::stanzas
+    contain tsm::config::stanzas
   }
 
   concat::fragment { 'dsm_sys_local_banner':
