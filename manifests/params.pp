@@ -96,6 +96,46 @@ class tsm::params {
       $inclexcl_source         = 'puppet:///modules/tsm/InclExcl.debian'
       $rootgroup               = 'root'
     }
+    'suse': {
+      if $::operatingsystemmajrelease == '12' {
+        $config_dir              = '/opt/tivoli/tsm/client/ba/bin'
+        $config                  = '/opt/tivoli/tsm/client/ba/bin/dsm.sys'
+        $config_opt              = '/opt/tivoli/tsm/client/ba/bin/dsm.opt'
+        $inclexcl                = '/opt/tivoli/tsm/client/ba/bin/InclExcl'
+        $inclexcl_hash_source    = '/opt/tivoli/tsm/client/ba/bin/InclExcl.hash'
+        $inclexcl_local          = '/opt/tivoli/tsm/client/ba/bin/InclExcl.local'
+        $packages                = ['TIVsm-BA']
+        $package_adminfile       = undef
+        $package_uri             = undef
+        $package_provider        = undef
+        $service_name            = 'dsmcad'
+        $service_script          = '/etc/systemd/system/dsmsched.service'
+        $service_script_source   = 'puppet:///modules/tsm/dsmsched.sles12'
+        $service_manifest        = undef
+        $service_manifest_source = undef
+        $inclexcl_source         = 'puppet:///modules/tsm/InclExcl.sles'
+        $rootgroup               = 'root'
+      }
+      else {
+        $config_dir              = '/opt/tivoli/tsm/client/ba/bin'
+        $config                  = '/opt/tivoli/tsm/client/ba/bin/dsm.sys'
+        $config_opt              = '/opt/tivoli/tsm/client/ba/bin/dsm.opt'
+        $inclexcl                = '/opt/tivoli/tsm/client/ba/bin/InclExcl'
+        $inclexcl_hash_source    = '/opt/tivoli/tsm/client/ba/bin/InclExcl.hash'
+        $inclexcl_local          = '/opt/tivoli/tsm/client/ba/bin/InclExcl.local'
+        $packages                = ['TIVsm-BA']
+        $package_adminfile       = undef
+        $package_uri             = undef
+        $package_provider        = undef
+        $service_name            = 'dsmsched'
+        $service_script          = '/etc/init.d/dsmsched'
+        $service_script_source   = 'puppet:///modules/tsm/dsmsched.sles'
+        $service_manifest        = undef
+        $service_manifest_source = undef
+        $inclexcl_source         = 'puppet:///modules/tsm/InclExcl.sles'
+        $rootgroup               = 'root'
+      }
+    }
     'solaris': {
       case $::hardwareisa {
         'i386': {
