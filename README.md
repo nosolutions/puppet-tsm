@@ -28,6 +28,7 @@ Storage Manager (TSM) client on the following operating systems:
 * Solaris 10/11
 * Debian 6/7
 * AIX 7.1
+* SLES 11/12
 
 ## Setup
 
