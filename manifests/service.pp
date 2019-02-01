@@ -33,6 +33,9 @@ class tsm::service {
       debian: {
         contain tsm::service::debian
       }
+      suse: {
+        contain tsm::service::sles
+      }
       solaris: {
         contain tsm::service::solaris
       }

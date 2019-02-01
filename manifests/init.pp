@@ -177,6 +177,7 @@
 #      Redhat: puppet://modules/tsm/InclExcl.redhat
 #      Debian: puppet://modules/tsm/InclExcl.debian
 #      Solaris: puppet://modules/tsm/InclExcl.solaris
+#      Suse: puppet://modules/tsm/InclExcl.sles
 #
 # [*config_global_hash*]
 #   config_hash - hash with global parameters for the dms.sys file
@@ -297,6 +298,11 @@ class tsm (
       validate_string($package_provider)
     }
     'redhat': {
+      validate_string($service_manifest_source)
+      validate_absolute_path($service_script)
+      validate_string($service_script_source)
+    }
+    'suse': {
       validate_string($service_manifest_source)
       validate_absolute_path($service_script)
       validate_string($service_script_source)
