@@ -472,7 +472,7 @@ describe 'tsm' do
 
       it do
         should contain_exec('generate-tsm.pwd').with({
-          'creates' => '/etc/adsm/TSM.PWD',
+          'unless'  => ['test -f /etc/adsm/TSM.PWD', 'test -f /etc/adsm/TSM.KDB'],
           'path'    => ['/bin', '/usr/bin'],
         })
       end
@@ -549,7 +549,7 @@ describe 'tsm' do
 
       it do
         should contain_exec('generate-tsm.pwd').with({
-          'creates' => '/etc/adsm/TSM.PWD',
+          'unless'  => ['test -f /etc/adsm/TSM.PWD', 'test -f /etc/adsm/TSM.KDB'],
           'path'    => ['/bin', '/usr/bin'],
         })
       end
@@ -937,7 +937,7 @@ describe 'tsm' do
 
       it do
         should contain_exec('generate-tsm.pwd').with({
-          'creates' => '/etc/adsm/TSM.PWD',
+          'unless'  => ['test -f /etc/adsm/TSM.PWD', 'test -f /etc/adsm/TSM.KDB'],
           'path'    => ['/bin', '/usr/bin'],
         })
       end
@@ -1023,7 +1023,7 @@ describe 'tsm' do
 
       it do
         should contain_exec('generate-tsm.pwd').with({
-          'creates' => '/etc/adsm/TSM.PWD',
+          'unless'  => ['test -f /etc/adsm/TSM.PWD', 'test -f /etc/adsm/TSM.KDB'],
           'path'    => ['/bin', '/usr/bin'],
         })
       end
