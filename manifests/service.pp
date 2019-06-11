@@ -52,7 +52,7 @@ class tsm::service {
 
       exec {'generate-tsm.pwd':
         command => "dsmc set password ${::tsm::initial_password} ${password}",
-        creates => $::tsm::tsm_pwd,
+        unless  => ["test -f ${::tsm::tsm_pwd}", "test -f ${::tsm::tsm_pwd_kdb}"],
         path    => ['/bin', '/usr/bin']
       }
       Exec['generate-tsm.pwd'] -> Service[$::tsm::service_name]

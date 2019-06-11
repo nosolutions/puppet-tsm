@@ -21,6 +21,7 @@ class tsm::params {
 
   # default password file
   $tsm_pwd              = '/etc/adsm/TSM.PWD'
+  $tsm_pwd_kdb          = '/etc/adsm/TSM.KDB'
   $initial_password     = 'start'
   $set_initial_password = true
 

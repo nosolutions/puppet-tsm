@@ -94,6 +94,11 @@
 #   config - optional
 #   Default: /etc/adsm/TSM.PWD
 #
+# [*tsm_pwd_kdb*]
+#   Path to the TSM GSKit password file used since 7.1.8
+#   config - optional
+#   Default: /etc/adsm/TSM.KDB
+#
 # [*initial_password*]
 #   First time password for connecting to the tsm server
 #   config - optional
@@ -250,6 +255,7 @@ class tsm (
   $service_script          = $::tsm::params::service_script,
   $service_script_source   = $::tsm::params::service_script_source,
   $tsm_pwd                 = $::tsm::params::tsm_pwd,
+  $tsm_pwd_kdb             = $::tsm::params::tsm_pwd_kdb,
   $initial_password        = $::tsm::params::initial_password,
   $set_initial_password    = $::tsm::params::set_initial_password,
   $config_dir              = $::tsm::params::config_dir,
@@ -281,6 +287,7 @@ class tsm (
   validate_bool($service_enable)
   validate_string($service_name)
   validate_absolute_path($tsm_pwd)
+  validate_absolute_path($tsm_pwd_kdb)
   validate_string($initial_password)
   validate_bool($set_initial_password)
   validate_absolute_path($config)
