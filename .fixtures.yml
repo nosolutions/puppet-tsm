@@ -2,9 +2,9 @@ fixtures:
   forge_modules:
     stdlib:
       repo: puppetlabs-stdlib
-      ref: 4.11.0
+      ref: 4.25.1
     concat:
       repo: puppetlabs-concat
-      ref: 2.1.0
+      ref: 5.1.0
   symlinks:
     "tsm": "#{source_dir}"
